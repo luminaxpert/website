@@ -3,17 +3,17 @@ import { ArrowLeft } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <div className="flex flex-col min-h-screen bg-[var(--color-bg-deep)] items-center justify-center relative overflow-hidden">
+    <div className="flex flex-col min-h-screen bg-[#FFFFFF] items-center justify-center relative overflow-hidden">
       <div className="absolute inset-0 ambient-center z-0 opacity-40"></div>
       
       <div className="relative z-10 text-center px-5">
-        <h1 className="font-syne font-black text-[120px] md:text-[200px] leading-none text-gradient opacity-80 mix-blend-screen drop-shadow-[0_0_40px_rgba(224,64,251,0.4)]">
+        <h1 className="font-plus-jakarta-sans font-black text-[120px] md:text-[200px] leading-none text-gradient opacity-80 mix-blend-screen drop-shadow-[0_0_40px_rgba(224,64,251,0.4)]">
           404
         </h1>
-        <h2 className="font-syne font-bold text-[32px] md:text-[48px] text-white mb-6 -mt-8 md:-mt-12 relative z-10">
+        <h2 className="font-plus-jakarta-sans font-bold text-[32px] md:text-[48px] text-[#0D0D1F] mb-6 -mt-8 md:-mt-12 relative z-10">
           Page not found
         </h2>
-        <p className="font-outfit text-[18px] text-[#9494c0] mb-10 max-w-[400px] mx-auto">
+        <p className="font-inter text-[18px] text-[#4A5568] mb-10 max-w-[400px] mx-auto">
           The intelligence you're looking for seems to have drifted into the void.
         </p>
         <Link href="/" className="btn-primary inline-flex items-center gap-2">

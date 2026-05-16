@@ -35,15 +35,15 @@ export default function Home() {
               </div>
             </ScrollReveal>
             
-            <h1 className="font-syncopate font-bold text-[48px] md:text-[84px] leading-[1.1] tracking-tight mb-8">
+            <h1 className="font-plus-jakarta-sans font-bold text-[48px] md:text-[84px] leading-[1.1] tracking-tight mb-8">
               <ScrollReveal delay={0.1}><div className="text-gradient drop-shadow-[0_0_40px_rgba(139,63,255,0.4)]">Illuminate</div></ScrollReveal>
-              <ScrollReveal delay={0.2}><div className="text-white">Your Potential.</div></ScrollReveal>
+              <ScrollReveal delay={0.2}><div className="text-[#0D0D1F]">Your Potential.</div></ScrollReveal>
               <ScrollReveal delay={0.3}><div className="text-gradient drop-shadow-[0_0_40px_rgba(139,63,255,0.4)]">Expertise</div></ScrollReveal>
-              <ScrollReveal delay={0.4}><div className="text-white">Redefined.</div></ScrollReveal>
+              <ScrollReveal delay={0.4}><div className="text-[#0D0D1F]">Redefined.</div></ScrollReveal>
             </h1>
             
             <ScrollReveal delay={0.5}>
-              <p className="font-plus-jakarta-sans text-[18px] text-[#9494c0] leading-[1.8] max-w-[640px] mx-auto mb-12">
+              <p className="font-plus-jakarta-sans text-[18px] text-[#4A5568] leading-[1.8] max-w-[640px] mx-auto mb-12">
                 LuminaXpert connects you with world-class AI experts and 
                 precision tools to transform your business — infinitely.
               </p>
@@ -62,12 +62,12 @@ export default function Home() {
               <div className="flex flex-col items-center gap-4 mt-4">
                 <div className="flex -space-x-3">
                   {[1, 2, 3, 4, 5].map((i) => (
-                    <div key={i} className="w-12 h-12 rounded-full bg-[#17173A] border-2 border-[#E040FB]/40 relative z-[1] overflow-hidden">
+                    <div key={i} className="w-12 h-12 rounded-full bg-[#FFFFFF] border-2 border-[#E040FB]/40 relative z-[1] overflow-hidden">
                       <div className="w-full h-full bg-gradient-to-br from-[#3B6FFF]/20 to-[#E040FB]/20 flex items-center justify-center text-[10px] text-[#E040FB]">UX</div>
                     </div>
                   ))}
                 </div>
-                <span className="font-space-mono text-[12px] text-[#4a4a80] uppercase tracking-widest">Trusted by 3,200+ global enterprises</span>
+                <span className="font-space-mono text-[12px] text-[#718096] uppercase tracking-widest">Trusted by 3,200+ global enterprises</span>
               </div>
             </ScrollReveal>
           </div>
@@ -78,42 +78,42 @@ export default function Home() {
           <div className="animate-bounce">
             <ChevronDown size={24} className="text-[#E040FB]" />
           </div>
-          <span className="font-space-mono text-[10px] text-[#4a4a80] mt-2 tracking-widest">SCROLL</span>
+          <span className="font-space-mono text-[10px] text-[#718096] mt-2 tracking-widest">SCROLL</span>
         </div>
       </section>
 
       {/* ─── SECTION 2: STATS BAR ────────────────────────────── */}
-      <section className="relative w-full py-[140px] border-y border-[#8b3fff]/20 bg-[#11112a]/65 backdrop-blur-[30px] z-10">
+      <section className="relative w-full py-[140px] border-y border-[#8b3fff]/20 bg-[#F0F4F8]/65 backdrop-blur-[30px] z-10">
         <div className="container mx-auto px-5 md:px-20 max-w-[1280px]">
           <div className="flex flex-col md:flex-row justify-between items-center gap-10 md:gap-0">
             <ScrollReveal delay={0.1} className="flex-1">
               <div className="flex flex-col items-center text-center w-full">
-                <div className="font-syne font-black text-[56px] text-gradient">500+</div>
-                <div className="font-space-mono text-[12px] uppercase tracking-[0.15em] text-[#9494c0]">Expert Specialists</div>
+                <div className="font-plus-jakarta-sans font-black text-[56px] text-gradient">500+</div>
+                <div className="font-space-mono text-[12px] uppercase tracking-[0.15em] text-[#4A5568]">Expert Specialists</div>
               </div>
             </ScrollReveal>
             <div className="hidden md:block w-[1px] h-16 bg-gradient-to-b from-transparent via-[#8b3fff]/30 to-transparent"></div>
             
             <ScrollReveal delay={0.2} className="flex-1">
               <div className="flex flex-col items-center text-center w-full">
-                <div className="font-syne font-black text-[56px] text-gradient">98.6%</div>
-                <div className="font-space-mono text-[12px] uppercase tracking-[0.15em] text-[#9494c0]">Client Satisfaction</div>
+                <div className="font-plus-jakarta-sans font-black text-[56px] text-gradient">98.6%</div>
+                <div className="font-space-mono text-[12px] uppercase tracking-[0.15em] text-[#4A5568]">Client Satisfaction</div>
               </div>
             </ScrollReveal>
             <div className="hidden md:block w-[1px] h-16 bg-gradient-to-b from-transparent via-[#8b3fff]/30 to-transparent"></div>
             
             <ScrollReveal delay={0.3} className="flex-1">
               <div className="flex flex-col items-center text-center w-full">
-                <div className="font-syne font-black text-[56px] text-gradient">120+</div>
-                <div className="font-space-mono text-[12px] uppercase tracking-[0.15em] text-[#9494c0]">Countries Served</div>
+                <div className="font-plus-jakarta-sans font-black text-[56px] text-gradient">120+</div>
+                <div className="font-space-mono text-[12px] uppercase tracking-[0.15em] text-[#4A5568]">Countries Served</div>
               </div>
             </ScrollReveal>
             <div className="hidden md:block w-[1px] h-16 bg-gradient-to-b from-transparent via-[#8b3fff]/30 to-transparent"></div>
             
             <ScrollReveal delay={0.4} className="flex-1">
               <div className="flex flex-col items-center text-center w-full">
-                <div className="font-syne font-black text-[56px] text-gradient">$1.8B+</div>
-                <div className="font-space-mono text-[12px] uppercase tracking-[0.15em] text-[#9494c0]">Value Delivered</div>
+                <div className="font-plus-jakarta-sans font-black text-[56px] text-gradient">$1.8B+</div>
+                <div className="font-space-mono text-[12px] uppercase tracking-[0.15em] text-[#4A5568]">Value Delivered</div>
               </div>
             </ScrollReveal>
           </div>
@@ -121,7 +121,7 @@ export default function Home() {
       </section>
 
       {/* ─── SECTION 3: SERVICES OVERVIEW ────────────────────── */}
-      <section className="relative py-[120px] bg-[var(--color-bg-deep)]">
+      <section className="relative py-[120px] bg-[#FFFFFF]">
         <div className="absolute inset-0 ambient-left z-0 opacity-50"></div>
         <div className="container mx-auto px-5 md:px-20 max-w-[1280px] relative z-10">
           
@@ -132,11 +132,11 @@ export default function Home() {
                 OUR SERVICES
                 <span className="w-8 h-[1px] bg-[#00D9FF]/50"></span>
               </div>
-              <h2 className="font-syne font-extrabold text-[40px] md:text-[56px] leading-[1.1] mb-6">
-                <span className="text-white block">Everything you need to</span>
+              <h2 className="font-plus-jakarta-sans font-extrabold text-[40px] md:text-[56px] leading-[1.1] mb-6">
+                <span className="text-[#0D0D1F] block">Everything you need to</span>
                 <span className="text-gradient block">lead with AI.</span>
               </h2>
-              <p className="font-outfit text-[19px] text-[#9494c0] max-w-[560px]">
+              <p className="font-inter text-[19px] text-[#4A5568] max-w-[560px]">
                 From strategy to implementation — six service lines, one integrated vision.
               </p>
             </div>
@@ -156,8 +156,8 @@ export default function Home() {
                   <div className="w-16 h-16 rounded-2xl bg-[#8b3fff]/10 border border-[#8b3fff]/20 flex items-center justify-center text-[#E040FB] mb-5 drop-shadow-[0_0_8px_rgba(224,64,251,0.5)]">
                     {service.icon}
                   </div>
-                  <h3 className="font-plus-jakarta-sans font-bold text-[22px] text-white mb-3">{service.title}</h3>
-                  <p className="font-outfit text-[15px] leading-[1.7] text-[#9494c0] mb-5">{service.desc}</p>
+                  <h3 className="font-plus-jakarta-sans font-bold text-[22px] text-[#0D0D1F] mb-3">{service.title}</h3>
+                  <p className="font-inter text-[15px] leading-[1.7] text-[#4A5568] mb-5">{service.desc}</p>
                   <Link href="/services" className="btn-link">Learn more →</Link>
                 </div>
               </ScrollReveal>
@@ -173,15 +173,15 @@ export default function Home() {
       </section>
 
       {/* ─── SECTION 4: HOW IT WORKS ─────────────────────────── */}
-      <section className="relative py-[120px] bg-[var(--color-bg-surface)] border-y border-[var(--color-border-subtle)]">
+      <section className="relative py-[120px] bg-[#F0F4F8] border-y border-[rgba(139, 63, 255, 0.15)]">
         <div className="absolute inset-0 ambient-center z-0 opacity-40"></div>
         <div className="container mx-auto px-5 md:px-20 max-w-[1280px] relative z-10">
           
           <ScrollReveal>
             <div className="flex flex-col items-center text-center mb-20">
               <div className="font-space-mono text-[11px] text-[#E040FB] tracking-widest uppercase mb-4">THE PROCESS</div>
-              <h2 className="font-syne font-extrabold text-[40px] md:text-[52px] leading-[1.1]">
-                <span className="text-white block">From challenge to transformation</span>
+              <h2 className="font-plus-jakarta-sans font-extrabold text-[40px] md:text-[52px] leading-[1.1]">
+                <span className="text-[#0D0D1F] block">From challenge to transformation</span>
                 <span className="text-gradient block">in four steps.</span>
               </h2>
             </div>
@@ -199,14 +199,14 @@ export default function Home() {
             ].map((step, i) => (
               <ScrollReveal key={i} delay={i * 0.15} className="flex-1">
                 <div className="flex flex-col items-center text-center w-full md:w-[220px] mx-auto relative z-10 group">
-                  <div className="font-space-mono font-bold text-[13px] text-[#4a4a80] tracking-[0.2em] mb-3 group-hover:text-white transition-colors">{step.num}</div>
-                  <div className="w-[80px] h-[80px] rounded-full bg-[#0d0d1f]/80 border-[1.5px] border-[#8b3fff]/40 shadow-[0_0_20px_rgba(139,63,255,0.15)] flex items-center justify-center mb-6 group-hover:border-[#E040FB]/60 group-hover:shadow-[0_0_30px_rgba(224,64,251,0.25)] transition-all duration-300">
+                  <div className="font-space-mono font-bold text-[13px] text-[#718096] tracking-[0.2em] mb-3 group-hover:text-[#0D0D1F] transition-colors">{step.num}</div>
+                  <div className="w-[80px] h-[80px] rounded-full bg-[#FFFFFF]/80 border-[1.5px] border-[#8b3fff]/40 shadow-[0_0_20px_rgba(139,63,255,0.15)] flex items-center justify-center mb-6 group-hover:border-[#E040FB]/60 group-hover:shadow-[0_0_30px_rgba(224,64,251,0.25)] transition-all duration-300">
                     <span className="text-[#00D9FF] group-hover:text-[#E040FB] transition-colors drop-shadow-[0_0_8px_rgba(0,217,255,0.5)]">
                       {step.icon}
                     </span>
                   </div>
-                  <h4 className="font-plus-jakarta-sans font-bold text-[20px] text-white mb-3">{step.title}</h4>
-                  <p className="font-outfit text-[14px] leading-[1.7] text-[#9494c0] max-w-[200px]">{step.desc}</p>
+                  <h4 className="font-plus-jakarta-sans font-bold text-[20px] text-[#0D0D1F] mb-3">{step.title}</h4>
+                  <p className="font-inter text-[14px] leading-[1.7] text-[#4A5568] max-w-[200px]">{step.desc}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -215,7 +215,7 @@ export default function Home() {
           <ScrollReveal delay={0.4}>
             <div className="mt-24 flex justify-center">
               <div className="glass-brand py-10 px-10 md:px-16 rounded-[24px] max-w-[900px] text-center">
-                <h3 className="font-syne font-extrabold italic text-[28px] md:text-[44px] text-gradient">
+                <h3 className="font-plus-jakarta-sans font-extrabold italic text-[28px] md:text-[44px] text-gradient">
                   "Intelligence without limits. Expertise without boundaries."
                 </h3>
               </div>
@@ -225,7 +225,7 @@ export default function Home() {
       </section>
 
       {/* ─── SECTION 5: WHY LUMINAXPERT ──────────────────────── */}
-      <section className="relative py-[120px] bg-[var(--color-bg-deep)]">
+      <section className="relative py-[120px] bg-[#FFFFFF]">
         <div className="absolute inset-0 ambient-right z-0 opacity-50"></div>
         <div className="container mx-auto px-5 md:px-20 max-w-[1280px] relative z-10">
           
@@ -240,11 +240,11 @@ export default function Home() {
                       <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
                       <div className="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
                     </div>
-                    <span className="font-space-mono text-[12px] text-[#9494c0] ml-2">LuminaXpert Console</span>
+                    <span className="font-space-mono text-[12px] text-[#4A5568] ml-2">LuminaXpert Console</span>
                   </div>
                   
                   <div className="flex-1 flex gap-4">
-                    <div className="w-1/2 h-full rounded-xl bg-[#0f0f28]/50 border border-[#8b3fff]/10 relative overflow-hidden p-4">
+                    <div className="w-1/2 h-full rounded-xl bg-[#FFFFFF]/50 border border-[#8b3fff]/10 relative overflow-hidden p-4">
                       {/* Placeholder for chart */}
                       <div className="absolute inset-0 flex items-end justify-between px-4 pb-4">
                         {[40, 70, 45, 90, 65, 100].map((h, i) => (
@@ -255,15 +255,15 @@ export default function Home() {
                     <div className="w-1/2 flex flex-col gap-3">
                       <div className="glass-brand p-3 rounded-xl flex items-center justify-between">
                         <span className="font-space-mono text-[11px] text-[#00F5A0]">ROI:</span>
-                        <span className="font-syne font-bold text-white text-[16px]">+340%</span>
+                        <span className="font-plus-jakarta-sans font-bold text-[#0D0D1F] text-[16px]">+340%</span>
                       </div>
                       <div className="glass-brand p-3 rounded-xl flex items-center justify-between">
                         <span className="font-space-mono text-[11px] text-[#00D9FF]">Speed:</span>
-                        <span className="font-syne font-bold text-white text-[16px]">8× faster</span>
+                        <span className="font-plus-jakarta-sans font-bold text-[#0D0D1F] text-[16px]">8× faster</span>
                       </div>
                       <div className="glass-brand p-3 rounded-xl flex items-center justify-between">
                         <span className="font-space-mono text-[11px] text-[#FFD166]">Accuracy:</span>
-                        <span className="font-syne font-bold text-white text-[16px]">99.7%</span>
+                        <span className="font-plus-jakarta-sans font-bold text-[#0D0D1F] text-[16px]">99.7%</span>
                       </div>
                     </div>
                   </div>
@@ -275,8 +275,8 @@ export default function Home() {
             <div className="w-full md:w-[55%]">
               <ScrollReveal>
                 <div className="font-space-mono text-[11px] text-[#E040FB] tracking-widest uppercase mb-4">WHY US</div>
-                <h2 className="font-syne font-extrabold text-[40px] md:text-[52px] leading-[1.1] mb-8">
-                  <span className="text-white block">The LuminaXpert</span>
+                <h2 className="font-plus-jakarta-sans font-extrabold text-[40px] md:text-[52px] leading-[1.1] mb-8">
+                  <span className="text-[#0D0D1F] block">The LuminaXpert</span>
                   <span className="text-gradient block">difference.</span>
                 </h2>
               </ScrollReveal>
@@ -289,13 +289,13 @@ export default function Home() {
                   { icon: Lock, title: "Enterprise-Grade Security", desc: "SOC 2 Type II, GDPR compliant, zero data compromise." }
                 ].map((item, i) => (
                   <ScrollReveal key={i} delay={i * 0.1}>
-                    <div className={`flex gap-5 py-5 ${i !== 3 ? 'border-b border-[var(--color-border-subtle)]' : ''}`}>
+                    <div className={`flex gap-5 py-5 ${i !== 3 ? 'border-b border-[rgba(139, 63, 255, 0.15)]' : ''}`}>
                       <div className="mt-1 text-[#E040FB] drop-shadow-[0_0_8px_rgba(224,64,251,0.5)]">
                         <item.icon size={24} />
                       </div>
                       <div>
-                        <h4 className="font-plus-jakarta-sans font-bold text-[18px] text-white mb-2">{item.title}</h4>
-                        <p className="font-outfit text-[15px] text-[#9494c0] leading-[1.6]">{item.desc}</p>
+                        <h4 className="font-plus-jakarta-sans font-bold text-[18px] text-[#0D0D1F] mb-2">{item.title}</h4>
+                        <p className="font-inter text-[15px] text-[#4A5568] leading-[1.6]">{item.desc}</p>
                       </div>
                     </div>
                   </ScrollReveal>
@@ -309,7 +309,7 @@ export default function Home() {
               <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                 <div>
                   <div className="font-space-mono text-[11px] text-[#00D9FF] tracking-widest uppercase mb-4">LATEST INSIGHTS</div>
-                  <h2 className="font-syne font-extrabold text-[40px] text-white">Featured Intelligence</h2>
+                  <h2 className="font-plus-jakarta-sans font-extrabold text-[40px] text-[#0D0D1F]">Featured Intelligence</h2>
                 </div>
                 <Link href="/blog" className="btn-link">View All Insights →</Link>
               </div>
@@ -321,13 +321,13 @@ export default function Home() {
                   <div className="md:w-[40%] h-[240px] md:h-auto overflow-hidden">
                     <img src="/images/blog/prompt1.png" alt="Generative AI" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   </div>
-                  <div className="md:w-[60%] p-8 flex flex-col justify-center bg-[#0d0d1f]/60 backdrop-blur-md">
+                  <div className="md:w-[60%] p-8 flex flex-col justify-center bg-[#FFFFFF]/60 backdrop-blur-md">
                     <div className="flex items-center gap-3 mb-4">
                       <span className="px-3 py-1 rounded-full bg-[#E040FB]/10 text-[#E040FB] font-space-mono text-[10px] uppercase font-bold border border-[#E040FB]/20">Strategy</span>
-                      <span className="text-[#4a4a80] font-space-mono text-[11px]">8 MIN READ</span>
+                      <span className="text-[#718096] font-space-mono text-[11px]">8 MIN READ</span>
                     </div>
-                    <h3 className="font-plus-jakarta-sans font-bold text-[24px] text-white group-hover:text-[#E040FB] transition-colors mb-4">The Future of Generative AI in Enterprise</h3>
-                    <p className="font-outfit text-[#9494c0] text-[15px] line-clamp-2">How autonomous agents are redefining the corporate landscape and what it means for your infrastructure.</p>
+                    <h3 className="font-plus-jakarta-sans font-bold text-[24px] text-[#0D0D1F] group-hover:text-[#E040FB] transition-colors mb-4">The Future of Generative AI in Enterprise</h3>
+                    <p className="font-inter text-[#4A5568] text-[15px] line-clamp-2">How autonomous agents are redefining the corporate landscape and what it means for your infrastructure.</p>
                   </div>
                 </Link>
               </ScrollReveal>
@@ -337,13 +337,13 @@ export default function Home() {
                   <div className="md:w-[40%] h-[240px] md:h-auto overflow-hidden">
                     <img src="/images/blog/prompt2.png" alt="AI Infrastructure" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   </div>
-                  <div className="md:w-[60%] p-8 flex flex-col justify-center bg-[#0d0d1f]/60 backdrop-blur-md">
+                  <div className="md:w-[60%] p-8 flex flex-col justify-center bg-[#FFFFFF]/60 backdrop-blur-md">
                     <div className="flex items-center gap-3 mb-4">
                       <span className="px-3 py-1 rounded-full bg-[#00D9FF]/10 text-[#00D9FF] font-space-mono text-[10px] uppercase font-bold border border-[#00D9FF]/20">Engineering</span>
-                      <span className="text-[#4a4a80] font-space-mono text-[11px]">12 MIN READ</span>
+                      <span className="text-[#718096] font-space-mono text-[11px]">12 MIN READ</span>
                     </div>
-                    <h3 className="font-plus-jakarta-sans font-bold text-[24px] text-white group-hover:text-[#00D9FF] transition-colors mb-4">Scaling AI Infrastructure Globally</h3>
-                    <p className="font-outfit text-[#9494c0] text-[15px] line-clamp-2">The architecture behind multi-region AI orchestration and autonomous workflow delivery.</p>
+                    <h3 className="font-plus-jakarta-sans font-bold text-[24px] text-[#0D0D1F] group-hover:text-[#00D9FF] transition-colors mb-4">Scaling AI Infrastructure Globally</h3>
+                    <p className="font-inter text-[#4A5568] text-[15px] line-clamp-2">The architecture behind multi-region AI orchestration and autonomous workflow delivery.</p>
                   </div>
                 </Link>
               </ScrollReveal>
@@ -353,16 +353,16 @@ export default function Home() {
       </section>
 
       {/* ─── SECTION 8: CTA BAND ─────────────────────────────── */}
-      <section className="relative py-[80px] bg-[var(--color-bg-void)] border-y border-[var(--color-brand-magenta)]/30 overflow-hidden mt-20">
+      <section className="relative py-[80px] bg-[#F8F9FA] border-y border-[var(--color-brand-magenta)]/30 overflow-hidden mt-20">
         <div className="absolute inset-0 bg-gradient-to-br from-[#3B6FFF]/10 via-[#8B3FFF]/15 to-[#E040FB]/10 z-0"></div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(139,63,255,0.15)_0%,transparent_70%)] rounded-full animate-pulse z-0"></div>
         
         <div className="container mx-auto px-5 relative z-10 flex flex-col items-center text-center">
           <ScrollReveal>
-            <h2 className="font-syne font-black text-[40px] md:text-[56px] text-white mb-4">
+            <h2 className="font-plus-jakarta-sans font-black text-[40px] md:text-[56px] text-[#0D0D1F] mb-4">
               Ready to illuminate your potential?
             </h2>
-            <p className="font-outfit text-[20px] text-[#9494c0] mb-8">
+            <p className="font-inter text-[20px] text-[#4A5568] mb-8">
               Talk to a LuminaXpert specialist today. No commitment.
             </p>
           </ScrollReveal>
@@ -375,7 +375,7 @@ export default function Home() {
           </ScrollReveal>
           
           <ScrollReveal delay={0.2}>
-            <div className="font-space-mono text-[11px] text-[#4a4a80] flex flex-wrap justify-center gap-4">
+            <div className="font-space-mono text-[11px] text-[#718096] flex flex-wrap justify-center gap-4">
               <span>✓ No credit card</span>
               <span className="hidden sm:inline">·</span>
               <span>✓ 30-min discovery call</span>

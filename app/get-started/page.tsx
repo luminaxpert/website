@@ -56,14 +56,14 @@ export default function GetStartedPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[var(--color-bg-deep)]">
+    <div className="flex flex-col min-h-screen bg-[#FFFFFF]">
       
       {/* COMPACT WIZARD HEADER */}
-      <div className="w-full h-[80px] border-b border-[var(--color-border-subtle)] flex items-center justify-between px-5 md:px-10 bg-[#0d0d1f] relative z-[60]">
+      <div className="w-full h-[80px] border-b border-[rgba(139, 63, 255, 0.15)] flex items-center justify-between px-5 md:px-10 bg-[#FFFFFF] relative z-[60]">
         <Link href="/" className="inline-flex items-center gap-2.5">
           <Image src="/images/logo-bg.png" alt="LuminaXpert Logo" width={200} height={40} className="h-9 w-auto object-contain" />
         </Link>
-        <Link href="/" className="font-outfit text-[14px] text-[#9494c0] hover:text-white transition-colors flex items-center gap-2">
+        <Link href="/" className="font-inter text-[14px] text-[#4A5568] hover:text-[#0D0D1F] transition-colors flex items-center gap-2">
           <span>Return to Home</span>
           <ChevronRight size={14} />
         </Link>
@@ -83,7 +83,7 @@ export default function GetStartedPage() {
               
               {[1, 2, 3].map((s) => (
                 <div key={s} className={`w-10 h-10 rounded-full flex items-center justify-center font-plus-jakarta-sans text-[14px] font-bold relative z-10 transition-colors duration-300 ${
-                  step >= s ? 'bg-[var(--color-bg-surface)] border-2 border-[#E040FB] text-white shadow-[0_0_15px_rgba(224,64,251,0.3)]' : 'bg-[#0f0f28] border-2 border-white/10 text-[#4a4a80]'
+                  step >= s ? 'bg-[#F0F4F8] border-2 border-[#E040FB] text-[#0D0D1F] shadow-[0_0_15px_rgba(224,64,251,0.3)]' : 'bg-[#FFFFFF] border-2 border-white/10 text-[#718096]'
                 }`}>
                   {s}
                 </div>
@@ -92,12 +92,12 @@ export default function GetStartedPage() {
 
             {step === 1 && (
               <div className="animate-fade-in">
-                <h2 className="font-syne font-bold text-[36px] text-white mb-2">Let's build your profile</h2>
-                <p className="font-outfit text-[#9494c0] mb-8">We'll use this to match you with the right AI specialists.</p>
+                <h2 className="font-plus-jakarta-sans font-bold text-[36px] text-[#0D0D1F] mb-2">Let's build your profile</h2>
+                <p className="font-inter text-[#4A5568] mb-8">We'll use this to match you with the right AI specialists.</p>
                 
                 <form onSubmit={(e) => { e.preventDefault(); setStep(2); }} className="flex flex-col gap-4 mb-8">
                   <div className="flex flex-col gap-1.5">
-                    <label className="font-space-mono text-[11px] text-[#9494c0] uppercase tracking-wider">Full Name *</label>
+                    <label className="font-space-mono text-[11px] text-[#4A5568] uppercase tracking-wider">Full Name *</label>
                     <input 
                       type="text" 
                       name="user_name"
@@ -109,7 +109,7 @@ export default function GetStartedPage() {
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label className="font-space-mono text-[11px] text-[#9494c0] uppercase tracking-wider">Work Email *</label>
+                    <label className="font-space-mono text-[11px] text-[#4A5568] uppercase tracking-wider">Work Email *</label>
                     <input 
                       type="email" 
                       name="user_email"
@@ -121,7 +121,7 @@ export default function GetStartedPage() {
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label className="font-space-mono text-[11px] text-[#9494c0] uppercase tracking-wider">Company Name (Optional)</label>
+                    <label className="font-space-mono text-[11px] text-[#4A5568] uppercase tracking-wider">Company Name (Optional)</label>
                     <input 
                       type="text" 
                       name="company"
@@ -138,8 +138,8 @@ export default function GetStartedPage() {
 
             {step === 2 && (
               <div className="animate-fade-in">
-                <h2 className="font-syne font-bold text-[36px] text-white mb-2">What's your focus?</h2>
-                <p className="font-outfit text-[#9494c0] mb-8">Select the primary area where you need AI transformation.</p>
+                <h2 className="font-plus-jakarta-sans font-bold text-[36px] text-[#0D0D1F] mb-2">What's your focus?</h2>
+                <p className="font-inter text-[#4A5568] mb-8">Select the primary area where you need AI transformation.</p>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                   {[
@@ -162,7 +162,7 @@ export default function GetStartedPage() {
                       }`}>
                         {formData.focus === option && <div className="w-2.5 h-2.5 rounded-full bg-[#E040FB]"></div>}
                       </div>
-                      <span className="font-plus-jakarta-sans text-[14px] text-white">{option}</span>
+                      <span className="font-plus-jakarta-sans text-[14px] text-[#0D0D1F]">{option}</span>
                     </button>
                   ))}
                 </div>
@@ -189,12 +189,12 @@ export default function GetStartedPage() {
             {step === 3 && (
               <div className="animate-fade-in text-center py-10">
                 <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-[#3B6FFF] to-[#E040FB] p-[2px] mx-auto mb-6">
-                  <div className="w-full h-full rounded-full bg-[#0d0d1f] flex items-center justify-center">
+                  <div className="w-full h-full rounded-full bg-[#FFFFFF] flex items-center justify-center">
                     <CheckCircle2 className="text-[#00F5A0]" size={32} />
                   </div>
                 </div>
-                <h2 className="font-syne font-bold text-[36px] text-white mb-4">Transmission Successful</h2>
-                <p className="font-outfit text-[#9494c0] mb-8 max-w-[400px] mx-auto">
+                <h2 className="font-plus-jakarta-sans font-bold text-[36px] text-[#0D0D1F] mb-4">Transmission Successful</h2>
+                <p className="font-inter text-[#4A5568] mb-8 max-w-[400px] mx-auto">
                   Welcome to the ecosystem, <strong>{formData.user_name.split(' ')[0]}</strong>. 
                   A confirmation has been sent to {formData.user_email}. Our lead strategist will reach out shortly.
                 </p>
@@ -206,29 +206,29 @@ export default function GetStartedPage() {
         </div>
 
         {/* RIGHT SIDE: SOCIAL PROOF / PERKS */}
-        <div className="w-full md:w-[40%] bg-[var(--color-bg-void)] border-l border-[var(--color-border-subtle)] p-5 md:p-20 flex flex-col justify-center">
-          <div className="font-syne font-bold text-[28px] text-white mb-8">Join the elite network of AI-driven enterprises.</div>
+        <div className="w-full md:w-[40%] bg-[#F8F9FA] border-l border-[rgba(139, 63, 255, 0.15)] p-5 md:p-20 flex flex-col justify-center">
+          <div className="font-plus-jakarta-sans font-bold text-[28px] text-[#0D0D1F] mb-8">Join the elite network of AI-driven enterprises.</div>
           
           <div className="flex flex-col gap-6 mb-12">
             <div className="flex gap-4">
               <div className="w-10 h-10 rounded-full glass-brand flex items-center justify-center flex-shrink-0 text-[#00F5A0]"><Shield size={18} /></div>
               <div>
-                <h4 className="font-plus-jakarta-sans font-bold text-[16px] text-white mb-1">Strict Confidentiality</h4>
-                <p className="font-outfit text-[#9494c0] text-[14px]">NDAs standard on all initial consultations.</p>
+                <h4 className="font-plus-jakarta-sans font-bold text-[16px] text-[#0D0D1F] mb-1">Strict Confidentiality</h4>
+                <p className="font-inter text-[#4A5568] text-[14px]">NDAs standard on all initial consultations.</p>
               </div>
             </div>
             <div className="flex gap-4">
               <div className="w-10 h-10 rounded-full glass-brand flex items-center justify-center flex-shrink-0 text-[#FFD166]"><Zap size={18} /></div>
               <div>
-                <h4 className="font-plus-jakarta-sans font-bold text-[16px] text-white mb-1">Rapid Matching</h4>
-                <p className="font-outfit text-[#9494c0] text-[14px]">Talk to the right expert in 48 hours.</p>
+                <h4 className="font-plus-jakarta-sans font-bold text-[16px] text-[#0D0D1F] mb-1">Rapid Matching</h4>
+                <p className="font-inter text-[#4A5568] text-[14px]">Talk to the right expert in 48 hours.</p>
               </div>
             </div>
           </div>
           
           <div className="glass-card p-6 border-l-4 border-l-[#E040FB]">
-            <p className="font-outfit italic text-[#9494c0] text-[15px] mb-4">"LuminaXpert fundamentally changed how we approach predictive models. They didn't just write code; they transformed our business model."</p>
-            <div className="font-plus-jakarta-sans font-bold text-[14px] text-white">CTO, Global Logistics Firm</div>
+            <p className="font-inter italic text-[#4A5568] text-[15px] mb-4">"LuminaXpert fundamentally changed how we approach predictive models. They didn't just write code; they transformed our business model."</p>
+            <div className="font-plus-jakarta-sans font-bold text-[14px] text-[#0D0D1F]">CTO, Global Logistics Firm</div>
           </div>
         </div>
 

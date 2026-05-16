@@ -81,7 +81,7 @@ function Geometries() {
 
 export default function FloatingGeometries() {
   return (
-    <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
+    <div className="absolute inset-0 z-0 pointer-events-none opacity-40" style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}>
       <Canvas camera={{ position: [0, 0, 10], fov: 45 }}>
         <ambientLight intensity={1} />
         <pointLight position={[10, 10, 10]} color="#E040FB" intensity={2} />

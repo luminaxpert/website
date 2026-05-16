@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -9,7 +9,7 @@ function Particles() {
   
   const particleCount = 2000;
   
-  const positions = useMemo(() => {
+  const [positions] = useState(() => {
     const pos = new Float32Array(particleCount * 3);
     for (let i = 0; i < particleCount; i++) {
       pos[i * 3] = (Math.random() - 0.5) * 40;
@@ -17,7 +17,7 @@ function Particles() {
       pos[i * 3 + 2] = (Math.random() - 0.5) * 20 - 5;
     }
     return pos;
-  }, []);
+  });
 
   useFrame((state) => {
     if (!pointsRef.current) return;
@@ -48,7 +48,7 @@ function Particles() {
 
 export default function ParticleField() {
   return (
-    <div className="fixed inset-0 z-[-1] pointer-events-none">
+    <div className="fixed inset-0 z-[-1] pointer-events-none" style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}>
       <Canvas camera={{ position: [0, 0, 15], fov: 60 }}>
         <Particles />
       </Canvas>

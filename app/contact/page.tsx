@@ -64,11 +64,11 @@ export default function ContactPage() {
         <div className="container mx-auto px-5 md:px-20 max-w-[1280px] relative z-10 text-center">
           <ScrollReveal>
             <div className="font-space-mono text-[11px] text-[#E040FB] tracking-widest uppercase mb-4">LET'S CONNECT</div>
-            <h1 className="font-syncopate font-bold text-[40px] md:text-[72px] leading-[1.05] tracking-tight mb-6">
-              <span className="text-white block">Your transformation</span>
+            <h1 className="font-plus-jakarta-sans font-bold text-[40px] md:text-[72px] leading-[1.05] tracking-tight mb-6">
+              <span className="text-[#0D0D1F] block">Your transformation</span>
               <span className="text-gradient block">starts with a conversation.</span>
             </h1>
-            <p className="font-outfit text-[19px] text-[#9494c0] max-w-[680px] mx-auto leading-[1.8]">
+            <p className="font-inter text-[19px] text-[#4A5568] max-w-[680px] mx-auto leading-[1.8]">
               Tell us what you're working on. We'll connect you with the right expert within 24 hours to architect your AI future.
             </p>
           </ScrollReveal>
@@ -86,24 +86,24 @@ export default function ContactPage() {
                   <div className="absolute inset-0 bg-gradient-to-br from-[#3b6fff]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
                   {submitted ? (
-                    <div className="absolute inset-0 bg-[#0d0d1f]/95 backdrop-blur-xl z-20 flex flex-col items-center justify-center text-center p-8 animate-fade-in">
+                    <div className="absolute inset-0 bg-[#FFFFFF]/95 backdrop-blur-xl z-20 flex flex-col items-center justify-center text-center p-8 animate-fade-in">
                       <div className="text-[#00F5A0] mb-6 drop-shadow-[0_0_20px_rgba(0,245,160,0.4)]">
                         <CheckCircle2 size={80} strokeWidth={1.5} />
                       </div>
-                      <h3 className="font-syncopate font-bold text-[28px] text-white mb-4 uppercase">Transmission Received</h3>
-                      <p className="font-outfit text-[#9494c0] mb-8 max-w-[400px]">Our specialists have received your inquiry. We'll be in touch within 24 hours to begin your journey.</p>
+                      <h3 className="font-plus-jakarta-sans font-bold text-[28px] text-[#0D0D1F] mb-4 uppercase">Transmission Received</h3>
+                      <p className="font-inter text-[#4A5568] mb-8 max-w-[400px]">Our specialists have received your inquiry. We'll be in touch within 24 hours to begin your journey.</p>
                       <button onClick={() => setSubmitted(false)} className="btn-ghost px-10">Send Another Message</button>
                     </div>
                   ) : null}
 
-                  <div className="flex bg-[#0f0f28]/60 border border-[#8b3fff]/10 rounded-full p-1 mb-10 overflow-x-auto no-scrollbar relative z-10">
+                  <div className="flex bg-[#FFFFFF]/60 border border-[#8b3fff]/10 rounded-full p-1 mb-10 overflow-x-auto no-scrollbar relative z-10">
                     {["general", "book", "enterprise"].map((tab) => (
                       <button
                         key={tab}
                         onClick={() => setActiveTab(tab)}
                         className={`flex-1 min-w-max px-6 py-3 rounded-full font-plus-jakarta-sans text-[13px] font-bold uppercase tracking-wider transition-all duration-300 ${activeTab === tab
-                            ? 'bg-gradient-to-r from-[#3B6FFF] to-[#E040FB] text-white shadow-[0_0_20px_rgba(139,63,255,0.3)]'
-                            : 'text-[#4A4A80] hover:text-[#9494C0]'
+                            ? 'bg-gradient-to-r from-[#3B6FFF] to-[#E040FB] text-[#0D0D1F] shadow-[0_0_20px_rgba(139,63,255,0.3)]'
+                            : 'text-[#718096] hover:text-[#4A5568]'
                           }`}
                       >
                         {tab === 'general' ? 'General Inquiry' : tab === 'book' ? 'Consultation' : 'Enterprise'}
@@ -131,7 +131,7 @@ export default function ContactPage() {
                     </div>
 
                     <div className="relative">
-                      <select name="interest" className="glass-input w-full h-[56px] px-6 appearance-none text-[#9494c0] cursor-pointer" required defaultValue="">
+                      <select name="interest" className="glass-input w-full h-[56px] px-6 appearance-none text-[#4A5568] cursor-pointer" required defaultValue="">
                         <option value="" disabled>Service Interest *</option>
                         <option value="AI Consulting">AI Consulting</option>
                         <option value="Digital Transformation">Digital Transformation</option>
@@ -139,7 +139,7 @@ export default function ContactPage() {
                         <option value="AI Development">AI Development</option>
                         <option value="Strategy & Roadmap">Strategy & Roadmap</option>
                       </select>
-                      <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 text-[#9494c0] pointer-events-none" size={18} />
+                      <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 text-[#4A5568] pointer-events-none" size={18} />
                     </div>
 
                     <textarea name="message" placeholder="How can we help you? *" required className="glass-input w-full min-h-[160px] resize-none py-5 px-6"></textarea>
@@ -168,7 +168,7 @@ export default function ContactPage() {
                     </button>
 
                     <div className="text-center">
-                      <p className="font-space-mono text-[10px] text-[#4a4a80] uppercase tracking-widest">
+                      <p className="font-space-mono text-[10px] text-[#718096] uppercase tracking-widest">
                         🔒 Encrypted Transmission · Private & Secure · 24h Response
                       </p>
                     </div>
@@ -185,11 +185,11 @@ export default function ContactPage() {
                     <MapPin size={24} />
                   </div>
                   <div>
-                    <h4 className="font-syncopate font-bold text-[18px] text-white mb-2 uppercase tracking-tight">Our Office</h4>
-                    <p className="font-outfit text-[#9494c0] text-[16px] leading-relaxed mb-3">123 Innovation Drive, Suite 500<br />Tech District, NY 10001</p>
+                    <h4 className="font-plus-jakarta-sans font-bold text-[18px] text-[#0D0D1F] mb-2 uppercase tracking-tight">Our Office</h4>
+                    <p className="font-inter text-[#4A5568] text-[16px] leading-relaxed mb-3">123 Innovation Drive, Suite 500<br />Tech District, NY 10001</p>
                     <div className="flex flex-wrap gap-x-4 gap-y-1">
                       {["London", "Singapore", "Tokyo"].map((city) => (
-                        <span key={city} className="font-space-mono text-[11px] text-[#4a4a80] uppercase">{city}</span>
+                        <span key={city} className="font-space-mono text-[11px] text-[#718096] uppercase">{city}</span>
                       ))}
                     </div>
                   </div>
@@ -202,9 +202,9 @@ export default function ContactPage() {
                     <Mail size={24} />
                   </div>
                   <div>
-                    <h4 className="font-syncopate font-bold text-[18px] text-white mb-3 uppercase tracking-tight">Get in Touch</h4>
-                    <a href="mailto:hello@luminaxpert.com" className="block font-outfit text-[20px] text-white hover:text-[#00D9FF] transition-colors mb-2">hello@luminaxpert.com</a>
-                    <p className="font-outfit text-[#9494c0] text-[17px] mb-4">+1 (555) 123-4567</p>
+                    <h4 className="font-plus-jakarta-sans font-bold text-[18px] text-[#0D0D1F] mb-3 uppercase tracking-tight">Get in Touch</h4>
+                    <a href="mailto:hello@luminaxpert.com" className="block font-inter text-[20px] text-[#0D0D1F] hover:text-[#00D9FF] transition-colors mb-2">hello@luminaxpert.com</a>
+                    <p className="font-inter text-[#4A5568] text-[17px] mb-4">+1 (555) 123-4567</p>
                     <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#00D9FF]/5 border border-[#00D9FF]/10 w-fit">
                       <Clock size={12} className="text-[#00D9FF]" />
                       <span className="font-space-mono text-[11px] text-[#00D9FF] uppercase tracking-wider">Mon–Fri · 9am–6pm EST</span>
@@ -215,18 +215,18 @@ export default function ContactPage() {
 
               <ScrollReveal delay={0.5}>
                 <div className="glass-brand p-8 flex items-center gap-8 group overflow-hidden relative">
-                  <div className="absolute top-0 right-0 p-4 text-[80px] opacity-[0.05] font-syncopate font-bold pointer-events-none group-hover:scale-125 transition-transform duration-700">⚡</div>
+                  <div className="absolute top-0 right-0 p-4 text-[80px] opacity-[0.05] font-plus-jakarta-sans font-bold pointer-events-none group-hover:scale-125 transition-transform duration-700">⚡</div>
                   <div className="relative z-10">
-                    <div className="font-syncopate font-bold text-[48px] text-gradient leading-none mb-2 tracking-tighter">&lt; 2h</div>
+                    <div className="font-plus-jakarta-sans font-bold text-[48px] text-gradient leading-none mb-2 tracking-tighter">&lt; 2h</div>
                     <p className="font-space-mono text-[11px] text-[#E040FB] uppercase tracking-widest font-bold">Average Response Time</p>
-                    <p className="font-outfit text-[#9494c0] text-[13px] mt-2">Elite precision, lightning delivery.</p>
+                    <p className="font-inter text-[#4A5568] text-[13px] mt-2">Elite precision, lightning delivery.</p>
                   </div>
                 </div>
               </ScrollReveal>
 
               <ScrollReveal delay={0.6}>
                 <div className="mt-4 p-4">
-                  <p className="font-space-mono text-[11px] text-[#4a4a80] mb-6 uppercase tracking-widest">Global Network Connect:</p>
+                  <p className="font-space-mono text-[11px] text-[#718096] mb-6 uppercase tracking-widest">Global Network Connect:</p>
                   <div className="flex gap-5">
                     {[
                       { icon: <Globe size={22} />, color: "#E040FB" },
@@ -236,9 +236,9 @@ export default function ContactPage() {
                       <Link
                         key={i}
                         href="#"
-                        className="w-14 h-14 rounded-full glass-card flex items-center justify-center text-[#9494c0] hover:scale-110 transition-all border-[#ffffff08] hover:border-[var(--color-brand-magenta)]/30 group"
+                        className="w-14 h-14 rounded-full glass-card flex items-center justify-center text-[#4A5568] hover:scale-110 transition-all border-[#ffffff08] hover:border-[var(--color-brand-magenta)]/30 group"
                       >
-                        <div className="group-hover:text-white transition-colors" style={{ color: social.color }}>
+                        <div className="group-hover:text-[#0D0D1F] transition-colors" style={{ color: social.color }}>
                           {social.icon}
                         </div>
                       </Link>

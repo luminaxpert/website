@@ -88,21 +88,21 @@ function NeuralNetwork() {
   const groupRef = useRef<THREE.Group>(null);
   const nodesCount = 80;
   
-  const { nodes, lineGeometry } = useMemo(() => {
+  const [nodes] = useState(() => {
     const nodesArray = [];
     for (let i = 0; i < nodesCount; i++) {
       nodesArray.push({
         position: new THREE.Vector3(
-          (Math.random() - 0.5) * 34,
-          (Math.random() - 0.5) * 22,
-          -Math.random() * 5
+          (Math.random() - 0.5) * 40,
+          (Math.random() - 0.5) * 20,
+          (Math.random() - 0.5) * 15
         ),
         phase: Math.random() * Math.PI * 2,
         scale: Math.random() * 0.1 + 0.1
       });
     }
-    return { nodes: nodesArray, lineGeometry: new THREE.BufferGeometry() };
-  }, []);
+    return nodesArray;
+  });
 
   useFrame((state) => {
     if (!groupRef.current) return;
@@ -146,7 +146,7 @@ function NeuralNetwork() {
 // ─── LAYER 3: FLOATING WIREFRAME GEOMETRIES ───────────────────
 function FloatingGeometries() {
   const brandColors = ["#3B6FFF", "#8B3FFF", "#E040FB", "#FF2EC4"];
-  const shapes = useMemo(() => {
+  const [shapes] = useState(() => {
     return Array.from({ length: 8 }).map(() => ({
       position: [
         (Math.random() - 0.5) * 30,
@@ -159,7 +159,7 @@ function FloatingGeometries() {
       color: brandColors[Math.floor(Math.random() * brandColors.length)],
       type: Math.random() > 0.5 ? 'icosa' : 'octa'
     }));
-  }, []);
+  });
 
   return (
     <group>
@@ -189,7 +189,7 @@ function GeometryAnimator({ speed }: { speed: number }) {
 function SpaceField() {
   const ref = useRef<THREE.Points>(null);
   const count = 2500;
-  const positions = useMemo(() => {
+  const [positions] = useState(() => {
     const pos = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
       pos[i * 3] = (Math.random() - 0.5) * 80;
@@ -197,7 +197,7 @@ function SpaceField() {
       pos[i * 3 + 2] = -Math.random() * 30 - 10;
     }
     return pos;
-  }, []);
+  });
 
   useFrame(() => {
     if (ref.current) ref.current.rotation.z += 0.001;
@@ -208,7 +208,7 @@ function SpaceField() {
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
-      <pointsMaterial size={0.05} color="#FFFFFF" transparent opacity={0.35} depthWrite={false} />
+      <pointsMaterial size={0.05} color="#050DEB" transparent opacity={0.35} depthWrite={false} />
     </points>
   );
 }
@@ -229,7 +229,6 @@ function Scene() {
 
   return (
     <>
-      <InfinityRibbon />
       <NeuralNetwork />
       <FloatingGeometries />
       <SpaceField />
@@ -258,7 +257,7 @@ export default function LuminaBackground() {
 
   if (isMobile) {
     return (
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden bg-[#0D0D1F]">
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden bg-[#FFFFFF]">
         <div className="absolute inset-0 animate-hue-pulse opacity-40" style={{
           background: `
             radial-gradient(ellipse at 20% 50%, rgba(59,111,255,0.15), transparent 50%),
@@ -271,7 +270,7 @@ export default function LuminaBackground() {
   }
 
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none bg-[#0D0D1F]">
+    <div className="fixed inset-0 z-0 pointer-events-none bg-[#FFFFFF]" style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}>
       <Canvas
         gl={{ alpha: true, antialias: true, toneMapping: THREE.ACESFilmicToneMapping }}
         camera={{ position: [0, 0, 15], fov: 45 }}
@@ -280,7 +279,6 @@ export default function LuminaBackground() {
         {!prefersReducedMotion && <Scene />}
         {prefersReducedMotion && (
            <group>
-             <InfinityRibbon />
              <SpaceField />
            </group>
         )}

@@ -25,7 +25,7 @@ export default function BlogPost() {
       image: "/images/blog/prompt3.png",
       content: (
         <>
-          <p className="text-[20px] md:text-[22px] text-white leading-[1.6] mb-10 font-plus-jakarta-sans border-l-2 border-[#E040FB] pl-6">
+          <p className="text-[20px] md:text-[22px] text-[#0D0D1F] leading-[1.6] mb-10 font-plus-jakarta-sans border-l-2 border-[#E040FB] pl-6">
             Traditional ROI calculations fail to capture the exponential compounding value of AI integration. Discover a modern framework to measure the true, multifaceted impact of your AI investments.
           </p>
           <p>
@@ -41,7 +41,7 @@ export default function BlogPost() {
             <li><strong>Compound Automation:</strong> An AI agent that writes code doesn't just write code; it can be prompted to write automation scripts that further optimize other workflows.</li>
           </ul>
           <blockquote>
-            <p className="text-[#E040FB] font-syne font-bold text-[22px] border-l-4 border-[#E040FB] pl-6 my-10 italic bg-[#E040FB]/5 p-4 rounded-r-lg">
+            <p className="text-[#E040FB] font-plus-jakarta-sans font-bold text-[22px] border-l-4 border-[#E040FB] pl-6 my-10 italic bg-[#E040FB]/5 p-4 rounded-r-lg">
               "We must stop measuring AI as a tool we use, and start measuring it as a cognitive infrastructure we build upon."
             </p>
           </blockquote>
@@ -68,7 +68,7 @@ export default function BlogPost() {
       image: "/images/blog/prompt1.png",
       content: (
         <>
-          <p className="text-[20px] md:text-[22px] text-white leading-[1.6] mb-10 font-plus-jakarta-sans border-l-2 border-[#00D9FF] pl-6">
+          <p className="text-[20px] md:text-[22px] text-[#0D0D1F] leading-[1.6] mb-10 font-plus-jakarta-sans border-l-2 border-[#00D9FF] pl-6">
             Moving large language models from prototype to secure, scalable, and compliant enterprise deployments requires a fundamental shift in architecture and data governance. Here's our comprehensive blueprint.
           </p>
           <p>
@@ -87,7 +87,7 @@ export default function BlogPost() {
             <li><strong>Security & Compliance Vulnerabilities:</strong> Modifying prompt injection safeguards or PII scrubbers requires deeply invasive backend code deployments rather than updating a centralized abstraction layer.</li>
           </ul>
           <blockquote>
-            <p className="text-[#00D9FF] font-syne font-bold text-[22px] border-l-4 border-[#00D9FF] pl-6 my-10 italic bg-[#00D9FF]/5 p-4 rounded-r-lg">
+            <p className="text-[#00D9FF] font-plus-jakarta-sans font-bold text-[22px] border-l-4 border-[#00D9FF] pl-6 my-10 italic bg-[#00D9FF]/5 p-4 rounded-r-lg">
               "The most resilient and successful AI deployments of 2027 won't necessarily utilize the largest model in the world, but rather the most intelligently orchestrated architecture."
             </p>
           </blockquote>
@@ -103,7 +103,7 @@ export default function BlogPost() {
           <p>
             Prompts are no longer scattered as hardcoded strings across a dozen microservices. They are treated as vital software assets: stored in a centralized prompt management system, strictly version-controlled, A/B tested, and automatically formatted for the specific syntax of whichever model the router dynamically selects.
           </p>
-          <div className="bg-[#0f0f28] border border-white/10 rounded-xl p-6 my-8 font-space-mono text-[13px] overflow-x-auto text-[#00F5A0] shadow-[inset_0_0_20px_rgba(0,0,0,0.5)]">
+          <div className="bg-[#FFFFFF] border border-white/10 rounded-xl p-6 my-8 font-space-mono text-[13px] overflow-x-auto text-[#00F5A0] shadow-[inset_0_0_20px_rgba(0,0,0,0.5)]">
             <pre><code>{`// The Fragile Monolithic Approach (Legacy)
 const response = await aiVendorClient.completions.create({
   model: "premium-model-v4",
@@ -141,7 +141,7 @@ const response = await luminaOrchestrator.execute({
       image: "/images/blog/prompt4.png",
       content: (
         <>
-          <p className="text-[20px] md:text-[22px] text-white leading-[1.6] mb-10 font-plus-jakarta-sans border-l-2 border-[#E040FB] pl-6">
+          <p className="text-[20px] md:text-[22px] text-[#0D0D1F] leading-[1.6] mb-10 font-plus-jakarta-sans border-l-2 border-[#E040FB] pl-6">
             Why fully autonomous systems aren't the ultimate goal, and how cultivating human-AI symbiosis ultimately drives the highest, most sustainable business value.
           </p>
           <p>
@@ -181,7 +181,7 @@ const response = await luminaOrchestrator.execute({
       image: "/images/blog/prompt2.png",
       content: (
         <>
-          <p className="text-[20px] md:text-[22px] text-white leading-[1.6] mb-10 font-plus-jakarta-sans border-l-2 border-[#00D9FF] pl-6">
+          <p className="text-[20px] md:text-[22px] text-[#0D0D1F] leading-[1.6] mb-10 font-plus-jakarta-sans border-l-2 border-[#00D9FF] pl-6">
             Anticipating upcoming global regulations and learning how to architect your enterprise data pipelines to be inherently secure and compliant.
           </p>
           <p>
@@ -220,7 +220,7 @@ const response = await luminaOrchestrator.execute({
       image: "/images/blog/prompt5.png",
       content: (
         <>
-          <p className="text-[20px] md:text-[22px] text-white leading-[1.6] mb-10 font-plus-jakarta-sans border-l-2 border-[#E040FB] pl-6">
+          <p className="text-[20px] md:text-[22px] text-[#0D0D1F] leading-[1.6] mb-10 font-plus-jakarta-sans border-l-2 border-[#E040FB] pl-6">
             Exploring the profound paradigm shift from single-prompt interactions to robust, goal-oriented autonomous AI agents within complex B2B environments.
           </p>
           <p>
@@ -256,7 +256,7 @@ const response = await luminaOrchestrator.execute({
       image: "/images/blog/prompt6.png",
       content: (
         <>
-          <p className="text-[20px] md:text-[22px] text-white leading-[1.6] mb-10 font-plus-jakarta-sans border-l-2 border-[#00D9FF] pl-6">
+          <p className="text-[20px] md:text-[22px] text-[#0D0D1F] leading-[1.6] mb-10 font-plus-jakarta-sans border-l-2 border-[#00D9FF] pl-6">
             Before building intelligent systems, enterprises must systematically pay off technical and data debt. Here is the operational framework to clean your data lakes.
           </p>
           <p>
@@ -305,7 +305,7 @@ const response = await luminaOrchestrator.execute({
         <div className="container mx-auto px-5 max-w-[800px] relative z-10">
           
           <ScrollReveal>
-            <Link href="/blog" className="inline-flex items-center gap-2 font-space-mono text-[12px] text-[#9494c0] hover:text-[#00D9FF] hover:-translate-x-1 transition-all duration-300 mb-10">
+            <Link href="/blog" className="inline-flex items-center gap-2 font-space-mono text-[12px] text-[#4A5568] hover:text-[#00D9FF] hover:-translate-x-1 transition-all duration-300 mb-10">
               <ArrowLeft size={14} /> BACK TO ALL ARTICLES
             </Link>
           </ScrollReveal>
@@ -315,32 +315,32 @@ const response = await luminaOrchestrator.execute({
               <span className="px-3 py-1 rounded-full bg-[#3B6FFF]/10 border border-[#3B6FFF]/30 text-[#3B6FFF] font-space-mono text-[11px] uppercase tracking-wider flex items-center gap-1.5">
                 <Tag size={12} /> {post.category}
               </span>
-              <span className="font-outfit text-[#4a4a80] text-[13px] flex items-center gap-1.5"><Calendar size={14}/> {post.date}</span>
-              <span className="font-outfit text-[#4a4a80] text-[13px] flex items-center gap-1.5"><Clock size={14}/> {post.readTime}</span>
+              <span className="font-inter text-[#718096] text-[13px] flex items-center gap-1.5"><Calendar size={14}/> {post.date}</span>
+              <span className="font-inter text-[#718096] text-[13px] flex items-center gap-1.5"><Clock size={14}/> {post.readTime}</span>
             </div>
           </ScrollReveal>
           
           <ScrollReveal delay={0.2}>
-            <h1 className="font-syncopate font-bold text-[32px] md:text-[50px] leading-[1.1] text-white mb-8">
+            <h1 className="font-plus-jakarta-sans font-bold text-[32px] md:text-[50px] leading-[1.1] text-[#0D0D1F] mb-8">
               {post.title}
             </h1>
           </ScrollReveal>
           
           <ScrollReveal delay={0.3}>
-            <div className="flex items-center justify-between border-y border-[var(--color-border-subtle)] py-6 bg-[var(--color-bg-surface)]/20 backdrop-blur-sm rounded-xl px-4">
+            <div className="flex items-center justify-between border-y border-[rgba(139, 63, 255, 0.15)] py-6 bg-[#F0F4F8]/20 backdrop-blur-sm rounded-xl px-4">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-[#3b6fff] to-[#e040fb] p-[2px] shadow-[0_0_15px_rgba(224,64,251,0.3)]">
-                  <div className="w-full h-full rounded-full bg-[#12122a] flex items-center justify-center overflow-hidden">
+                  <div className="w-full h-full rounded-full bg-[#F0F4F8] flex items-center justify-center overflow-hidden">
                     <img src={`/images/team/${post.author === "Sibtain Syed" ? "sibtain.jpg" : "faizan.jpg"}`} alt={post.author} className="w-full h-full object-cover" />
                   </div>
                 </div>
                 <div>
-                  <div className="font-plus-jakarta-sans font-bold text-[15px] text-white">{post.author}</div>
+                  <div className="font-plus-jakarta-sans font-bold text-[15px] text-[#0D0D1F]">{post.author}</div>
                   <div className="font-space-mono text-[11px] text-[#00D9FF]">Co-Founder & {post.role}, LuminaXpert</div>
                 </div>
               </div>
               
-              <button className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-[#9494c0] hover:text-white hover:border-[#E040FB]/60 hover:bg-[#E040FB]/10 transition-all duration-300">
+              <button className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-[#4A5568] hover:text-[#0D0D1F] hover:border-[#E040FB]/60 hover:bg-[#E040FB]/10 transition-all duration-300">
                 <Share2 size={16} />
               </button>
             </div>
@@ -353,7 +353,7 @@ const response = await luminaOrchestrator.execute({
       <section className="py-6 relative z-10 bg-transparent">
         <div className="container mx-auto px-5 max-w-[1000px]">
           <ScrollReveal delay={0.4}>
-            <div className="w-full aspect-[21/9] rounded-[24px] bg-[#0d0d1f] relative overflow-hidden flex items-center justify-center border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] group hover:border-[#3b6fff]/40 transition-colors duration-500">
+            <div className="w-full aspect-[21/9] rounded-[24px] bg-[#FFFFFF] relative overflow-hidden flex items-center justify-center border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] group hover:border-[#3b6fff]/40 transition-colors duration-500">
               <div className="absolute inset-0 bg-gradient-to-br from-[#3b6fff]/20 to-[#e040fb]/20 opacity-60 z-10 pointer-events-none mix-blend-overlay"></div>
               <img src={post.image} alt="Featured Article Image" className="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-1000" />
             </div>
@@ -365,12 +365,12 @@ const response = await luminaOrchestrator.execute({
       <section className="py-[60px] pb-[120px] relative z-10 bg-transparent">
         <div className="container mx-auto px-5 max-w-[800px]">
           <ScrollReveal delay={0.5}>
-            <article className="glass-card p-8 md:p-12 prose prose-invert max-w-none font-outfit text-[#9494c0] text-[18px] leading-[1.8]
-              prose-headings:font-syncopate prose-headings:font-bold prose-headings:text-white
+            <article className="glass-card p-8 md:p-12 prose prose-invert max-w-none font-inter text-[#4A5568] text-[18px] leading-[1.8]
+              prose-headings:font-plus-jakarta-sans prose-headings:font-bold prose-headings:text-[#0D0D1F]
               prose-h2:text-[24px] md:prose-h2:text-[28px] prose-h2:mt-12 prose-h2:mb-6
               prose-h3:text-[20px] prose-h3:mt-8 prose-h3:mb-4
               prose-p:mb-6 prose-a:text-[#00D9FF] prose-a:no-underline hover:prose-a:underline
-              prose-strong:text-white prose-strong:font-semibold
+              prose-strong:text-[#0D0D1F] prose-strong:font-semibold
               prose-ul:list-disc prose-ul:pl-6 prose-ul:mb-6
               prose-li:mb-2 prose-li:marker:text-[#E040FB]">
               
@@ -380,16 +380,16 @@ const response = await luminaOrchestrator.execute({
           </ScrollReveal>
           
           <ScrollReveal delay={0.2}>
-            <div className="mt-16 pt-8 border-t border-[var(--color-border-subtle)]">
-              <div className="font-space-mono text-[11px] text-[#9494c0] uppercase tracking-wider mb-6">MORE INSIGHTS FROM THE FOUNDERS</div>
+            <div className="mt-16 pt-8 border-t border-[rgba(139, 63, 255, 0.15)]">
+              <div className="font-space-mono text-[11px] text-[#4A5568] uppercase tracking-wider mb-6">MORE INSIGHTS FROM THE FOUNDERS</div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {otherPosts.map((op, i) => (
                   <Link key={i} href={`/blog/${op.slug}`} className="glass-card p-6 group hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(224,64,251,0.15)] hover:border-[#E040FB]/40 hover:bg-[#1a1a3a]/80 transition-all duration-500">
                     <div className="flex items-center justify-between mb-3">
                       <span className={`font-space-mono text-[11px] uppercase tracking-wider block ${i % 2 === 0 ? 'text-[#E040FB]' : 'text-[#00D9FF]'}`}>{op.category}</span>
-                      <span className="font-space-mono text-[10px] text-white bg-white/5 px-2 py-1 rounded">{op.author}, {op.role}</span>
+                      <span className="font-space-mono text-[10px] text-[#0D0D1F] bg-white/5 px-2 py-1 rounded">{op.author}, {op.role}</span>
                     </div>
-                    <h4 className={`font-syncopate font-bold text-[16px] text-white leading-[1.4] transition-colors ${i % 2 === 0 ? 'group-hover:text-[#E040FB]' : 'group-hover:text-[#00D9FF]'}`}>
+                    <h4 className={`font-plus-jakarta-sans font-bold text-[16px] text-[#0D0D1F] leading-[1.4] transition-colors ${i % 2 === 0 ? 'group-hover:text-[#E040FB]' : 'group-hover:text-[#00D9FF]'}`}>
                       {op.title}
                     </h4>
                   </Link>

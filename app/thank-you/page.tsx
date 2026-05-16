@@ -6,10 +6,10 @@ import { CheckCircle2, ArrowRight } from "lucide-react";
 
 export default function ThankYouPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-[var(--color-bg-deep)]">
+    <div className="flex flex-col min-h-screen bg-[#FFFFFF]">
       
       {/* HEADER COMPACT */}
-      <div className="w-full h-[72px] border-b border-[var(--color-border-subtle)] flex items-center px-5 md:px-10 bg-[#0d0d1f]">
+      <div className="w-full h-[72px] border-b border-[rgba(139, 63, 255, 0.15)] flex items-center px-5 md:px-10 bg-[#FFFFFF]">
         <Link href="/" className="inline-flex items-center gap-2.5 z-50">
           <Image src="/images/logo-bg.png" alt="LuminaXpert Logo" width={200} height={40} className="h-8 w-auto object-contain" />
         </Link>
@@ -23,11 +23,11 @@ export default function ThankYouPage() {
             <CheckCircle2 size={48} strokeWidth={1.5} />
           </div>
           
-          <h1 className="font-syne font-bold text-[40px] md:text-[56px] text-white mb-6">
+          <h1 className="font-plus-jakarta-sans font-bold text-[40px] md:text-[56px] text-[#0D0D1F] mb-6">
             You're all set.
           </h1>
           
-          <p className="font-outfit text-[#9494c0] text-[18px] mb-10 max-w-[480px] mx-auto">
+          <p className="font-inter text-[#4A5568] text-[18px] mb-10 max-w-[480px] mx-auto">
             Your request has been securely submitted. One of our lead specialists will review your details and reach out within 24 hours.
           </p>
           
