@@ -102,8 +102,8 @@ export default function ContactPage() {
                         key={tab}
                         onClick={() => setActiveTab(tab)}
                         className={`flex-1 min-w-max px-6 py-3 rounded-full font-plus-jakarta-sans text-[13px] font-bold uppercase tracking-wider transition-all duration-300 ${activeTab === tab
-                            ? 'bg-gradient-to-r from-[#3B6FFF] to-[#E040FB] text-[#0D0D1F] shadow-[0_0_20px_rgba(139,63,255,0.3)]'
-                            : 'text-[#718096] hover:text-[#4A5568]'
+                          ? 'bg-gradient-to-r from-[#3B6FFF] to-[#E040FB] text-[#0D0D1F] shadow-[0_0_20px_rgba(139,63,255,0.3)]'
+                          : 'text-[#718096] hover:text-[#4A5568]'
                           }`}
                       >
                         {tab === 'general' ? 'General Inquiry' : tab === 'book' ? 'Consultation' : 'Enterprise'}
@@ -174,27 +174,7 @@ export default function ContactPage() {
                     </div>
                   </form>
                 </div>
-              {/* Booking Widget Placeholder */}
-            <div className="mt-12 p-8 glass-card rounded-xl">
-              <h3 className="font-plus-jakarta-sans font-bold text-[24px] text-[#0D0D1F] mb-4 text-center">
-                Schedule a Consultation
-              </h3>
-              <p className="font-inter text-[16px] text-[#4A5568] mb-6 text-center">
-                Choose a convenient time slot below (simulated Calendar).
-              </p>
-              {/* Simulated calendar grid */}
-              <div className="grid grid-cols-3 gap-4 max-w-lg mx-auto">
-                {Array.from({ length: 6 }).map((_, i) => (
-                  <button
-                    key={i}
-                    className="bg-[#3b6fff]/10 hover:bg-[#3b6fff]/20 border border-[#3b6fff]/30 text-[#3b6fff] rounded-md py-2 text-center transition-colors"
-                    onClick={() => alert('Simulated booking for slot ' + (i + 1))}
-                  >
-                    Slot {i + 1}
-                  </button>
-                ))}
-              </div>
-            </div>
+              </ScrollReveal>
             </div>
 
             {/* RIGHT: INFO */}

@@ -1,7 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { Linkedin, Globe, Mail, Users, MapPin, Award } from "lucide-react";
+import { Globe, Mail, Users, MapPin, Award } from "lucide-react";
+
+function LinkedInIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a-1.998 1.998 0 1 1 0-3.996 1.998 1.998 0 0 1 0 3.996zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+    </svg>
+  );
+}
 import LuminaBackground from "@/components/LuminaBackground";
 import ScrollReveal from "@/components/ScrollReveal";
 
@@ -69,13 +77,13 @@ export default function TeamPage() {
               <Users size={16} /> OUR LEADERSHIP
             </div>
           </ScrollReveal>
-          
+
           <ScrollReveal delay={0.1}>
             <h1 className="font-plus-jakarta-sans font-bold text-[48px] md:text-[72px] leading-[1.1] text-white tracking-tight mb-8">
               The Minds Behind <span className="text-gradient">the Mission.</span>
             </h1>
           </ScrollReveal>
-          
+
           <ScrollReveal delay={0.2}>
             <p className="font-inter text-[19px] text-gray-300 max-w-[680px] mb-12">
               Every LuminaXpert specialist is rigorously vetted for technical mastery, regulatory understanding, and real-world deployment experience across 40+ countries.
@@ -91,7 +99,7 @@ export default function TeamPage() {
             {leaders.map((leader, i) => (
               <ScrollReveal key={leader.name} delay={i * 0.1}>
                 <div className="glass-card !bg-[#050914]/80 !border-white/[0.08] p-8 md:p-10 rounded-[28px] hover:border-[#F5C842]/40 hover:shadow-[0_0_40px_rgba(245,200,66,0.12)] hover:-translate-y-1.5 transition-all duration-500 flex flex-col sm:flex-row items-center sm:items-start gap-8 group">
-                  
+
                   {/* Photo Placeholder */}
                   <div className={`w-24 h-24 rounded-full bg-gradient-to-br ${leader.gradient} flex items-center justify-center font-plus-jakarta-sans font-black text-[32px] text-white shrink-0 shadow-lg shadow-black/40 group-hover:scale-105 transition-transform duration-300`}>
                     {leader.initials}
@@ -108,13 +116,13 @@ export default function TeamPage() {
                           {leader.title}
                         </span>
                       </div>
-                      
-                      <Link 
-                        href={leader.linkedin} 
+
+                      <Link
+                        href={leader.linkedin}
                         target="_blank"
                         className="self-center sm:self-start w-8 h-8 rounded-lg bg-white/5 hover:bg-[#0077b5]/15 border border-white/10 hover:border-[#0077b5]/50 flex items-center justify-center text-gray-400 hover:text-[#0077b5] transition-all"
                       >
-                        <Linkedin size={16} />
+                        <LinkedInIcon size={16} />
                       </Link>
                     </div>
 
@@ -142,7 +150,7 @@ export default function TeamPage() {
       {/* WORLD MAP SECTION */}
       <section className="relative py-24 bg-transparent overflow-hidden z-10">
         <div className="container mx-auto px-5 md:px-20 max-w-[1280px]">
-          
+
           <ScrollReveal>
             <div className="text-center mb-16 max-w-[700px] mx-auto">
               <div className="font-space-mono text-[11px] text-[#00D9FF] tracking-widest uppercase mb-4 flex items-center justify-center gap-3">
@@ -173,11 +181,11 @@ export default function TeamPage() {
                 <rect width="1000" height="500" fill="url(#grid)" />
 
                 {/* Styled connection lines between nodes */}
-                <path 
-                  d="M260,170 Q365,150 470,130 Q490,132 510,135 Q565,177 620,220 Q695,265 770,310 Q825,360 880,410 M240,155 Q355,142 470,130 M620,220 Q750,360 880,410 M260,170 Q440,240 620,220 Q695,177 510,135" 
-                  fill="none" 
-                  stroke="rgba(139, 63, 255, 0.15)" 
-                  strokeWidth="1.5" 
+                <path
+                  d="M260,170 Q365,150 470,130 Q490,132 510,135 Q565,177 620,220 Q695,265 770,310 Q825,360 880,410 M240,155 Q355,142 470,130 M620,220 Q750,360 880,410 M260,170 Q440,240 620,220 Q695,177 510,135"
+                  fill="none"
+                  stroke="rgba(139, 63, 255, 0.15)"
+                  strokeWidth="1.5"
                   strokeDasharray="4 4"
                 />
 
@@ -185,36 +193,36 @@ export default function TeamPage() {
                 {networkHubs.map((hub) => (
                   <g key={hub.name} className="group cursor-pointer">
                     {/* Ripple outer circle */}
-                    <circle 
-                      cx={hub.x} 
-                      cy={hub.y} 
-                      r="12" 
-                      fill="rgba(0, 217, 255, 0.15)" 
+                    <circle
+                      cx={hub.x}
+                      cy={hub.y}
+                      r="12"
+                      fill="rgba(0, 217, 255, 0.15)"
                       className="animate-ping"
                       style={{ animationDuration: '3s' }}
                     />
                     {/* Inner glow circle */}
-                    <circle 
-                      cx={hub.x} 
-                      cy={hub.y} 
-                      r="6" 
-                      fill="#00D9FF" 
+                    <circle
+                      cx={hub.x}
+                      cy={hub.y}
+                      r="6"
+                      fill="#00D9FF"
                       className="drop-shadow-[0_0_8px_#00D9FF]"
                     />
                     {/* Tiny center core */}
-                    <circle 
-                      cx={hub.x} 
-                      cy={hub.y} 
-                      r="2" 
+                    <circle
+                      cx={hub.x}
+                      cy={hub.y}
+                      r="2"
                       fill="#FFFFFF"
                     />
                     {/* Hub Labels */}
-                    <text 
-                      x={hub.x} 
-                      y={hub.y - 14} 
-                      textAnchor="middle" 
-                      fill="#FFFFFF" 
-                      fontSize="10" 
+                    <text
+                      x={hub.x}
+                      y={hub.y - 14}
+                      textAnchor="middle"
+                      fill="#FFFFFF"
+                      fontSize="10"
                       fontFamily="Space Mono"
                       className="font-bold tracking-wider opacity-60 group-hover:opacity-100 transition-opacity bg-black"
                     >
@@ -234,7 +242,7 @@ export default function TeamPage() {
           <ScrollReveal>
             <div className="glass-card !bg-[#0A0F1E] !border-white/[0.08] w-full max-w-[900px] mx-auto rounded-[32px] p-12 md:p-16 text-center hover:shadow-[0_0_50px_rgba(139,63,255,0.2)] hover:scale-[1.01] transition-all duration-500 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-tr from-[#3b6fff]/5 to-[#e040fb]/5 pointer-events-none"></div>
-              
+
               <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#F5C842] mx-auto mb-6">
                 <Award size={32} />
               </div>
@@ -245,7 +253,7 @@ export default function TeamPage() {
               <p className="font-inter text-[18px] text-gray-300 mb-10 max-w-[500px] mx-auto">
                 Join the LuminaXpert Network and collaborate on cutting-edge production AI deployments with leading global brands.
               </p>
-              
+
               <Link href="/get-started" className="btn-primary px-8 py-4 text-[15px] uppercase tracking-wider font-bold">
                 Apply as Specialist
               </Link>
