@@ -30,14 +30,14 @@ export default function Footer() {
         <div className="py-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-10">
           <div className="md:col-span-1.5 flex flex-col gap-6">
             <Link href="/" className="inline-flex items-center gap-2.5">
-              <Image src="/images/logo-bg.png" alt="LuminaXpert Logo" width={200} height={40} className="h-8 w-auto object-contain" />
+              <Image src="/images/FLogo.png" alt="LuminaXpert Logo" width={200} height={40} className="h-8 w-auto object-contain" />
             </Link>
             <p className="font-inter italic text-[15px] text-[#4A5568]">Illuminate Your Potential.</p>
             <div className="flex gap-4">
-              <Link href="#" className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-[#0D0D1F] hover:text-[#E040FB] transition-colors"><Globe size={18} /></Link>
-              <Link href="#" className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-[#0D0D1F] hover:text-[#E040FB] transition-colors"><MessageSquare size={18} /></Link>
-              <Link href="#" className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-[#0D0D1F] hover:text-[#E040FB] transition-colors"><Mail size={18} /></Link>
-              <Link href="#" className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-[#0D0D1F] hover:text-[#E040FB] transition-colors"><Share2 size={18} /></Link>
+              <a href="https://luminaxpert.netlify.app/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-[#0D0D1F] hover:text-[#E040FB] transition-colors"><Globe size={18} /></a>
+              <a href="https://x.com/luminaxpert" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-[#0D0D1F] hover:text-[#E040FB] transition-colors"><MessageSquare size={18} /></a>
+              <a href="mailto:hello@luminaxpert.com" className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-[#0D0D1F] hover:text-[#E040FB] transition-colors"><Mail size={18} /></a>
+              <a href="https://www.linkedin.com/company/luminaxpert" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-[#0D0D1F] hover:text-[#E040FB] transition-colors"><Share2 size={18} /></a>
             </div>
             <div className="flex gap-2 mt-2">
               <span className="px-3 py-1 rounded-full bg-white/5 text-[11px] font-space-mono text-[#4A5568]">SOC 2 Compliant</span>
@@ -48,29 +48,36 @@ export default function Footer() {
           <div className="flex flex-col gap-4">
             <h4 className="font-space-mono text-[11px] text-[#00D9FF] tracking-[0.12em] uppercase">Company</h4>
             <Link href="/about" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px]">About Us</Link>
-            <Link href="#" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px]">Our Team</Link>
-            <Link href="#" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px]">Careers</Link>
-            <Link href="#" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px]">Press & Media</Link>
-            <Link href="#" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px]">Partners</Link>
+            <Link href="/team" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px]">Our Team</Link>
+            <Link href="/contact" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px]">Careers</Link>
+            <Link href="/contact" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px]">Press & Media</Link>
+            <Link href="/contact" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px]">Partners</Link>
           </div>
 
           <div className="flex flex-col gap-4">
             <h4 className="font-space-mono text-[11px] text-[#00D9FF] tracking-[0.12em] uppercase">Services</h4>
-            <Link href="/services" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px]">AI Consulting</Link>
-            <Link href="/services" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px]">Digital Transformation</Link>
-            <Link href="/services" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px]">Data & Analytics</Link>
-            <Link href="/services" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px]">AI Development</Link>
-            <Link href="/services" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px]">Strategy</Link>
-            <Link href="/services" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px]">Training</Link>
+            <Link href="/services#service-1" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px]">AI Consulting</Link>
+            <Link href="/services#service-2" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px]">Digital Transformation</Link>
+            <Link href="/services#service-3" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px]">Data & Analytics</Link>
+            <Link href="/services#service-4" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px]">AI Development</Link>
+            <Link href="/services#service-7" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px] flex items-center gap-1.5">
+              <span>AI Agents</span>
+              <span className="px-1 py-0.5 text-[8px] font-space-mono font-bold text-[#0A0F1E] bg-[#F5C842] rounded">New</span>
+            </Link>
+            <Link href="/services#service-8" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px]">MLOps & Governance</Link>
+            <Link href="/services#service-9" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px] flex items-center gap-1.5">
+              <span>Responsible AI</span>
+              <span className="px-1 py-0.5 text-[8px] font-space-mono font-bold text-[#0A0F1E] bg-[#F5C842] rounded">New</span>
+            </Link>
           </div>
 
           <div className="flex flex-col gap-4">
             <h4 className="font-space-mono text-[11px] text-[#00D9FF] tracking-[0.12em] uppercase">Resources</h4>
             <Link href="/blog" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px]">Blog & Insights</Link>
-            <Link href="#" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px]">Case Studies</Link>
-            <Link href="#" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px]">Documentation</Link>
-            <Link href="#" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px]">Newsletter</Link>
-            <Link href="#" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px]">Events</Link>
+            <Link href="/case-studies" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px]">Case Studies</Link>
+            <Link href="/assessment" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px]">Maturity Assessment</Link>
+            <Link href="/tools/roi-calculator" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px]">ROI Calculator</Link>
+            <Link href="/pricing" className="font-inter text-[#4A5568] hover:text-[#0D0D1F] transition-colors text-[15px]">Pricing Models</Link>
           </div>
 
           <div className="flex flex-col gap-4">
@@ -89,9 +96,9 @@ export default function Footer() {
           <div className="font-space-mono text-[11px] text-[#718096] flex items-center gap-2">
             <Link href="/legal/privacy" className="hover:text-[#0D0D1F] transition-colors">Privacy Policy</Link>
             <span>|</span>
-            <Link href="#" className="hover:text-[#0D0D1F] transition-colors">Terms of Service</Link>
+            <Link href="/legal/privacy" className="hover:text-[#0D0D1F] transition-colors">Terms of Service</Link>
             <span>|</span>
-            <Link href="#" className="hover:text-[#0D0D1F] transition-colors">Cookie Policy</Link>
+            <Link href="/legal/privacy" className="hover:text-[#0D0D1F] transition-colors">Cookie Policy</Link>
           </div>
           <p className="font-space-mono text-[11px] text-[#718096]">Built with ∞ in the AI era</p>
         </div>

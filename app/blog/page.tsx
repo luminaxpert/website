@@ -73,6 +73,50 @@ export default function BlogPage() {
       author: "Faizan Ahmed",
       role: "CTO",
       image: "/images/blog/prompt6.png"
+    },
+    {
+      title: "AI Maturity Model 2026: Benchmarking Enterprise Readiness",
+      excerpt: "A comprehensive framework mapping the five stages of enterprise AI adoption, from initial experimentation to self-optimizing cognitive systems.",
+      category: "Strategy",
+      date: "Aug 10, 2026",
+      readTime: "7 min read",
+      slug: "ai-maturity-model-2026",
+      author: "Sibtain Syed",
+      role: "CEO",
+      image: "/images/blog/prompt3.png"
+    },
+    {
+      title: "EU AI Act Compliance Checklist: 10 Steps for Technology Leaders",
+      excerpt: "Navigating the world's first comprehensive AI law. A practical guide for leaders to audit, classify, and certify their high-risk AI deployments.",
+      category: "Compliance",
+      date: "Jul 28, 2026",
+      readTime: "8 min read",
+      slug: "eu-ai-act-compliance-checklist",
+      author: "Faizan Ahmed",
+      role: "CTO",
+      image: "/images/blog/prompt2.png"
+    },
+    {
+      title: "MLOps Best Practices: Building Resilient Production AI Pipelines",
+      excerpt: "Achieve 99.9% model uptime and 10x faster retraining cycles. Explore our engineering guide on drift detection, model registries, and automated CI/CD for ML.",
+      category: "Engineering",
+      date: "Jul 15, 2026",
+      readTime: "10 min read",
+      slug: "mlops-best-practices",
+      author: "Faizan Ahmed",
+      role: "CTO",
+      image: "/images/blog/prompt1.png"
+    },
+    {
+      title: "How to Measure AI ROI: A Data-Driven Guide for the C-Suite",
+      excerpt: "Move beyond simple head-count reduction. Learn how to calculate cognitive bandwidth gains, productivity multipliers, and direct NPV impacts of AI investments.",
+      category: "Strategy",
+      date: "Jul 02, 2026",
+      readTime: "7 min read",
+      slug: "how-to-measure-ai-roi",
+      author: "Sibtain Syed",
+      role: "CEO",
+      image: "/images/blog/prompt4.png"
     }
   ];
 

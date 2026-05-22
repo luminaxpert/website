@@ -1,7 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { Building2, Rocket, Landmark, Stethoscope, ShoppingBag, Truck } from "lucide-react";
+import { 
+  Building2, Rocket, Landmark, Stethoscope, ShoppingBag, Truck,
+  Factory, Scale, GraduationCap, Zap 
+} from "lucide-react";
 import FloatingGeometries from "@/components/FloatingGeometries";
 import ScrollReveal from "@/components/ScrollReveal";
 
@@ -38,6 +41,38 @@ export default function SolutionsPage() {
       color: "#3B6FFF",
       desc: "Build resilient, predictive supply chains that adapt to global disruptions in real-time.",
       useCases: ["Route Optimization", "Predictive Maintenance", "Warehouse Automation", "Demand Planning"]
+    },
+    {
+      id: "manufacturing",
+      icon: <Factory size={32} />,
+      title: "Manufacturing & Industry 4.0",
+      color: "#E040FB",
+      desc: "Implement predictive maintenance, visual quality inspection, and supply chain digital twins to optimize yield and reduce downtime.",
+      useCases: ["Predictive Maintenance", "Visual Quality Inspection", "Supply Chain Digital Twins", "Yield Optimization"]
+    },
+    {
+      id: "legal",
+      icon: <Scale size={32} />,
+      title: "Legal & Compliance",
+      color: "#F5C842",
+      desc: "Streamline contract analysis, automate compliance auditing, and perform regulatory mapping with auditable, explainable LLMs.",
+      useCases: ["Contract Lifecycle Mgmt", "Regulatory Mapping", "Compliance Audit Automation", "Legal Document Drafting"]
+    },
+    {
+      id: "education",
+      icon: <GraduationCap size={32} />,
+      title: "Education & EdTech",
+      color: "#10B981",
+      desc: "Deliver personalized learning paths, automate administrative workflows, and construct intelligent tutor systems at scale.",
+      useCases: ["Personalized Learning", "Automated Grading Assistant", "Intelligent Tutoring Systems", "Curriculum Optimization"]
+    },
+    {
+      id: "energy",
+      icon: <Zap size={32} />,
+      title: "Energy & Utilities",
+      color: "#FF7A00",
+      desc: "Optimize grid distribution, forecast power demand, and monitor asset health with high-fidelity predictive modeling.",
+      useCases: ["Smart Grid Management", "Power Demand Forecasting", "Asset Health Monitoring", "Renewable Energy Integration"]
     }
   ];
 
@@ -134,7 +169,7 @@ export default function SolutionsPage() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {industries.map((ind, i) => (
-              <ScrollReveal key={ind.id} delay={i * 0.1}>
+              <ScrollReveal key={ind.id} delay={i * 0.05}>
                 <div className="glass-card p-8 flex flex-col h-full border-t border-l border-white/5 shadow-2xl group hover:scale-[1.03] hover:bg-[#1a1a3a]/80 transition-all duration-500" style={{ borderTopColor: `${ind.color}40`, borderLeftColor: `${ind.color}40` }}>
                   <div className="flex items-center gap-4 mb-6">
                     <div className="w-14 h-14 rounded-2xl bg-[#FFFFFF] flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform duration-300 group-hover:shadow-[0_0_30px_var(--color-shadow)]" style={{ color: ind.color, boxShadow: `0 0 15px ${ind.color}30`, '--color-shadow': `${ind.color}50` } as any}>
@@ -150,8 +185,8 @@ export default function SolutionsPage() {
                   <div className="mt-auto">
                     <div className="font-space-mono text-[11px] text-[#718096] uppercase tracking-wider mb-3">Key Use Cases</div>
                     <div className="flex flex-wrap gap-2">
-                      {ind.useCases.map((uc, i) => (
-                        <span key={i} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#0D0D1F] font-inter text-[13px] group-hover:border-[var(--border-color)] transition-colors duration-300" style={{ '--border-color': `${ind.color}50` } as any}>
+                      {ind.useCases.map((uc, idx) => (
+                        <span key={idx} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#0D0D1F] font-inter text-[13px] group-hover:border-[var(--border-color)] transition-colors duration-300" style={{ '--border-color': `${ind.color}50` } as any}>
                           {uc}
                         </span>
                       ))}

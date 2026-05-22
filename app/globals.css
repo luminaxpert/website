@@ -221,3 +221,41 @@ body {
 .animate-hue-pulse {
   animation: hue-pulse 20s infinite linear;
 }
+
+/* Marquee scrolling animations */
+@keyframes marquee-ltr {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-rtl {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-marquee-ltr {
+  display: flex;
+  width: max-content;
+  animation: marquee-ltr 35s linear infinite;
+}
+
+.animate-marquee-rtl {
+  display: flex;
+  width: max-content;
+  animation: marquee-rtl 35s linear infinite;
+}
+
+.marquee-container:hover .animate-marquee-ltr,
+.marquee-container:hover .animate-marquee-rtl {
+  animation-play-state: paused;
+}
+
+/* Custom scroll bar hide */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+

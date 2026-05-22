@@ -6,12 +6,13 @@ import React, { useMemo } from 'react';
 import FloatingGeometries from "@/components/FloatingGeometries";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useParams } from "next/navigation";
+import { post_ai_maturity_model, post_eu_ai_act_checklist, post_mlops_best_practices, post_measure_ai_roi } from '@/luminaxpert_four_new_posts';
 
 export default function BlogPost() {
   const params = useParams();
   const slug = params?.slug as string || "invisible-roi-of-ai";
 
-  const allPosts = [
+  let allPosts = [
     {
       title: "The Invisible ROI of AI: Measuring What Traditional Metrics Miss",
       excerpt: "Traditional ROI calculations fail to capture the exponential compounding value of AI integration. Discover a modern framework to measure the true, multifaceted impact of your AI investments.",
@@ -285,6 +286,13 @@ const response = await luminaOrchestrator.execute({
       )
     }
   ];
+// Append additional posts from external file
+allPosts.push(
+  post_ai_maturity_model,
+  post_eu_ai_act_checklist,
+  post_mlops_best_practices,
+  post_measure_ai_roi
+);
 
   const post = allPosts.find(p => p.slug === slug) || allPosts[0];
 

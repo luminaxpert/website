@@ -28,13 +28,17 @@ export default function ServicesPage() {
           
           <ScrollReveal delay={0.2}>
             <p className="font-inter text-[19px] text-[#4A5568] max-w-[680px] mb-12">
-              Six core service lines, infinite combinations, one unified mission — your transformation.
+              Nine core service lines, infinite combinations, one unified mission — your transformation.
             </p>
           </ScrollReveal>
           
           <ScrollReveal delay={0.3}>
             <div className="flex flex-wrap justify-center gap-4">
-              {["AI Consulting", "Digital Transformation", "Data & Analytics", "AI Development", "Strategy", "Training"].map((srv, i) => (
+              {[
+                "AI Consulting", "Digital Transformation", "Data & Analytics", 
+                "AI Development", "Strategy & Roadmap", "Training & Enablement", 
+                "AI Agents & Automation", "MLOps & Model Governance", "Responsible & Ethical AI"
+              ].map((srv, i) => (
                 <a href={`#service-${i+1}`} key={i} className="glass-card px-5 py-2 rounded-full font-plus-jakarta-sans text-[14px] text-[#0D0D1F] hover:border-[#E040FB]/50 hover:bg-[#1a1a3a]/80 hover:scale-105 transition-all duration-300">
                   {srv}
                 </a>
@@ -76,18 +80,39 @@ export default function ServicesPage() {
             alignRight: true
           },
           { 
-            id: 5, title: "Strategy", subtitle: "Chart Your Course to the Future",
+            id: 5, title: "Strategy & Roadmap", subtitle: "Chart Your Course to the Future",
             desc: "Develop a robust, future-proof AI roadmap. We help you identify high-impact opportunities, assess competitive landscapes, and plan for long-term scalability.",
             features: ["Market analysis", "Competitive benchmarking", "Roadmap development", "Resource planning", "Technology stack selection", "Execution planning"],
             metrics: ["50+ industries", "3-year roadmaps", "Actionable insights"],
             alignRight: false
           },
           { 
-            id: 6, title: "Training", subtitle: "Empower Your Workforce",
+            id: 6, title: "Training & Enablement", subtitle: "Empower Your Workforce",
             desc: "Upskill your internal teams to thrive in an AI-driven world. We provide comprehensive training programs covering everything from basic AI literacy to advanced development.",
             features: ["Executive workshops", "Technical bootcamps", "AI literacy programs", "Custom curriculum", "Hands-on labs", "Certification prep"],
             metrics: ["10k+ trained", "95% satisfaction", "Tailored content"],
             alignRight: true
+          },
+          {
+            id: 7, title: "AI Agents & Automation", subtitle: "Autonomous Intelligence at Work",
+            desc: "Deploy intelligent agents that execute complex, multi-step business workflows with zero human bottlenecks — from customer service to financial reporting.",
+            features: ["Agentic workflow design", "LLM-powered task automation", "RPA + AI integration", "Multi-agent orchestration", "Autonomous reporting", "Human-in-the-loop failsafes"],
+            metrics: ["70% work eliminated", "24/7 active operation", "$4M+ avg annual savings"],
+            alignRight: false
+          },
+          {
+            id: 8, title: "MLOps & Model Governance", subtitle: "AI That Runs Reliably, Forever",
+            desc: "Production AI breaks without the right infrastructure. We build the pipelines, monitoring systems, and governance frameworks that keep your models accurate, compliant, and performant.",
+            features: ["Model registry & versioning", "Drift & degradation detection", "Automated retraining pipelines", "Compliance audit logging", "A/B model testing", "Multi-cloud deployment"],
+            metrics: ["99.9% model uptime", "10× faster retraining", "Full audit trail"],
+            alignRight: true
+          },
+          {
+            id: 9, title: "Responsible & Ethical AI", subtitle: "AI You Can Trust. AI You Can Defend.",
+            desc: "Regulatory pressure is intensifying. We align your AI systems with EU AI Act, NIST AI RMF, and ISO 42001 — so your deployments are auditable, explainable, and bias-free.",
+            features: ["Bias & fairness auditing", "Explainability frameworks (SHAP, LIME)", "EU AI Act compliance", "NIST AI RMF alignment", "AI governance policy drafting", "Human oversight design"],
+            metrics: ["100% audit-ready", "Zero regulatory incidents", "Board-level compliance"],
+            alignRight: false
           }
         ].map((srv) => (
           <section id={`service-${srv.id}`} key={srv.id} className="relative py-[100px] border-t border-[#8b3fff]/20 overflow-hidden bg-[#F0F4F8]/20 backdrop-blur-[2px]">
@@ -120,7 +145,7 @@ export default function ServicesPage() {
                 <div className="flex flex-wrap gap-3 mb-10">
                   {srv.metrics.map((metric, i) => (
                     <div key={i} className="glass-brand px-4 py-2 rounded-xl flex flex-col hover:bg-[rgba(139,63,255,0.2)] hover:scale-105 hover:shadow-[0_0_20px_rgba(139,63,255,0.3)] transition-all duration-300 cursor-default">
-                      <span className="font-plus-jakarta-sans font-bold text-[18px] text-gradient">{metric.split(' ')[0]}</span>
+                      <span className="font-plus-jakarta-sans font-bold text-gradient">{metric.split(' ')[0]}</span>
                       <span className="font-space-mono text-[10px] text-[#4A5568] uppercase tracking-wider">{metric.substring(metric.indexOf(' ') + 1)}</span>
                     </div>
                   ))}

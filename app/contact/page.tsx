@@ -174,7 +174,27 @@ export default function ContactPage() {
                     </div>
                   </form>
                 </div>
-              </ScrollReveal>
+              {/* Booking Widget Placeholder */}
+            <div className="mt-12 p-8 glass-card rounded-xl">
+              <h3 className="font-plus-jakarta-sans font-bold text-[24px] text-[#0D0D1F] mb-4 text-center">
+                Schedule a Consultation
+              </h3>
+              <p className="font-inter text-[16px] text-[#4A5568] mb-6 text-center">
+                Choose a convenient time slot below (simulated Calendar).
+              </p>
+              {/* Simulated calendar grid */}
+              <div className="grid grid-cols-3 gap-4 max-w-lg mx-auto">
+                {Array.from({ length: 6 }).map((_, i) => (
+                  <button
+                    key={i}
+                    className="bg-[#3b6fff]/10 hover:bg-[#3b6fff]/20 border border-[#3b6fff]/30 text-[#3b6fff] rounded-md py-2 text-center transition-colors"
+                    onClick={() => alert('Simulated booking for slot ' + (i + 1))}
+                  >
+                    Slot {i + 1}
+                  </button>
+                ))}
+              </div>
+            </div>
             </div>
 
             {/* RIGHT: INFO */}
