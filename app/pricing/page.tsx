@@ -105,13 +105,13 @@ export default function PricingPage() {
           </ScrollReveal>
           
           <ScrollReveal delay={0.1}>
-            <h1 className="font-plus-jakarta-sans font-bold text-[48px] md:text-[72px] leading-[1.1] text-white tracking-tight mb-8">
+            <h1 className="font-plus-jakarta-sans font-bold text-[48px] md:text-[72px] leading-[1.1] text-[#0D0D1F] tracking-tight mb-8">
               Flexible Engagements. <span className="text-gradient">Transparent Value.</span>
             </h1>
           </ScrollReveal>
           
           <ScrollReveal delay={0.2}>
-            <p className="font-inter text-[19px] text-gray-300 max-w-[680px] mb-12">
+            <p className="font-inter text-[19px] text-[#4A5568] max-w-[680px] mb-12">
               We don't believe in surprise invoices. Every engagement starts with a clear scope, defined deliverables, and measurable success criteria.
             </p>
           </ScrollReveal>
@@ -125,8 +125,8 @@ export default function PricingPage() {
             {pricingTiers.map((tier, i) => (
               <ScrollReveal key={tier.tier} delay={i * 0.1}>
                 <div 
-                  className={`glass-card !bg-[#050914]/80 !border-white/[0.08] p-8 md:p-10 rounded-[28px] h-full flex flex-col justify-between relative hover:-translate-y-2 transition-all duration-300 ${
-                    tier.popular ? "shadow-[0_0_40px_rgba(245,200,66,0.15)] border-[#F5C842]/40" : "hover:border-[#ffffff20]"
+                  className={`glass-card !bg-[#FFFFFF]/90 !border-[rgba(139,63,255,0.15)] p-8 md:p-10 rounded-[28px] h-full flex flex-col justify-between relative hover:-translate-y-2 transition-all duration-300 ${
+                    tier.popular ? "shadow-lg border-[#F5C842]/40" : "hover:border-[#050DEB]"
                   }`}
                   style={{ borderTop: `4px solid ${tier.color}` }}
                 >
@@ -139,13 +139,13 @@ export default function PricingPage() {
                   <div>
                     {/* Header */}
                     <div className="mb-6">
-                      <span className="font-space-mono text-[10px] text-gray-500 uppercase tracking-widest">
+                      <span className="font-space-mono text-[10px] text-[#718096] uppercase tracking-widest">
                         {tier.duration}
                       </span>
-                      <h3 className="font-plus-jakarta-sans font-bold text-[28px] text-white mt-1">
+                      <h3 className="font-plus-jakarta-sans font-bold text-[28px] text-[#0D0D1F] mt-1">
                         {tier.tier}
                       </h3>
-                      <p className="font-inter text-[14px] text-gray-400 mt-3 leading-relaxed">
+                      <p className="font-inter text-[14px] text-[#718096] mt-3 leading-relaxed">
                         {tier.desc}
                       </p>
                     </div>
@@ -154,10 +154,10 @@ export default function PricingPage() {
                     <ul className="space-y-4 mb-8">
                       {tier.features.map((feature, idx) => (
                         <li key={idx} className="flex items-start gap-3">
-                          <div className="w-5 h-5 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#F5C842] shrink-0 mt-0.5">
+                          <div className="w-5 h-5 rounded-full bg-[#F0F4F8] border border-[rgba(139,63,255,0.15)] flex items-center justify-center text-[#F5C842] shrink-0 mt-0.5">
                             <Check size={12} />
                           </div>
-                          <span className="font-inter text-[14px] text-gray-200 leading-relaxed">
+                          <span className="font-inter text-[14px] text-[#4A5568] leading-relaxed">
                             {feature}
                           </span>
                         </li>
@@ -166,11 +166,11 @@ export default function PricingPage() {
                   </div>
 
                   {/* Pricing / Investment */}
-                  <div className="border-t border-white/10 pt-8 mt-auto">
-                    <span className="font-space-mono text-[10px] text-gray-400 uppercase tracking-wider block mb-1">
+                  <div className="border-t border-[rgba(139,63,255,0.15)] pt-8 mt-auto">
+                    <span className="font-space-mono text-[10px] text-[#718096] uppercase tracking-wider block mb-1">
                       Estimated Investment
                     </span>
-                    <div className="font-plus-jakarta-sans font-black text-white text-[24px] mb-6">
+                    <div className="font-plus-jakarta-sans font-black text-[#0D0D1F] text-[24px] mb-6">
                       {tier.investment}
                     </div>
 
@@ -179,7 +179,7 @@ export default function PricingPage() {
                       className={`w-full py-4 rounded-xl font-plus-jakarta-sans font-bold text-[14px] uppercase tracking-wider transition-all flex items-center justify-center cursor-pointer ${
                         tier.popular 
                           ? "bg-[#F5C842] hover:bg-[#F5C842]/90 text-[#0A0F1E] shadow-lg shadow-[#F5C842]/10" 
-                          : "bg-white/5 hover:bg-white/10 text-white border border-white/15 hover:border-white/30"
+                          : "bg-[#F0F4F8] hover:bg-[#E2E8F0] text-[#0D0D1F] border border-[rgba(139,63,255,0.15)] hover:border-[#050DEB]"
                       }`}
                     >
                       {tier.cta}
@@ -200,7 +200,7 @@ export default function PricingPage() {
               <div className="font-space-mono text-[11px] text-[#00D9FF] tracking-widest uppercase mb-4 flex items-center justify-center gap-3">
                 <HelpIcon size={16} /> FAQ
               </div>
-              <h2 className="font-plus-jakarta-sans font-bold text-[36px] text-white">
+              <h2 className="font-plus-jakarta-sans font-bold text-[36px] text-[#0D0D1F]">
                 Frequently Asked Questions
               </h2>
             </div>
@@ -209,10 +209,10 @@ export default function PricingPage() {
           <div className="space-y-4">
             {faqs.map((faq, idx) => (
               <ScrollReveal key={idx} delay={idx * 0.05}>
-                <div className="glass-card !bg-[#050914]/60 !border-white/[0.06] rounded-2xl overflow-hidden transition-all duration-300">
+                <div className="glass-card !bg-[#FFFFFF] !border-[rgba(139,63,255,0.15)] rounded-2xl overflow-hidden transition-all duration-300">
                   <button
                     onClick={() => toggleFaq(idx)}
-                    className="w-full p-6 text-left flex justify-between items-center text-white hover:text-[#F5C842] transition-colors cursor-pointer"
+                    className="w-full p-6 text-left flex justify-between items-center text-[#0D0D1F] hover:text-[#F5C842] transition-colors cursor-pointer"
                   >
                     <span className="font-plus-jakarta-sans font-bold text-[16px] md:text-[18px]">
                       {faq.q}
@@ -227,10 +227,10 @@ export default function PricingPage() {
 
                   <div 
                     className={`transition-all duration-300 ease-in-out overflow-hidden ${
-                      openFaq === idx ? "max-h-[300px] border-t border-white/[0.06]" : "max-h-0"
+                      openFaq === idx ? "max-h-[300px] border-t border-[rgba(139,63,255,0.15)]" : "max-h-0"
                     }`}
                   >
-                    <div className="p-6 font-inter text-gray-300 text-[15px] leading-relaxed bg-[#050914]/30">
+                    <div className="p-6 font-inter text-[#4A5568] text-[15px] leading-relaxed bg-[#F0F4F8]">
                       {faq.a}
                     </div>
                   </div>
@@ -245,10 +245,10 @@ export default function PricingPage() {
       <section className="py-[100px] bg-transparent relative z-10">
         <div className="container mx-auto px-5 text-center">
           <ScrollReveal>
-            <h3 className="font-plus-jakarta-sans font-bold text-[28px] text-white mb-4">
+            <h3 className="font-plus-jakarta-sans font-bold text-[28px] text-[#0D0D1F] mb-4">
               Not sure which engagement fits?
             </h3>
-            <p className="font-inter text-gray-400 text-[16px] mb-8 max-w-[500px] mx-auto">
+            <p className="font-inter text-[#718096] text-[16px] mb-8 max-w-[500px] mx-auto">
               Our partners will assess your goals and compile a tailored scope proposal.
             </p>
             <Link href="/contact" className="btn-primary px-8">

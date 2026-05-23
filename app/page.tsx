@@ -199,7 +199,7 @@ export default function Home() {
       </section>
 
       {/* ─── SECTION 2.5: CLIENT LOGOS MARQUEE ───────────────── */}
-      <section className="relative w-full py-12 bg-[#080D1A] overflow-hidden border-b border-[#ffffff08] marquee-container z-10">
+      <section className="relative w-full py-12 bg-[#F8F9FA] overflow-hidden border-b border-[rgba(139,63,255,0.15)] marquee-container z-10">
         {/* Replace with real client logos */}
         <div className="text-center mb-6">
           <span className="font-space-mono text-[10px] text-gray-500 tracking-[0.3em] uppercase">
@@ -211,14 +211,14 @@ export default function Home() {
         <div className="flex overflow-hidden relative w-full mb-4">
           <div className="animate-marquee-ltr flex gap-12 whitespace-nowrap">
             {clientLogos.map((logo, idx) => (
-              <div key={idx} className="flex items-center gap-3 text-gray-400 opacity-40 hover:opacity-80 transition-opacity duration-300 cursor-pointer">
+              <div key={idx} className="flex items-center gap-3 text-[#718096] opacity-40 hover:opacity-80 transition-opacity duration-300 cursor-pointer">
                 <span className="text-[#E040FB]">{logo.icon}</span>
                 <span className="font-space-mono text-[13px] tracking-wider uppercase">{logo.name}</span>
               </div>
             ))}
             {/* Duplicate for infinite effect */}
             {clientLogos.map((logo, idx) => (
-              <div key={`dup1-${idx}`} className="flex items-center gap-3 text-gray-400 opacity-40 hover:opacity-80 transition-opacity duration-300 cursor-pointer">
+              <div key={`dup1-${idx}`} className="flex items-center gap-3 text-[#718096] opacity-40 hover:opacity-80 transition-opacity duration-300 cursor-pointer">
                 <span className="text-[#E040FB]">{logo.icon}</span>
                 <span className="font-space-mono text-[13px] tracking-wider uppercase">{logo.name}</span>
               </div>
@@ -230,14 +230,14 @@ export default function Home() {
         <div className="hidden md:flex overflow-hidden relative w-full">
           <div className="animate-marquee-rtl flex gap-12 whitespace-nowrap">
             {clientLogos.map((logo, idx) => (
-              <div key={idx} className="flex items-center gap-3 text-gray-400 opacity-40 hover:opacity-80 transition-opacity duration-300 cursor-pointer">
+              <div key={idx} className="flex items-center gap-3 text-[#718096] opacity-40 hover:opacity-80 transition-opacity duration-300 cursor-pointer">
                 <span className="text-[#00D9FF]">{logo.icon}</span>
                 <span className="font-space-mono text-[13px] tracking-wider uppercase">{logo.name}</span>
               </div>
             ))}
             {/* Duplicate for infinite effect */}
             {clientLogos.map((logo, idx) => (
-              <div key={`dup2-${idx}`} className="flex items-center gap-3 text-gray-400 opacity-40 hover:opacity-80 transition-opacity duration-300 cursor-pointer">
+              <div key={`dup2-${idx}`} className="flex items-center gap-3 text-[#718096] opacity-40 hover:opacity-80 transition-opacity duration-300 cursor-pointer">
                 <span className="text-[#00D9FF]">{logo.icon}</span>
                 <span className="font-space-mono text-[13px] tracking-wider uppercase">{logo.name}</span>
               </div>
@@ -433,7 +433,7 @@ export default function Home() {
       </section>
 
       {/* ─── SECTION 6: ROI CALCULATOR ────────────────────────── */}
-      <section className="relative py-[120px] bg-[#080D1A] overflow-hidden border-t border-[#ffffff10]">
+      <section className="relative py-[120px] bg-[#FFFFFF] overflow-hidden border-t border-[rgba(139,63,255,0.15)]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(139,63,255,0.08),transparent_70%)] pointer-events-none"></div>
         <div className="container mx-auto px-5 md:px-20 max-w-[1280px] relative z-10">
           <ScrollReveal>
@@ -443,10 +443,10 @@ export default function Home() {
                 Interactive Tools
                 <span className="w-8 h-[1px] bg-[#F5C842]/50"></span>
               </div>
-              <h2 className="font-plus-jakarta-sans font-extrabold text-[40px] md:text-[52px] leading-[1.1] text-white mb-6">
+              <h2 className="font-plus-jakarta-sans font-extrabold text-[40px] md:text-[52px] leading-[1.1] text-[#0D0D1F] mb-6">
                 Calculate your <span className="text-gradient">AI Return on Investment</span>
               </h2>
-              <p className="font-inter text-[17px] text-gray-400 max-w-[600px]">
+              <p className="font-inter text-[17px] text-[#718096] max-w-[600px]">
                 Input your process specifications to generate real-time estimates of efficiency gains, break-even timelines, and cost reductions.
               </p>
             </div>
@@ -459,7 +459,7 @@ export default function Home() {
       </section>
 
       {/* ─── SECTION 7: TESTIMONIALS ─────────────────────────── */}
-      <section className="relative py-[120px] bg-[#0A0F1E] border-y border-[#ffffff10] overflow-hidden">
+      <section className="relative py-[120px] bg-[#F0F4F8] border-y border-[rgba(139,63,255,0.15)] overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#8b3fff]/5 to-transparent z-0"></div>
         <div className="container mx-auto px-5 md:px-20 max-w-[1280px] relative z-10">
           
@@ -468,7 +468,7 @@ export default function Home() {
               <div className="font-space-mono text-[11px] text-[#E040FB] tracking-widest uppercase mb-4">
                 WHAT OUR CLIENTS SAY
               </div>
-              <h2 className="font-plus-jakarta-sans font-extrabold text-[36px] md:text-[52px] leading-[1.1] text-white">
+              <h2 className="font-plus-jakarta-sans font-extrabold text-[36px] md:text-[52px] leading-[1.1] text-[#0D0D1F]">
                 Results that speak louder than credentials.
               </h2>
             </div>
@@ -480,7 +480,7 @@ export default function Home() {
             onMouseLeave={() => setIsHovering(false)}
           >
             {/* Large Decorative Quote Icon */}
-            <div className="absolute -top-10 -left-6 text-white/[0.03] select-none pointer-events-none">
+            <div className="absolute -top-10 -left-6 text-[#0D0D1F]/[0.03] select-none pointer-events-none">
               <Quote size={180} className="fill-white/[0.01]" />
             </div>
 
@@ -504,16 +504,16 @@ export default function Home() {
                     </div>
                     
                     {/* Quote */}
-                    <blockquote className="font-inter text-gray-200 text-[16px] md:text-[18px] leading-[1.8] italic mb-6">
+                    <blockquote className="font-inter text-[#4A5568] text-[16px] md:text-[18px] leading-[1.8] italic mb-6">
                       "{testimonials[activeTestimonial].quote}"
                     </blockquote>
                     
                     {/* Author */}
                     <div>
-                      <cite className="font-plus-jakarta-sans font-bold text-white text-[16px] not-italic block">
+                      <cite className="font-plus-jakarta-sans font-bold text-[#0D0D1F] text-[16px] not-italic block">
                         {testimonials[activeTestimonial].name}
                       </cite>
-                      <span className="font-space-mono text-gray-400 text-[12px] uppercase tracking-wider block mt-1">
+                      <span className="font-space-mono text-[#718096] text-[12px] uppercase tracking-wider block mt-1">
                         {testimonials[activeTestimonial].role}, {testimonials[activeTestimonial].company}
                       </span>
                     </div>
@@ -521,7 +521,7 @@ export default function Home() {
                   
                   {/* Outcome Metric Callout */}
                   <div className="w-full md:w-[220px] bg-gradient-to-br from-[#8b3fff]/10 to-[#FB00DF]/5 border border-white/[0.05] rounded-2xl p-6 flex flex-col items-center justify-center text-center">
-                    <span className="font-space-mono text-[10px] text-gray-400 uppercase tracking-widest block mb-2">Verified Outcome</span>
+                    <span className="font-space-mono text-[10px] text-[#718096] uppercase tracking-widest block mb-2">Verified Outcome</span>
                     <div className="font-plus-jakarta-sans font-black text-[#F5C842] text-[28px] leading-tight">
                       {testimonials[activeTestimonial].metric}
                     </div>
@@ -535,7 +535,7 @@ export default function Home() {
               {/* Prev Button */}
               <button 
                 onClick={() => setActiveTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
-                className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white hover:border-white/30 hover:bg-white/5 transition-all cursor-pointer"
+                className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-[#0D0D1F] hover:border-white/30 hover:bg-white/5 transition-all cursor-pointer"
               >
                 <ChevronLeft size={20} />
               </button>
@@ -549,7 +549,7 @@ export default function Home() {
                     className={`w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${
                       activeTestimonial === i 
                         ? "bg-[#F5C842] w-6" 
-                        : "bg-white/20 hover:bg-white/40"
+                        : "bg-gray-300 hover:bg-white/40"
                     }`}
                   />
                 ))}
@@ -558,7 +558,7 @@ export default function Home() {
               {/* Next Button */}
               <button 
                 onClick={() => setActiveTestimonial((prev) => (prev + 1) % testimonials.length)}
-                className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white hover:border-white/30 hover:bg-white/5 transition-all cursor-pointer"
+                className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-[#0D0D1F] hover:border-white/30 hover:bg-white/5 transition-all cursor-pointer"
               >
                 <ChevronRight size={20} />
               </button>
@@ -622,14 +622,14 @@ export default function Home() {
       </section>
 
       {/* ─── SECTION 9: PARTNERS & CERTIFICATIONS ────────────── */}
-      <section className="relative py-[100px] bg-[#0A0F1E] border-t border-[#ffffff10] overflow-hidden z-10">
+      <section className="relative py-[100px] bg-[#F8F9FA] border-t border-[rgba(139,63,255,0.15)] overflow-hidden z-10">
         <div className="container mx-auto px-5 md:px-20 max-w-[1280px] relative z-10">
           <ScrollReveal>
             <div className="flex flex-col items-center text-center mb-16">
               <div className="font-space-mono text-[11px] text-[#F5C842] tracking-widest uppercase mb-4">
                 BUILT ON THE WORLD'S BEST AI INFRASTRUCTURE
               </div>
-              <h2 className="font-plus-jakarta-sans font-extrabold text-[32px] md:text-[44px] text-white">
+              <h2 className="font-plus-jakarta-sans font-extrabold text-[32px] md:text-[44px] text-[#0D0D1F]">
                 Certified expertise across leading platforms.
               </h2>
             </div>
@@ -640,7 +640,7 @@ export default function Home() {
             <ScrollReveal delay={0.1}>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {["AWS Partner", "Microsoft Azure", "Google Cloud"].map((cloud) => (
-                  <div key={cloud} className="bg-white/[0.03] border border-white/[0.08] hover:border-[#F5C842]/40 rounded-xl py-5 px-6 flex items-center justify-center font-plus-jakarta-sans font-bold text-white text-[15px] hover:-translate-y-1 transition-all duration-300">
+                  <div key={cloud} className="bg-[#FFFFFF]/80 border border-[rgba(139,63,255,0.15)] shadow-sm hover:border-[#F5C842]/40 rounded-xl py-5 px-6 flex items-center justify-center font-plus-jakarta-sans font-bold text-[#0D0D1F] text-[15px] hover:-translate-y-1 transition-all duration-300">
                     {cloud}
                   </div>
                 ))}
@@ -651,7 +651,7 @@ export default function Home() {
             <ScrollReveal delay={0.2}>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {["OpenAI", "Hugging Face", "Databricks", "Snowflake"].map((ai) => (
-                  <div key={ai} className="bg-white/[0.03] border border-white/[0.08] hover:border-[#E040FB]/40 rounded-xl py-5 px-6 flex items-center justify-center font-plus-jakarta-sans font-bold text-white text-[15px] hover:-translate-y-1 transition-all duration-300">
+                  <div key={ai} className="bg-[#FFFFFF]/80 border border-[rgba(139,63,255,0.15)] shadow-sm hover:border-[#E040FB]/40 rounded-xl py-5 px-6 flex items-center justify-center font-plus-jakarta-sans font-bold text-[#0D0D1F] text-[15px] hover:-translate-y-1 transition-all duration-300">
                     {ai}
                   </div>
                 ))}
@@ -662,7 +662,7 @@ export default function Home() {
             <ScrollReveal delay={0.3}>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {["SOC 2 Type II", "GDPR Ready", "ISO 27001", "EU AI Act Aligned"].map((comp) => (
-                  <div key={comp} className="bg-white/[0.03] border border-white/[0.08] hover:border-[#00D9FF]/40 rounded-xl py-5 px-6 flex items-center justify-center font-plus-jakarta-sans font-bold text-white text-[15px] hover:-translate-y-1 transition-all duration-300">
+                  <div key={comp} className="bg-[#FFFFFF]/80 border border-[rgba(139,63,255,0.15)] shadow-sm hover:border-[#00D9FF]/40 rounded-xl py-5 px-6 flex items-center justify-center font-plus-jakarta-sans font-bold text-[#0D0D1F] text-[15px] hover:-translate-y-1 transition-all duration-300">
                     {comp}
                   </div>
                 ))}

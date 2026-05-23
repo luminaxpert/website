@@ -215,13 +215,13 @@ Assessment Details:
           </ScrollReveal>
           
           <ScrollReveal delay={0.1}>
-            <h1 className="font-plus-jakarta-sans font-bold text-[48px] md:text-[64px] leading-[1.1] text-white tracking-tight mb-6">
+            <h1 className="font-plus-jakarta-sans font-bold text-[48px] md:text-[64px] leading-[1.1] text-[#0D0D1F] tracking-tight mb-6">
               AI Maturity <span className="text-gradient">Assessment.</span>
             </h1>
           </ScrollReveal>
           
           <ScrollReveal delay={0.2}>
-            <p className="font-inter text-[18px] text-gray-300 max-w-[600px] mb-8">
+            <p className="font-inter text-[18px] text-[#4A5568] max-w-[600px] mb-8">
               Evaluate your strategy, data, talent, deployment capability, and governance policies in 2 minutes. Receive personalized scaling recommendations immediately.
             </p>
           </ScrollReveal>
@@ -233,20 +233,20 @@ Assessment Details:
         <div className="container mx-auto px-5 md:px-20 max-w-[800px]">
           
           {!showResults ? (
-            <div className="glass-card !bg-[#050914]/80 !border-white/[0.08] p-8 md:p-10 rounded-[32px] shadow-2xl relative overflow-hidden">
+            <div className="glass-card !bg-[#FFFFFF]/90 !border-[rgba(139,63,255,0.15)] p-8 md:p-10 rounded-[32px] shadow-2xl relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-tr from-[#3b6fff]/2 to-[#e040fb]/2 pointer-events-none"></div>
 
               {/* Progress bar */}
               <div className="mb-8">
                 <div className="flex justify-between items-center mb-3">
-                  <span className="font-space-mono text-[10px] text-gray-400 uppercase tracking-widest">
+                  <span className="font-space-mono text-[10px] text-[#718096] uppercase tracking-widest">
                     Evaluation Progress
                   </span>
                   <span className="font-space-mono text-[#F5C842] font-bold text-[12px]">
                     Step {currentStep + 1} of {questions.length}
                   </span>
                 </div>
-                <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden">
+                <div className="w-full h-1 bg-[#F0F4F8] rounded-full overflow-hidden">
                   <motion.div 
                     className="h-full bg-gradient-to-r from-[#3B6FFF] to-[#E040FB]" 
                     animate={{ width: `${progressPercentage + 20}%` }}
@@ -259,7 +259,7 @@ Assessment Details:
               {currentStep > 0 && (
                 <button
                   onClick={handleBack}
-                  className="flex items-center gap-1.5 text-gray-400 hover:text-white font-space-mono text-[11px] uppercase tracking-wider mb-6 transition-colors cursor-pointer"
+                  className="flex items-center gap-1.5 text-[#718096] hover:text-[#0D0D1F] font-space-mono text-[11px] uppercase tracking-wider mb-6 transition-colors cursor-pointer"
                 >
                   <ChevronLeft size={14} /> Back
                 </button>
@@ -281,7 +281,7 @@ Assessment Details:
                     </span>
                   </div>
 
-                  <h3 className="font-plus-jakarta-sans font-bold text-[20px] md:text-[24px] text-white mb-8">
+                  <h3 className="font-plus-jakarta-sans font-bold text-[20px] md:text-[24px] text-[#0D0D1F] mb-8">
                     {questions[currentStep].question}
                   </h3>
 
@@ -296,12 +296,12 @@ Assessment Details:
                           onClick={() => handleSelectOption(option.value)}
                           className={`w-full text-left p-5 rounded-2xl border transition-all cursor-pointer flex gap-4 items-center ${
                             isSelected 
-                              ? "bg-white/10 border-[#F5C842] text-white shadow-[0_0_15px_rgba(245,200,66,0.1)]" 
-                              : "bg-white/[0.02] border-white/[0.06] hover:border-white/20 text-gray-300 hover:text-white"
+                              ? "bg-[#E2E8F0] border-[#F5C842] text-[#0D0D1F] shadow-[0_0_15px_rgba(245,200,66,0.1)]" 
+                              : "bg-[#F8F9FA] border-[rgba(139,63,255,0.15)] hover:border-[rgba(139,63,255,0.3)] text-[#4A5568] hover:text-[#0D0D1F]"
                           }`}
                         >
                           <span className={`w-8 h-8 rounded-xl flex items-center justify-center font-space-mono text-[13px] font-bold shrink-0 ${
-                            isSelected ? "bg-[#F5C842] text-[#0A0F1E]" : "bg-white/5 border border-white/10 text-gray-400"
+                            isSelected ? "bg-[#F5C842] text-[#0A0F1E]" : "bg-[#F0F4F8] border border-[rgba(139,63,255,0.15)] text-[#718096]"
                           }`}>
                             {letter}
                           </span>
@@ -317,7 +317,7 @@ Assessment Details:
             </div>
           ) : (
             /* RESULTS SCREEN */
-            <div className="glass-card !bg-[#050914]/90 !border-white/[0.08] p-8 md:p-12 rounded-[32px] shadow-2xl relative overflow-hidden">
+            <div className="glass-card !bg-[#FFFFFF]/90 !border-[rgba(139,63,255,0.15)] p-8 md:p-12 rounded-[32px] shadow-2xl relative overflow-hidden">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(139,63,255,0.06),transparent_70%)] pointer-events-none"></div>
 
               {formSubmitted ? (
@@ -325,22 +325,22 @@ Assessment Details:
                   <div className="text-emerald-400 mb-6 drop-shadow-[0_0_15px_rgba(52,211,153,0.3)]">
                     <CheckCircle2 size={72} strokeWidth={1.5} />
                   </div>
-                  <h3 className="font-plus-jakarta-sans font-bold text-white text-[28px] mb-3">Report Queued</h3>
-                  <p className="font-inter text-gray-300 text-[15px] leading-relaxed max-w-[420px] mb-8">
+                  <h3 className="font-plus-jakarta-sans font-bold text-[#0D0D1F] text-[28px] mb-3">Report Queued</h3>
+                  <p className="font-inter text-[#4A5568] text-[15px] leading-relaxed max-w-[420px] mb-8">
                     Your detailed AI feasibility study and structured resource recommendations have been scheduled. A PDF copy is heading to your email.
                   </p>
                   
                   <div className="flex gap-4">
                     <Link href="/contact" className="btn-primary">Book Consultation</Link>
-                    <button onClick={resetQuiz} className="btn-ghost !text-white">Restart Quiz</button>
+                    <button onClick={resetQuiz} className="btn-ghost !text-[#0D0D1F]">Restart Quiz</button>
                   </div>
                 </div>
               ) : (
                 <div className="flex flex-col md:flex-row gap-10 items-stretch">
                   {/* Radial Ring Column */}
-                  <div className="w-full md:w-[35%] flex flex-col items-center justify-between text-center border-b md:border-b-0 md:border-r border-white/10 pb-8 md:pb-0 md:pr-8">
+                  <div className="w-full md:w-[35%] flex flex-col items-center justify-between text-center border-b md:border-b-0 md:border-r border-[rgba(139,63,255,0.15)] pb-8 md:pb-0 md:pr-8">
                     <div>
-                      <span className="font-space-mono text-[10px] text-gray-500 uppercase tracking-widest block mb-4">Your Maturity Score</span>
+                      <span className="font-space-mono text-[10px] text-[#718096] uppercase tracking-widest block mb-4">Your Maturity Score</span>
                       
                       {/* Radial Ring SVG */}
                       <div className="relative w-36 h-36 flex items-center justify-center mb-6">
@@ -356,8 +356,8 @@ Assessment Details:
                           />
                         </svg>
                         <div className="absolute flex flex-col items-center">
-                          <span className="font-plus-jakarta-sans font-black text-white text-[32px]">{totalScore}</span>
-                          <span className="font-space-mono text-gray-500 text-[10px] uppercase">out of 20</span>
+                          <span className="font-plus-jakarta-sans font-black text-[#0D0D1F] text-[32px]">{totalScore}</span>
+                          <span className="font-space-mono text-[#718096] text-[10px] uppercase">out of 20</span>
                         </div>
                       </div>
 
@@ -377,16 +377,16 @@ Assessment Details:
                   {/* Recommendations & Form Column */}
                   <div className="flex-1 flex flex-col justify-between">
                     <div>
-                      <h4 className="font-plus-jakarta-sans font-bold text-white text-[20px] mb-3">Personalized Findings</h4>
-                      <p className="font-inter text-gray-300 text-[14px] leading-relaxed mb-6">
+                      <h4 className="font-plus-jakarta-sans font-bold text-[#0D0D1F] text-[20px] mb-3">Personalized Findings</h4>
+                      <p className="font-inter text-[#4A5568] text-[14px] leading-relaxed mb-6">
                         {badgeText}
                       </p>
 
                       <div className="mb-8">
-                        <span className="font-space-mono text-[10px] text-gray-500 uppercase tracking-widest block mb-3">Key Next Steps</span>
+                        <span className="font-space-mono text-[10px] text-[#718096] uppercase tracking-widest block mb-3">Key Next Steps</span>
                         <ul className="space-y-2">
                           {recommendations.map((rec, idx) => (
-                            <li key={idx} className="flex items-start gap-2.5 text-[13px] font-inter text-gray-300">
+                            <li key={idx} className="flex items-start gap-2.5 text-[13px] font-inter text-[#4A5568]">
                               <span className="text-[#00D9FF] font-bold mt-0.5">✓</span>
                               <span>{rec}</span>
                             </li>
@@ -396,11 +396,11 @@ Assessment Details:
                     </div>
 
                     {/* Email Capture CTA */}
-                    <div className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-6">
-                      <span className="font-plus-jakarta-sans font-bold text-white text-[15px] mb-1.5 flex items-center gap-1.5">
+                    <div className="bg-[#F8F9FA] border border-[rgba(139,63,255,0.15)] rounded-2xl p-6">
+                      <span className="font-plus-jakarta-sans font-bold text-[#0D0D1F] text-[15px] mb-1.5 flex items-center gap-1.5">
                         <Sparkles size={14} className="text-[#F5C842]" /> Get Full PDF Report
                       </span>
-                      <p className="font-inter text-gray-400 text-[12px] mb-4">
+                      <p className="font-inter text-[#718096] text-[12px] mb-4">
                         Download your customized 12-page AI Strategy Guide containing detailed technical implementations.
                       </p>
 
@@ -410,14 +410,14 @@ Assessment Details:
                           name="user_name"
                           placeholder="Your Name *"
                           required
-                          className="glass-input !bg-white/5 !text-white !border-white/10 w-full h-[44px] px-3 font-inter text-[13px]"
+                          className="glass-input !bg-[#F0F4F8] !text-[#0D0D1F] !border-[rgba(139,63,255,0.15)] w-full h-[52px] px-5 py-3 rounded-xl font-inter text-[13px]"
                         />
                         <input
                           type="email"
                           name="user_email"
                           placeholder="Work Email *"
                           required
-                          className="glass-input !bg-white/5 !text-white !border-white/10 w-full h-[44px] px-3 font-inter text-[13px]"
+                          className="glass-input !bg-[#F0F4F8] !text-[#0D0D1F] !border-[rgba(139,63,255,0.15)] w-full h-[52px] px-5 py-3 rounded-xl font-inter text-[13px]"
                         />
                         <div className="flex gap-2">
                           <input
@@ -425,13 +425,13 @@ Assessment Details:
                             name="company"
                             placeholder="Company *"
                             required
-                            className="glass-input !bg-white/5 !text-white !border-white/10 flex-1 h-[44px] px-3 font-inter text-[13px]"
+                            className="glass-input !bg-[#F0F4F8] !text-[#0D0D1F] !border-[rgba(139,63,255,0.15)] flex-1 h-[52px] px-5 py-3 rounded-xl font-inter text-[13px]"
                           />
                           <input
                             type="text"
                             name="role"
                             placeholder="Role"
-                            className="glass-input !bg-white/5 !text-white !border-white/10 flex-1 h-[44px] px-3 font-inter text-[13px]"
+                            className="glass-input !bg-[#F0F4F8] !text-[#0D0D1F] !border-[rgba(139,63,255,0.15)] flex-1 h-[52px] px-5 py-3 rounded-xl font-inter text-[13px]"
                           />
                         </div>
 
@@ -449,7 +449,7 @@ Assessment Details:
                         >
                           {isSending ? "Compiling PDF..." : "Download Full PDF Report"} <ArrowRight size={14} />
                         </button>
-                        <p className="text-[9px] font-space-mono text-gray-500 text-center uppercase tracking-wider mt-1.5 flex items-center justify-center gap-1 select-none">
+                        <p className="text-[9px] font-space-mono text-[#718096] text-center uppercase tracking-wider mt-1.5 flex items-center justify-center gap-1 select-none">
                           <Lock size={10} /> Private & Secure · GDPR Compliant
                         </p>
                       </form>

@@ -36,7 +36,7 @@ export default function Navbar() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 h-[76px] flex items-center ${
           scrolled
-            ? "bg-[#0A0F1E]/90 backdrop-blur-md border-b border-[#ffffff10] shadow-[0_4px_30px_rgba(0,0,0,0.4)]"
+            ? "bg-[#FFFFFF]/90 backdrop-blur-md border-b border-[rgba(139,63,255,0.15)] shadow-sm"
             : "bg-transparent"
         }`}
       >
@@ -57,7 +57,7 @@ export default function Navbar() {
             <Link 
               href="/" 
               className={`font-plus-jakarta-sans font-medium text-[15px] hover:text-[#F5C842] transition-colors duration-150 ${
-                pathname === "/" ? "text-[#F5C842]" : "text-white"
+                pathname === "/" ? "text-[#F5C842]" : "text-[#0D0D1F]"
               }`}
             >
               Home
@@ -65,7 +65,7 @@ export default function Navbar() {
             <Link 
               href="/about" 
               className={`font-plus-jakarta-sans font-medium text-[15px] hover:text-[#F5C842] transition-colors duration-150 ${
-                pathname === "/about" ? "text-[#F5C842]" : "text-white"
+                pathname === "/about" ? "text-[#F5C842]" : "text-[#0D0D1F]"
               }`}
             >
               About Us
@@ -77,13 +77,13 @@ export default function Navbar() {
               onMouseEnter={() => setActiveDropdown('services')}
               onMouseLeave={() => setActiveDropdown(null)}
             >
-              <button 
+              <Link href="/services"
                 className={`flex items-center gap-1 font-plus-jakarta-sans font-medium text-[15px] hover:text-[#F5C842] cursor-pointer transition-colors duration-150 ${
-                  pathname?.startsWith("/services") ? "text-[#F5C842]" : "text-white"
+                  pathname?.startsWith("/services") ? "text-[#F5C842]" : "text-[#0D0D1F]"
                 }`}
               >
                 Services <ChevronDown size={14} className={`transition-transform duration-200 ${activeDropdown === 'services' ? 'rotate-180 text-[#F5C842]' : ''}`} />
-              </button>
+              </Link>
               
               <AnimatePresence>
                 {activeDropdown === 'services' && (
@@ -92,12 +92,12 @@ export default function Navbar() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="absolute top-[58px] left-1/2 -translate-x-[45%] w-[880px] bg-[#0A0F1E] border border-[#ffffff10] shadow-[0_20px_50px_rgba(0,0,0,0.8)] rounded-2xl p-8 grid grid-cols-12 gap-8 z-50 overflow-hidden"
+                    className="absolute top-[58px] left-1/2 -translate-x-[45%] w-[880px] bg-[#FFFFFF] border border-[rgba(139,63,255,0.15)] shadow-lg rounded-2xl p-8 grid grid-cols-12 gap-8 z-50 overflow-hidden"
                   >
                     <div className="absolute inset-0 bg-gradient-to-tr from-[#3b6fff]/5 to-transparent pointer-events-none"></div>
 
                     {/* Column 1: Core Services */}
-                    <div className="col-span-5 border-r border-[#ffffff08] pr-6">
+                    <div className="col-span-5 border-r border-[rgba(139,63,255,0.1)] pr-6">
                       <div className="font-space-mono text-[10px] text-[#F5C842] uppercase tracking-[0.2em] mb-4 font-bold">Core Capabilities</div>
                       <div className="grid grid-cols-1 gap-2">
                         {[
@@ -108,11 +108,11 @@ export default function Navbar() {
                           { title: "Strategy & Roadmap", desc: "12-month actionable operational blueprints", icon: Map, href: "/services#service-5" },
                           { title: "Training & Enablement", desc: "Upskill staff to leverage AI pipelines", icon: GraduationCap, href: "/services#service-6" }
                         ].map((item, i) => (
-                          <Link key={i} href={item.href} className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 transition-colors group">
+                          <Link key={i} href={item.href} className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-[#F0F4F8] transition-colors group">
                             <div className="mt-1 text-[#00D9FF] group-hover:text-[#F5C842] transition-colors"><item.icon size={18} /></div>
                             <div>
-                              <div className="font-plus-jakarta-sans font-semibold text-white group-hover:text-[#F5C842] text-[14px] transition-colors">{item.title}</div>
-                              <div className="font-inter text-gray-400 text-[12px] group-hover:text-gray-300 transition-colors leading-tight mt-0.5">{item.desc}</div>
+                              <div className="font-plus-jakarta-sans font-semibold text-[#0D0D1F] group-hover:text-[#F5C842] text-[14px] transition-colors">{item.title}</div>
+                              <div className="font-inter text-[#4A5568] text-[12px] group-hover:text-[#4A5568] transition-colors leading-tight mt-0.5">{item.desc}</div>
                             </div>
                           </Link>
                         ))}
@@ -120,7 +120,7 @@ export default function Navbar() {
                     </div>
 
                     {/* Column 2: New Services */}
-                    <div className="col-span-4 border-r border-[#ffffff08] pr-6">
+                    <div className="col-span-4 border-r border-[rgba(139,63,255,0.1)] pr-6">
                       <div className="font-space-mono text-[10px] text-[#F5C842] uppercase tracking-[0.2em] mb-4 font-bold">Advanced Solutions</div>
                       <div className="flex flex-col gap-2">
                         {[
@@ -128,28 +128,28 @@ export default function Navbar() {
                           { title: "MLOps & Governance", desc: "Scale registries, drift alerts & retraining", icon: Shield, href: "/services#service-8", isNew: false },
                           { title: "Responsible & Ethical AI", desc: "Audits for EU AI Act, bias & transparency", icon: Eye, href: "/services#service-9", isNew: true }
                         ].map((item, i) => (
-                          <Link key={i} href={item.href} className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 transition-colors group">
+                          <Link key={i} href={item.href} className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-[#F0F4F8] transition-colors group">
                             <div className="mt-1 text-[#E040FB] group-hover:text-[#F5C842] transition-colors"><item.icon size={18} /></div>
                             <div className="flex-1">
-                              <div className="flex items-center gap-1.5 font-plus-jakarta-sans font-semibold text-white group-hover:text-[#F5C842] text-[14px] transition-colors">
+                              <div className="flex items-center gap-1.5 font-plus-jakarta-sans font-semibold text-[#0D0D1F] group-hover:text-[#F5C842] text-[14px] transition-colors">
                                 <span>{item.title}</span>
                                 {item.isNew && (
                                   <span className="px-1.5 py-0.5 text-[8px] font-space-mono font-bold tracking-widest text-[#0A0F1E] bg-[#F5C842] rounded-md">New</span>
                                 )}
                               </div>
-                              <div className="font-inter text-gray-400 text-[12px] group-hover:text-gray-300 transition-colors leading-tight mt-0.5">{item.desc}</div>
+                              <div className="font-inter text-[#4A5568] text-[12px] group-hover:text-[#4A5568] transition-colors leading-tight mt-0.5">{item.desc}</div>
                             </div>
                           </Link>
                         ))}
                       </div>
-                      <div className="mt-6 pt-4 border-t border-[#ffffff08] flex flex-col gap-2">
-                        <Link href="/assessment" className="flex items-center justify-between p-2.5 rounded-xl bg-gradient-to-r from-[#e040fb]/10 to-[#3b6fff]/10 hover:from-[#e040fb]/20 hover:to-[#3b6fff]/20 border border-[#ffffff08] transition-all group">
-                          <span className="font-plus-jakarta-sans text-[12px] font-bold text-white group-hover:text-[#F5C842] transition-colors">AI Maturity Quiz</span>
-                          <ArrowRight size={14} className="text-gray-400 group-hover:translate-x-1 group-hover:text-[#F5C842] transition-all" />
+                      <div className="mt-6 pt-4 border-t border-[rgba(139,63,255,0.1)] flex flex-col gap-2">
+                        <Link href="/assessment" className="flex items-center justify-between p-2.5 rounded-xl bg-gradient-to-r from-[#e040fb]/10 to-[#3b6fff]/10 hover:from-[#e040fb]/20 hover:to-[#3b6fff]/20 border border-[rgba(139,63,255,0.1)] transition-all group">
+                          <span className="font-plus-jakarta-sans text-[12px] font-bold text-[#0D0D1F] group-hover:text-[#F5C842] transition-colors">AI Maturity Quiz</span>
+                          <ArrowRight size={14} className="text-[#4A5568] group-hover:translate-x-1 group-hover:text-[#F5C842] transition-all" />
                         </Link>
-                        <Link href="/tools/roi-calculator" className="flex items-center justify-between p-2.5 rounded-xl bg-gradient-to-r from-[#00d9ff]/10 to-[#3b6fff]/10 hover:from-[#00d9ff]/20 hover:to-[#3b6fff]/20 border border-[#ffffff08] transition-all group">
-                          <span className="font-plus-jakarta-sans text-[12px] font-bold text-white group-hover:text-[#F5C842] transition-colors">Interactive ROI Calculator</span>
-                          <ArrowRight size={14} className="text-gray-400 group-hover:translate-x-1 group-hover:text-[#F5C842] transition-all" />
+                        <Link href="/tools/roi-calculator" className="flex items-center justify-between p-2.5 rounded-xl bg-gradient-to-r from-[#00d9ff]/10 to-[#3b6fff]/10 hover:from-[#00d9ff]/20 hover:to-[#3b6fff]/20 border border-[rgba(139,63,255,0.1)] transition-all group">
+                          <span className="font-plus-jakarta-sans text-[12px] font-bold text-[#0D0D1F] group-hover:text-[#F5C842] transition-colors">Interactive ROI Calculator</span>
+                          <ArrowRight size={14} className="text-[#4A5568] group-hover:translate-x-1 group-hover:text-[#F5C842] transition-all" />
                         </Link>
                       </div>
                     </div>
@@ -158,18 +158,18 @@ export default function Navbar() {
                     <div className="col-span-3 flex flex-col justify-between">
                       <div>
                         <div className="font-space-mono text-[10px] text-[#F5C842] uppercase tracking-[0.2em] mb-4 font-bold">Featured Insight</div>
-                        <div className="rounded-xl overflow-hidden bg-white/5 border border-[#ffffff08] p-4 flex flex-col gap-3 group hover:border-[#F5C842]/40 transition-colors">
+                        <div className="rounded-xl overflow-hidden bg-[#F0F4F8] border border-[rgba(139,63,255,0.1)] p-4 flex flex-col gap-3 group hover:border-[#F5C842]/40 transition-colors">
                           <div className="text-[10px] font-space-mono text-[#00D9FF] uppercase tracking-wider">Engineering · 8 MIN READ</div>
-                          <h4 className="font-plus-jakarta-sans font-bold text-white text-[13px] leading-snug group-hover:text-[#F5C842] transition-colors">
+                          <h4 className="font-plus-jakarta-sans font-bold text-[#0D0D1F] text-[13px] leading-snug group-hover:text-[#F5C842] transition-colors">
                             The Composable AI Enterprise: Building Modular Intelligence
                           </h4>
-                          <p className="font-inter text-[11px] text-gray-400 line-clamp-2">
+                          <p className="font-inter text-[11px] text-[#4A5568] line-clamp-2">
                             How modular architecture prevents technical debt as foundation models evolve.
                           </p>
                           <Link href="/blog/composable-ai-enterprise" className="btn-link !text-[12px] mt-1 !gap-1.5 self-start">Read Insight →</Link>
                         </div>
                       </div>
-                      <Link href="/services" className="font-space-mono text-[11px] text-gray-400 hover:text-white transition-colors underline decoration-dotted mt-4">
+                      <Link href="/services" className="font-space-mono text-[11px] text-[#4A5568] hover:text-[#0D0D1F] transition-colors underline decoration-dotted mt-4">
                         Explore all services menu
                       </Link>
                     </div>
@@ -184,13 +184,13 @@ export default function Navbar() {
               onMouseEnter={() => setActiveDropdown('solutions')}
               onMouseLeave={() => setActiveDropdown(null)}
             >
-              <button 
+              <Link href="/solutions"
                 className={`flex items-center gap-1 font-plus-jakarta-sans font-medium text-[15px] hover:text-[#F5C842] cursor-pointer transition-colors duration-150 ${
-                  pathname?.startsWith("/solutions") ? "text-[#F5C842]" : "text-white"
+                  pathname?.startsWith("/solutions") ? "text-[#F5C842]" : "text-[#0D0D1F]"
                 }`}
               >
                 Solutions <ChevronDown size={14} className={`transition-transform duration-200 ${activeDropdown === 'solutions' ? 'rotate-180 text-[#F5C842]' : ''}`} />
-              </button>
+              </Link>
               
               <AnimatePresence>
                 {activeDropdown === 'solutions' && (
@@ -199,26 +199,26 @@ export default function Navbar() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="absolute top-[58px] left-1/2 -translate-x-1/2 w-[540px] bg-[#0A0F1E] border border-[#ffffff10] shadow-[0_20px_50px_rgba(0,0,0,0.8)] rounded-2xl p-6 grid grid-cols-2 gap-6 z-50"
+                    className="absolute top-[58px] left-1/2 -translate-x-1/2 w-[540px] bg-[#FFFFFF] border border-[rgba(139,63,255,0.15)] shadow-lg rounded-2xl p-6 grid grid-cols-2 gap-6 z-50"
                   >
                     <div className="absolute inset-0 bg-gradient-to-tr from-[#00d9ff]/5 to-transparent pointer-events-none"></div>
 
                     {/* Column 1: By Organization */}
-                    <div className="border-r border-[#ffffff08] pr-4 flex flex-col gap-4">
+                    <div className="border-r border-[rgba(139,63,255,0.1)] pr-4 flex flex-col gap-4">
                       <div className="font-space-mono text-[10px] text-[#F5C842] uppercase tracking-[0.2em] font-bold">By Organization</div>
                       <div className="flex flex-col gap-2">
-                        <Link href="/solutions#enterprise" className="flex items-start gap-3 p-2 rounded-xl hover:bg-white/5 transition-colors group">
+                        <Link href="/solutions#enterprise" className="flex items-start gap-3 p-2 rounded-xl hover:bg-[#F0F4F8] transition-colors group">
                           <div className="mt-1 text-[#E040FB] group-hover:text-[#F5C842] transition-colors"><Building2 size={16} /></div>
                           <div>
-                            <div className="font-plus-jakarta-sans font-semibold text-white group-hover:text-[#F5C842] text-[13px] transition-colors">Enterprise Scaling</div>
-                            <div className="font-inter text-gray-400 text-[11px] leading-tight">Scale models, audits & governance</div>
+                            <div className="font-plus-jakarta-sans font-semibold text-[#0D0D1F] group-hover:text-[#F5C842] text-[13px] transition-colors">Enterprise Scaling</div>
+                            <div className="font-inter text-[#4A5568] text-[11px] leading-tight">Scale models, audits & governance</div>
                           </div>
                         </Link>
-                        <Link href="/solutions#startups" className="flex items-start gap-3 p-2 rounded-xl hover:bg-white/5 transition-colors group">
+                        <Link href="/solutions#startups" className="flex items-start gap-3 p-2 rounded-xl hover:bg-[#F0F4F8] transition-colors group">
                           <div className="mt-1 text-[#00D9FF] group-hover:text-[#F5C842] transition-colors"><Rocket size={16} /></div>
                           <div>
-                            <div className="font-plus-jakarta-sans font-semibold text-white group-hover:text-[#F5C842] text-[13px] transition-colors">Startup Acceleration</div>
-                            <div className="font-inter text-gray-400 text-[11px] leading-tight">AI native architectures from day one</div>
+                            <div className="font-plus-jakarta-sans font-semibold text-[#0D0D1F] group-hover:text-[#F5C842] text-[13px] transition-colors">Startup Acceleration</div>
+                            <div className="font-inter text-[#4A5568] text-[11px] leading-tight">AI native architectures from day one</div>
                           </div>
                         </Link>
                       </div>
@@ -235,8 +235,8 @@ export default function Navbar() {
                             { title: "Retail & E-commerce", href: "/solutions#retail", icon: ShoppingBag },
                             { title: "Logistics & Supply", href: "/solutions#logistics", icon: Truck }
                           ].map((industry, index) => (
-                            <Link key={index} href={industry.href} className="flex items-center gap-2 text-[13px] text-gray-300 hover:text-[#F5C842] font-plus-jakarta-sans transition-colors group">
-                              <industry.icon size={14} className="text-gray-400 group-hover:text-[#F5C842] transition-colors" />
+                            <Link key={index} href={industry.href} className="flex items-center gap-2 text-[13px] text-[#4A5568] hover:text-[#F5C842] font-plus-jakarta-sans transition-colors group">
+                              <industry.icon size={14} className="text-[#4A5568] group-hover:text-[#F5C842] transition-colors" />
                               <span>{industry.title}</span>
                             </Link>
                           ))}
@@ -255,7 +255,7 @@ export default function Navbar() {
             <Link 
               href="/pricing" 
               className={`font-plus-jakarta-sans font-medium text-[15px] hover:text-[#F5C842] transition-colors duration-150 ${
-                pathname === "/pricing" ? "text-[#F5C842]" : "text-white"
+                pathname === "/pricing" ? "text-[#F5C842]" : "text-[#0D0D1F]"
               }`}
             >
               Pricing
@@ -263,7 +263,7 @@ export default function Navbar() {
             <Link 
               href="/blog" 
               className={`font-plus-jakarta-sans font-medium text-[15px] hover:text-[#F5C842] transition-colors duration-150 ${
-                pathname === "/blog" ? "text-[#F5C842]" : "text-white"
+                pathname === "/blog" ? "text-[#F5C842]" : "text-[#0D0D1F]"
               }`}
             >
               Blog
@@ -271,7 +271,7 @@ export default function Navbar() {
             <Link 
               href="/contact" 
               className={`font-plus-jakarta-sans font-medium text-[15px] hover:text-[#F5C842] transition-colors duration-150 ${
-                pathname === "/contact" ? "text-[#F5C842]" : "text-white"
+                pathname === "/contact" ? "text-[#F5C842]" : "text-[#0D0D1F]"
               }`}
             >
               Contact Us
@@ -280,13 +280,13 @@ export default function Navbar() {
 
           {/* Right Side */}
           <div className="hidden md:flex items-center gap-4">
-            <Link href="#" className="font-plus-jakarta-sans font-medium text-[14px] text-white hover:text-[#F5C842] transition-colors mr-2">Sign In</Link>
+            <Link href="#" className="btn-ghost !px-5 !py-2.5 !text-[14px] mr-2">Sign In</Link>
             <Link href="/get-started" className="btn-primary !px-5 !py-2.5 !text-[14px]">Get Started →</Link>
           </div>
 
           {/* Mobile Menu Button */}
           <button 
-            className="md:hidden z-50 text-white hover:text-[#F5C842] transition-colors cursor-pointer"
+            className="md:hidden z-50 text-[#0D0D1F] hover:text-[#F5C842] transition-colors cursor-pointer"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -302,7 +302,7 @@ export default function Navbar() {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: '100%', opacity: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed inset-0 z-40 bg-[#0A0F1E]/98 backdrop-blur-xl flex flex-col pt-24 pb-8 px-6 text-white overflow-y-auto"
+            className="fixed inset-0 z-40 bg-[#FFFFFF]/98 backdrop-blur-xl flex flex-col pt-24 pb-8 px-6 text-[#0D0D1F] overflow-y-auto"
           >
             <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-[#3B6FFF] to-[#E040FB]"></div>
             <nav className="flex flex-col gap-4 font-plus-jakarta-sans text-[20px] font-bold">
@@ -339,7 +339,7 @@ export default function Navbar() {
                         { title: "AI Maturity Quiz", href: "/assessment" },
                         { title: "ROI Calculator", href: "/tools/roi-calculator" }
                       ].map((s, idx) => (
-                        <Link key={idx} href={s.href} onClick={() => setMobileMenuOpen(false)} className="text-[14px] font-medium text-gray-300 hover:text-[#F5C842] py-1 transition-colors flex items-center gap-1.5">
+                        <Link key={idx} href={s.href} onClick={() => setMobileMenuOpen(false)} className="text-[14px] font-medium text-[#4A5568] hover:text-[#F5C842] py-1 transition-colors flex items-center gap-1.5">
                           <span>{s.title}</span>
                           {s.isNew && (
                             <span className="px-1.5 py-0.5 text-[7px] font-space-mono font-bold text-[#0A0F1E] bg-[#F5C842] rounded">New</span>
@@ -368,12 +368,12 @@ export default function Navbar() {
                       exit={{ height: 0, opacity: 0 }}
                       className="overflow-hidden pl-4 flex flex-col gap-2 mt-2"
                     >
-                      <Link href="/solutions#enterprise" onClick={() => setMobileMenuOpen(false)} className="text-[14px] font-medium text-gray-300 hover:text-[#F5C842] py-1 transition-colors">Enterprise Scaling</Link>
-                      <Link href="/solutions#startups" onClick={() => setMobileMenuOpen(false)} className="text-[14px] font-medium text-gray-300 hover:text-[#F5C842] py-1 transition-colors">Startup Acceleration</Link>
-                      <Link href="/solutions#finance" onClick={() => setMobileMenuOpen(false)} className="text-[14px] font-medium text-gray-300 hover:text-[#F5C842] py-1 transition-colors">Finance & Banking</Link>
-                      <Link href="/solutions#healthcare" onClick={() => setMobileMenuOpen(false)} className="text-[14px] font-medium text-gray-300 hover:text-[#F5C842] py-1 transition-colors">Healthcare</Link>
-                      <Link href="/solutions#retail" onClick={() => setMobileMenuOpen(false)} className="text-[14px] font-medium text-gray-300 hover:text-[#F5C842] py-1 transition-colors">Retail & E-commerce</Link>
-                      <Link href="/solutions#logistics" onClick={() => setMobileMenuOpen(false)} className="text-[14px] font-medium text-gray-300 hover:text-[#F5C842] py-1 transition-colors">Logistics & Supply</Link>
+                      <Link href="/solutions#enterprise" onClick={() => setMobileMenuOpen(false)} className="text-[14px] font-medium text-[#4A5568] hover:text-[#F5C842] py-1 transition-colors">Enterprise Scaling</Link>
+                      <Link href="/solutions#startups" onClick={() => setMobileMenuOpen(false)} className="text-[14px] font-medium text-[#4A5568] hover:text-[#F5C842] py-1 transition-colors">Startup Acceleration</Link>
+                      <Link href="/solutions#finance" onClick={() => setMobileMenuOpen(false)} className="text-[14px] font-medium text-[#4A5568] hover:text-[#F5C842] py-1 transition-colors">Finance & Banking</Link>
+                      <Link href="/solutions#healthcare" onClick={() => setMobileMenuOpen(false)} className="text-[14px] font-medium text-[#4A5568] hover:text-[#F5C842] py-1 transition-colors">Healthcare</Link>
+                      <Link href="/solutions#retail" onClick={() => setMobileMenuOpen(false)} className="text-[14px] font-medium text-[#4A5568] hover:text-[#F5C842] py-1 transition-colors">Retail & E-commerce</Link>
+                      <Link href="/solutions#logistics" onClick={() => setMobileMenuOpen(false)} className="text-[14px] font-medium text-[#4A5568] hover:text-[#F5C842] py-1 transition-colors">Logistics & Supply</Link>
                       <Link href="/case-studies" onClick={() => setMobileMenuOpen(false)} className="text-[14px] font-medium text-[#00D9FF] hover:text-[#F5C842] py-1 transition-colors">Case Studies</Link>
                     </motion.div>
                   )}
@@ -385,7 +385,7 @@ export default function Navbar() {
               <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#F5C842] py-1 transition-colors">Contact Us</Link>
             </nav>
             <div className="mt-auto flex flex-col gap-4">
-              <Link href="#" onClick={() => setMobileMenuOpen(false)} className="btn-ghost w-full justify-center !text-white border-white/20 hover:border-[#F5C842]">Sign In</Link>
+              <Link href="#" onClick={() => setMobileMenuOpen(false)} className="btn-ghost w-full justify-center !text-[#0D0D1F] border-[#0D0D1F]/20 hover:border-[#F5C842]">Sign In</Link>
               <Link href="/get-started" onClick={() => setMobileMenuOpen(false)} className="btn-primary w-full justify-center">Get Started →</Link>
             </div>
           </motion.div>

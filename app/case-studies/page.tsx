@@ -100,28 +100,28 @@ export default function CaseStudiesPage() {
           </ScrollReveal>
           
           <ScrollReveal delay={0.1}>
-            <h1 className="font-plus-jakarta-sans font-bold text-[48px] md:text-[72px] leading-[1.1] text-white tracking-tight mb-8">
+            <h1 className="font-plus-jakarta-sans font-bold text-[48px] md:text-[72px] leading-[1.1] text-[#0D0D1F] tracking-tight mb-8">
               Proof Over <span className="text-gradient">Promises.</span>
             </h1>
           </ScrollReveal>
           
           <ScrollReveal delay={0.2}>
-            <p className="font-inter text-[19px] text-gray-300 max-w-[640px] mb-12">
+            <p className="font-inter text-[19px] text-[#4A5568] max-w-[640px] mb-12">
               Real clients. Measurable outcomes. Verified results. Explore how we design and deploy production-grade AI systems across global enterprises.
             </p>
           </ScrollReveal>
 
           {/* FILTER BAR */}
           <ScrollReveal delay={0.3}>
-            <div className="flex flex-wrap justify-center gap-3 bg-white/5 border border-white/10 rounded-2xl p-2 backdrop-blur-xl">
+            <div className="flex flex-wrap justify-center gap-3 bg-[#F0F4F8] border border-[rgba(139,63,255,0.15)] rounded-2xl p-2 backdrop-blur-xl">
               {filters.map((filter) => (
                 <button
                   key={filter}
                   onClick={() => setActiveFilter(filter)}
                   className={`px-6 py-2.5 rounded-xl font-plus-jakarta-sans text-[14px] font-semibold transition-all cursor-pointer ${
                     activeFilter === filter
-                      ? "bg-gradient-to-r from-[#3B6FFF] to-[#E040FB] text-white shadow-[0_0_15px_rgba(139,63,255,0.3)]"
-                      : "text-gray-400 hover:text-white hover:bg-white/5"
+                      ? "bg-gradient-to-r from-[#3B6FFF] to-[#E040FB] text-[#0D0D1F] shadow-[0_0_15px_rgba(139,63,255,0.3)]"
+                      : "text-[#718096] hover:text-[#0D0D1F] hover:bg-[#F0F4F8]"
                   }`}
                 >
                   {filter}
@@ -139,41 +139,41 @@ export default function CaseStudiesPage() {
             {filteredCaseStudies.map((cs, i) => (
               <ScrollReveal key={cs.title} delay={i * 0.05}>
                 <div 
-                  className="glass-card !bg-[#050914]/80 !border-white/[0.08] p-8 rounded-[24px] h-full flex flex-col justify-between group hover:border-[#F5C842]/40 hover:shadow-[0_0_40px_rgba(245,200,66,0.15)] hover:-translate-y-2 transition-all duration-300"
+                  className="glass-card !bg-[#FFFFFF]/90 !border-[rgba(139,63,255,0.15)] p-8 rounded-[24px] h-full flex flex-col justify-between group hover:border-[#F5C842]/40 hover:shadow-[0_0_40px_rgba(245,200,66,0.15)] hover:-translate-y-2 transition-all duration-300"
                   style={{ borderLeft: `2px solid ${cs.color}` }}
                 >
                   <div>
                     {/* Header */}
                     <div className="flex justify-between items-start mb-6">
-                      <span className="font-space-mono text-[10px] uppercase tracking-widest px-3 py-1 rounded-full bg-white/5 border border-white/10 text-gray-300">
+                      <span className="font-space-mono text-[10px] uppercase tracking-widest px-3 py-1 rounded-full bg-[#F0F4F8] border border-[rgba(139,63,255,0.15)] text-[#4A5568]">
                         {cs.tag}
                       </span>
-                      <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#F5C842]">
+                      <div className="w-10 h-10 rounded-xl bg-[#F0F4F8] border border-[rgba(139,63,255,0.15)] flex items-center justify-center text-[#F5C842]">
                         {cs.icon}
                       </div>
                     </div>
 
-                    <span className="font-space-mono text-[12px] text-gray-500 block mb-2">{cs.client}</span>
-                    <h3 className="font-plus-jakarta-sans font-bold text-[22px] text-white group-hover:text-[#F5C842] transition-colors mb-4">
+                    <span className="font-space-mono text-[12px] text-[#718096] block mb-2">{cs.client}</span>
+                    <h3 className="font-plus-jakarta-sans font-bold text-[22px] text-[#0D0D1F] group-hover:text-[#F5C842] transition-colors mb-4">
                       {cs.title}
                     </h3>
                     
                     <div className="mb-6 space-y-4">
                       <div>
-                        <span className="font-space-mono text-[11px] text-gray-400 uppercase tracking-wider block mb-1">Challenge</span>
-                        <p className="font-inter text-[14px] text-gray-300 leading-relaxed">{cs.challenge}</p>
+                        <span className="font-space-mono text-[11px] text-[#718096] uppercase tracking-wider block mb-1">Challenge</span>
+                        <p className="font-inter text-[14px] text-[#4A5568] leading-relaxed">{cs.challenge}</p>
                       </div>
                       <div>
-                        <span className="font-space-mono text-[11px] text-gray-400 uppercase tracking-wider block mb-1">Solution</span>
-                        <p className="font-inter text-[14px] text-gray-300 leading-relaxed">{cs.solution}</p>
+                        <span className="font-space-mono text-[11px] text-[#718096] uppercase tracking-wider block mb-1">Solution</span>
+                        <p className="font-inter text-[14px] text-[#4A5568] leading-relaxed">{cs.solution}</p>
                       </div>
                     </div>
                   </div>
 
                   {/* Outcome Metrics */}
                   <div className="mt-auto">
-                    <div className="border-t border-white/10 pt-6 mb-6">
-                      <span className="font-space-mono text-[11px] text-gray-400 uppercase tracking-wider block mb-3">Key Outcomes</span>
+                    <div className="border-t border-[rgba(139,63,255,0.15)] pt-6 mb-6">
+                      <span className="font-space-mono text-[11px] text-[#718096] uppercase tracking-wider block mb-3">Key Outcomes</span>
                       <div className="flex flex-col gap-2">
                         {cs.metrics.map((metric, idx) => (
                           <div key={idx} className="flex items-center gap-2">
@@ -184,7 +184,7 @@ export default function CaseStudiesPage() {
                       </div>
                     </div>
 
-                    <Link href="/contact" className="btn-link text-[14px] !text-white flex items-center gap-1 group-hover:underline">
+                    <Link href="/contact" className="btn-link text-[14px] !text-[#0D0D1F] flex items-center gap-1 group-hover:underline">
                       Request Technical Blueprint <ChevronRight size={14} className="mt-0.5 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </div>
@@ -194,8 +194,8 @@ export default function CaseStudiesPage() {
           </div>
 
           {filteredCaseStudies.length === 0 && (
-            <div className="text-center py-20 bg-white/5 border border-white/10 rounded-[24px]">
-              <p className="font-inter text-gray-400 text-[16px]">No case studies found for this category.</p>
+            <div className="text-center py-20 bg-[#F0F4F8] border border-[rgba(139,63,255,0.15)] rounded-[24px]">
+              <p className="font-inter text-[#718096] text-[16px]">No case studies found for this category.</p>
             </div>
           )}
         </div>
@@ -205,13 +205,13 @@ export default function CaseStudiesPage() {
       <section className="py-[120px] bg-transparent relative z-10">
         <div className="container mx-auto px-5 relative">
           <ScrollReveal>
-            <div className="glass-card !bg-[#0A0F1E] !border-white/[0.08] w-full max-w-[900px] mx-auto rounded-[32px] p-12 md:p-16 text-center hover:shadow-[0_0_50px_rgba(139,63,255,0.2)] hover:scale-[1.01] transition-all duration-500 relative overflow-hidden">
+            <div className="glass-card !bg-[#F8F9FA] !border-[rgba(139,63,255,0.15)] w-full max-w-[900px] mx-auto rounded-[32px] p-12 md:p-16 text-center hover:shadow-[0_0_50px_rgba(139,63,255,0.2)] hover:scale-[1.01] transition-all duration-500 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-tr from-[#3b6fff]/5 to-[#e040fb]/5 pointer-events-none"></div>
               
-              <h3 className="font-plus-jakarta-sans font-extrabold text-[32px] md:text-[44px] text-white mb-6 leading-tight">
+              <h3 className="font-plus-jakarta-sans font-extrabold text-[32px] md:text-[44px] text-[#0D0D1F] mb-6 leading-tight">
                 Your results could be next.
               </h3>
-              <p className="font-inter text-[18px] text-gray-300 mb-10 max-w-[500px] mx-auto">
+              <p className="font-inter text-[18px] text-[#4A5568] mb-10 max-w-[500px] mx-auto">
                 Schedule a 30-minute feasibility audit to explore high-impact AI use cases inside your operational stack.
               </p>
               
@@ -219,7 +219,7 @@ export default function CaseStudiesPage() {
                 <Link href="/contact" className="btn-primary px-8 py-4 text-[15px] uppercase tracking-wider font-bold">
                   Book a Free Discovery Call
                 </Link>
-                <Link href="/services" className="btn-ghost !text-white px-8 py-4 text-[15px] font-semibold">
+                <Link href="/services" className="btn-ghost !text-[#0D0D1F] px-8 py-4 text-[15px] font-semibold">
                   Explore Services Guide
                 </Link>
               </div>
