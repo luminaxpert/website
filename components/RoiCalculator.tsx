@@ -55,12 +55,12 @@ export default function RoiCalculator() {
   const [useCase, setUseCase] = useState<string>("Customer Support Automation");
   const [maturityLevel, setMaturityLevel] = useState<string>("Exploring");
 
-  // Output States (Calculated)
-  const [annualSavings, setAnnualSavings] = useState<number>(0);
-  const [roiYear1, setRoiYear1] = useState<number>(0);
-  const [roiYear3, setRoiYear3] = useState<number>(0);
-  const [breakEven, setBreakEven] = useState<number>(0);
-  const [productivityMultiplier, setProductivityMultiplier] = useState<number>(1);
+  // Output States (Calculated based on default inputs)
+  const [annualSavings, setAnnualSavings] = useState<number>(344250);
+  const [roiYear1, setRoiYear1] = useState<number>(359);
+  const [roiYear3, setRoiYear3] = useState<number>(1277);
+  const [breakEven, setBreakEven] = useState<number>(2.61);
+  const [productivityMultiplier, setProductivityMultiplier] = useState<number>(1.50);
 
   // Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);

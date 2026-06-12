@@ -139,7 +139,17 @@ export default function GetStartedPage() {
             {step === 2 && (
               <div className="animate-fade-in">
                 <h2 className="font-plus-jakarta-sans font-bold text-[36px] text-[#0D0D1F] mb-2">What's your focus?</h2>
-                <p className="font-inter text-[#4A5568] mb-8">Select the primary area where you need AI transformation.</p>
+                <p className="font-inter text-[#4A5568] mb-6">Select the primary area where you need AI transformation.</p>
+                
+                <div className="mb-8 p-5 rounded-2xl bg-[#FFFFFF] border border-[#8b3fff]/20 shadow-sm flex flex-col gap-1">
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="font-space-mono text-[11px] text-[#718096] uppercase tracking-widest font-bold">Profile Summary</span>
+                    <button onClick={() => setStep(1)} className="text-[12px] text-[#00D9FF] font-bold hover:underline">Edit</button>
+                  </div>
+                  <div className="font-plus-jakarta-sans text-[15px] text-[#0D0D1F] font-bold">{formData.user_name || "Name not provided"}</div>
+                  <div className="font-inter text-[14px] text-[#4A5568]">{formData.user_email || "Email not provided"}</div>
+                  {formData.company && <div className="font-inter text-[14px] text-[#4A5568]">🏢 {formData.company}</div>}
+                </div>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                   {[

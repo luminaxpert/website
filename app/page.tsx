@@ -68,6 +68,30 @@ const testimonials = [
     company: "Tier-1 Investment Bank",
     stars: 5,
     metric: "Zero compliance incidents"
+  },
+  {
+    quote: "Their predictive models helped us anticipate supply chain disruptions three weeks before they occurred, saving us millions.",
+    name: "Elena Rostova",
+    role: "Head of Global Operations",
+    company: "Leading Electronics Manufacturer",
+    stars: 5,
+    metric: "$12M costs avoided"
+  },
+  {
+    quote: "LuminaXpert's custom LLM deployment gave our customer support agents superpowers. Resolution times dropped by 45% in the first month.",
+    name: "Michael Chen",
+    role: "VP Customer Experience",
+    company: "SaaS Unicorn",
+    stars: 5,
+    metric: "45% faster resolution"
+  },
+  {
+    quote: "The strategic roadmap was clear, actionable, and instantly got our board's approval. They are true partners in AI transformation.",
+    name: "Sarah Jenkins",
+    role: "Chief Digital Officer",
+    company: "Fortune 100 Retailer",
+    stars: 5,
+    metric: "Board approved strategy"
   }
 ];
 
@@ -135,8 +159,8 @@ export default function Home() {
               <div className="flex flex-col items-center gap-4 mt-4">
                 <div className="flex -space-x-3">
                   {[1, 2, 3, 4, 5].map((i) => (
-                    <div key={i} className="w-12 h-12 rounded-full bg-[#FFFFFF] border-2 border-[#E040FB]/40 relative z-[1] overflow-hidden">
-                      <div className="w-full h-full bg-gradient-to-br from-[#3B6FFF]/20 to-[#E040FB]/20 flex items-center justify-center text-[10px] text-[#E040FB]">UX</div>
+                    <div key={i} className="w-12 h-12 rounded-full bg-[#FFFFFF] border-2 border-[#E040FB]/40 relative z-[1] overflow-hidden flex items-center justify-center bg-gradient-to-br from-[#3B6FFF]/10 to-[#E040FB]/10">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#E040FB]/60"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                     </div>
                   ))}
                 </div>
@@ -147,11 +171,11 @@ export default function Home() {
         </div>
         
         {/* Scroll Indicator */}
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center">
-          <div className="animate-bounce">
-            <ChevronDown size={24} className="text-[#E040FB]" />
+        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 group cursor-pointer" onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}>
+          <div className="w-[30px] h-[50px] rounded-full border-2 border-[#8b3fff]/30 flex justify-center p-1 group-hover:border-[#E040FB]/60 transition-colors duration-300 shadow-[0_0_15px_rgba(139,63,255,0.1)]">
+            <div className="w-1.5 h-3 bg-gradient-to-b from-[#3B6FFF] to-[#E040FB] rounded-full animate-bounce mt-1"></div>
           </div>
-          <span className="font-space-mono text-[10px] text-[#718096] mt-2 tracking-widest">SCROLL</span>
+          <span className="font-space-mono text-[10px] text-[#718096] uppercase tracking-[0.3em] group-hover:text-[#0D0D1F] transition-colors duration-300">SCROLL</span>
         </div>
       </section>
 
@@ -586,33 +610,33 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <ScrollReveal delay={0.1}>
-                <Link href="/blog/future-generative-ai" className="glass-card flex flex-col md:flex-row overflow-hidden group hover:border-[#E040FB]/40 transition-all duration-500">
+                <Link href="/blog/invisible-roi-of-ai" className="glass-card flex flex-col md:flex-row overflow-hidden group hover:border-[#E040FB]/40 transition-all duration-500">
                   <div className="md:w-[40%] h-[240px] md:h-auto overflow-hidden">
-                    <img src="/images/blog/prompt1.png" alt="Generative AI" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                    <img src="/images/blog/prompt3.png" alt="Generative AI" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   </div>
                   <div className="md:w-[60%] p-8 flex flex-col justify-center bg-[#FFFFFF]/60 backdrop-blur-md">
                     <div className="flex items-center gap-3 mb-4">
                       <span className="px-3 py-1 rounded-full bg-[#E040FB]/10 text-[#E040FB] font-space-mono text-[10px] uppercase font-bold border border-[#E040FB]/20">Strategy</span>
-                      <span className="text-[#718096] font-space-mono text-[11px]">8 MIN READ</span>
+                      <span className="text-[#718096] font-space-mono text-[11px]">6 MIN READ</span>
                     </div>
-                    <h3 className="font-plus-jakarta-sans font-bold text-[24px] text-[#0D0D1F] group-hover:text-[#E040FB] transition-colors mb-4">The Future of Generative AI in Enterprise</h3>
-                    <p className="font-inter text-[#4A5568] text-[15px] line-clamp-2">How autonomous agents are redefining the corporate landscape and what it means for your infrastructure.</p>
+                    <h3 className="font-plus-jakarta-sans font-bold text-[24px] text-[#0D0D1F] group-hover:text-[#E040FB] transition-colors mb-4">The Invisible ROI of AI: Measuring What Traditional Metrics Miss</h3>
+                    <p className="font-inter text-[#4A5568] text-[15px] line-clamp-2">Traditional ROI calculations fail to capture the exponential compounding value of AI integration. Discover a modern framework.</p>
                   </div>
                 </Link>
               </ScrollReveal>
 
               <ScrollReveal delay={0.2}>
-                <Link href="/blog/ai-infrastructure" className="glass-card flex flex-col md:flex-row overflow-hidden group hover:border-[#00D9FF]/40 transition-all duration-500">
+                <Link href="/blog/llms-in-production" className="glass-card flex flex-col md:flex-row overflow-hidden group hover:border-[#00D9FF]/40 transition-all duration-500">
                   <div className="md:w-[40%] h-[240px] md:h-auto overflow-hidden">
-                    <img src="/images/blog/prompt2.png" alt="AI Infrastructure" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                    <img src="/images/blog/prompt1.png" alt="AI Infrastructure" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   </div>
                   <div className="md:w-[60%] p-8 flex flex-col justify-center bg-[#FFFFFF]/60 backdrop-blur-md">
                     <div className="flex items-center gap-3 mb-4">
                       <span className="px-3 py-1 rounded-full bg-[#00D9FF]/10 text-[#00D9FF] font-space-mono text-[10px] uppercase font-bold border border-[#00D9FF]/20">Engineering</span>
-                      <span className="text-[#718096] font-space-mono text-[11px]">12 MIN READ</span>
+                      <span className="text-[#718096] font-space-mono text-[11px]">9 MIN READ</span>
                     </div>
-                    <h3 className="font-plus-jakarta-sans font-bold text-[24px] text-[#0D0D1F] group-hover:text-[#00D9FF] transition-colors mb-4">Scaling AI Infrastructure Globally</h3>
-                    <p className="font-inter text-[#4A5568] text-[15px] line-clamp-2">The architecture behind multi-region AI orchestration and autonomous workflow delivery.</p>
+                    <h3 className="font-plus-jakarta-sans font-bold text-[24px] text-[#0D0D1F] group-hover:text-[#00D9FF] transition-colors mb-4">LLMs in Production: Transitioning from Playground to Enterprise</h3>
+                    <p className="font-inter text-[#4A5568] text-[15px] line-clamp-2">Moving large language models from prototype to secure, scalable, and compliant enterprise deployments.</p>
                   </div>
                 </Link>
               </ScrollReveal>

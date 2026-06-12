@@ -379,6 +379,25 @@ const response = await luminaOrchestrator.execute({
             </article>
           </ScrollReveal>
           
+          <ScrollReveal delay={0.1}>
+            <div className="mt-12 mb-8 glass-card p-8 flex flex-col sm:flex-row gap-6 items-center sm:items-start border-l-4 border-l-[#E040FB]">
+              <div className="w-24 h-24 shrink-0 rounded-full bg-gradient-to-tr from-[#3b6fff] to-[#e040fb] p-[3px] shadow-[0_0_20px_rgba(224,64,251,0.3)]">
+                <div className="w-full h-full rounded-full bg-[#FFFFFF] flex items-center justify-center overflow-hidden border-2 border-white">
+                  <img src={`/images/team/${post.author === "Sibtain Syed" ? "sibtain.jpg" : "faizan.jpg"}`} alt={post.author} className="w-full h-full object-cover" />
+                </div>
+              </div>
+              <div className="flex-1 text-center sm:text-left">
+                <h4 className="font-plus-jakarta-sans font-bold text-[20px] text-[#0D0D1F] mb-1">{post.author}</h4>
+                <div className="font-space-mono text-[12px] text-[#00D9FF] mb-3 uppercase tracking-wider">Co-Founder & {post.role}, LuminaXpert</div>
+                <p className="font-inter text-[#4A5568] text-[14px] leading-[1.6]">
+                  {post.author === "Sibtain Syed" 
+                    ? "Sibtain leads the strategic vision at LuminaXpert, leveraging over a decade of experience in enterprise digital transformation to help global organizations integrate AI into their core operational frameworks." 
+                    : "Faizan is the chief architect of LuminaXpert's engineering solutions. He specializes in scalable MLOps, intelligent agent orchestration, and deploying robust generative AI architectures for Fortune 500 companies."}
+                </p>
+              </div>
+            </div>
+          </ScrollReveal>
+          
           <ScrollReveal delay={0.2}>
             <div className="mt-16 pt-8 border-t border-[rgba(139, 63, 255, 0.15)]">
               <div className="font-space-mono text-[11px] text-[#4A5568] uppercase tracking-wider mb-6">MORE INSIGHTS FROM THE FOUNDERS</div>

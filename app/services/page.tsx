@@ -56,63 +56,72 @@ export default function ServicesPage() {
             desc: "Navigate the complex landscape of artificial intelligence with confidence. Our strategic advisory ensures your investments align with business objectives.",
             features: ["AI readiness assessment", "Executive alignment", "Use case prioritization", "ROI modeling", "Risk & ethics review", "Implementation guidance"],
             metrics: ["340% avg ROI", "4× faster decisions", "98% success"],
-            alignRight: false
+            alignRight: false,
+            image: "/images/services/ai consultancy.png"
           },
           { 
             id: 2, title: "Digital Transformation", subtitle: "Reshape Your Business",
             desc: "Modernize your legacy systems and operational models. We build the digital foundation required for AI to thrive across your entire enterprise.",
             features: ["Digital audit", "Architecture design", "Process automation", "Change management", "Staff enablement", "Ongoing governance"],
             metrics: ["60% cost reduction", "8× deployment speed", "100% uptime"],
-            alignRight: true
+            alignRight: true,
+            image: "/images/services/digital transformation.png"
           },
           { 
             id: 3, title: "Data & Analytics", subtitle: "Intelligence From Your Data",
             desc: "Turn fragmented data into a cohesive intelligence engine. We engineer the pipelines that feed your predictive models and executive dashboards.",
             features: ["Data strategy", "Pipeline architecture", "BI dashboards", "Predictive modeling", "Real-time analytics", "Data governance"],
             metrics: ["10× faster insights", "99.7% accuracy", "Live dashboards"],
-            alignRight: false
+            alignRight: false,
+            image: "/images/services/data and analytics.png"
           },
           { 
             id: 4, title: "AI Development", subtitle: "Custom Solutions for Complex Problems",
             desc: "Build proprietary AI models tailored to your specific workflows. We handle everything from data labeling to model training, deployment, and optimization.",
             features: ["Custom model training", "NLP & Computer Vision", "API integration", "Model fine-tuning", "LLM deployment", "Continuous learning"],
             metrics: ["500+ models", "99.9% uptime", "Zero lock-in"],
-            alignRight: true
+            alignRight: true,
+            image: "/images/services/ai development.png"
           },
           { 
             id: 5, title: "Strategy & Roadmap", subtitle: "Chart Your Course to the Future",
             desc: "Develop a robust, future-proof AI roadmap. We help you identify high-impact opportunities, assess competitive landscapes, and plan for long-term scalability.",
             features: ["Market analysis", "Competitive benchmarking", "Roadmap development", "Resource planning", "Technology stack selection", "Execution planning"],
             metrics: ["50+ industries", "3-year roadmaps", "Actionable insights"],
-            alignRight: false
+            alignRight: false,
+            image: "/images/services/strategy roadmap.png"
           },
           { 
             id: 6, title: "Training & Enablement", subtitle: "Empower Your Workforce",
             desc: "Upskill your internal teams to thrive in an AI-driven world. We provide comprehensive training programs covering everything from basic AI literacy to advanced development.",
             features: ["Executive workshops", "Technical bootcamps", "AI literacy programs", "Custom curriculum", "Hands-on labs", "Certification prep"],
             metrics: ["10k+ trained", "95% satisfaction", "Tailored content"],
-            alignRight: true
+            alignRight: true,
+            image: "/images/services/training and environment.png"
           },
           {
             id: 7, title: "AI Agents & Automation", subtitle: "Autonomous Intelligence at Work",
             desc: "Deploy intelligent agents that execute complex, multi-step business workflows with zero human bottlenecks — from customer service to financial reporting.",
             features: ["Agentic workflow design", "LLM-powered task automation", "RPA + AI integration", "Multi-agent orchestration", "Autonomous reporting", "Human-in-the-loop failsafes"],
             metrics: ["70% work eliminated", "24/7 active operation", "$4M+ avg annual savings"],
-            alignRight: false
+            alignRight: false,
+            image: "/images/services/ai agents and anomaly.png"
           },
           {
             id: 8, title: "MLOps & Model Governance", subtitle: "AI That Runs Reliably, Forever",
             desc: "Production AI breaks without the right infrastructure. We build the pipelines, monitoring systems, and governance frameworks that keep your models accurate, compliant, and performant.",
             features: ["Model registry & versioning", "Drift & degradation detection", "Automated retraining pipelines", "Compliance audit logging", "A/B model testing", "Multi-cloud deployment"],
             metrics: ["99.9% model uptime", "10× faster retraining", "Full audit trail"],
-            alignRight: true
+            alignRight: true,
+            image: "/images/services/MLoPs and model governance.png"
           },
           {
             id: 9, title: "Responsible & Ethical AI", subtitle: "AI You Can Trust. AI You Can Defend.",
             desc: "Regulatory pressure is intensifying. We align your AI systems with EU AI Act, NIST AI RMF, and ISO 42001 — so your deployments are auditable, explainable, and bias-free.",
             features: ["Bias & fairness auditing", "Explainability frameworks (SHAP, LIME)", "EU AI Act compliance", "NIST AI RMF alignment", "AI governance policy drafting", "Human oversight design"],
             metrics: ["100% audit-ready", "Zero regulatory incidents", "Board-level compliance"],
-            alignRight: false
+            alignRight: false,
+            image: "/images/services/responsible and ethical AI.png"
           }
         ].map((srv) => (
           <section id={`service-${srv.id}`} key={srv.id} className="relative py-[100px] border-t border-[#8b3fff]/20 overflow-hidden bg-[#F0F4F8]/20 backdrop-blur-[2px]">
@@ -154,9 +163,9 @@ export default function ServicesPage() {
                 <Link href="/contact" className="btn-ghost">Get Started with {srv.title} →</Link>
               </ScrollReveal>
               
-              <ScrollReveal delay={0.2} className={`w-full md:w-1/2 h-[400px] glass-card flex items-center justify-center group hover:shadow-[0_0_40px_rgba(224,64,251,0.2)] hover:border-[#E040FB]/50 hover:scale-[1.02] transition-all duration-500 ${srv.alignRight ? 'md:order-1' : ''}`}>
-                 <span className="text-[#4A5568] font-space-mono text-sm group-hover:text-[#E040FB] transition-colors duration-300">[Interactive 3D Visual for {srv.title}]</span>
-                 <div className="absolute inset-0 bg-gradient-to-br from-[#8b3fff]/10 to-transparent group-hover:from-[#8b3fff]/20 transition-colors duration-500 rounded-[24px]"></div>
+              <ScrollReveal delay={0.2} className={`w-full md:w-1/2 h-[400px] glass-card flex items-center justify-center group hover:shadow-[0_0_40px_rgba(224,64,251,0.2)] hover:border-[#E040FB]/50 hover:scale-[1.02] transition-all duration-500 overflow-hidden relative ${srv.alignRight ? 'md:order-1' : ''}`}>
+                 <img src={srv.image} alt={`${srv.title} 3D Visual`} className="w-full h-full object-cover rounded-[24px] group-hover:scale-105 transition-transform duration-700 relative z-10" />
+                 <div className="absolute inset-0 bg-gradient-to-br from-[#8b3fff]/5 to-[#e040fb]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[24px] z-20 pointer-events-none mix-blend-overlay"></div>
               </ScrollReveal>
               
             </div>

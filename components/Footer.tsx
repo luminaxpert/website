@@ -96,9 +96,9 @@ export default function Footer() {
           <div className="font-space-mono text-[11px] text-[#718096] flex items-center gap-2">
             <Link href="/legal/privacy" className="hover:text-[#0D0D1F] transition-colors">Privacy Policy</Link>
             <span>|</span>
-            <Link href="/legal/privacy" className="hover:text-[#0D0D1F] transition-colors">Terms of Service</Link>
+            <Link href="/legal/terms" className="hover:text-[#0D0D1F] transition-colors">Terms of Service</Link>
             <span>|</span>
-            <Link href="/legal/privacy" className="hover:text-[#0D0D1F] transition-colors">Cookie Policy</Link>
+            <Link href="/legal/cookies" className="hover:text-[#0D0D1F] transition-colors">Cookie Policy</Link>
           </div>
           <p className="font-space-mono text-[11px] text-[#718096]">Built with ∞ in the AI era</p>
         </div>

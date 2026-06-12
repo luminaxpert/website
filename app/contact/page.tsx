@@ -187,10 +187,22 @@ export default function ContactPage() {
                   <div>
                     <h4 className="font-plus-jakarta-sans font-bold text-[18px] text-[#0D0D1F] mb-2 uppercase tracking-tight">Our Office</h4>
                     <p className="font-inter text-[#4A5568] text-[16px] leading-relaxed mb-3">123 Innovation Drive, Suite 500<br />Tech District, NY 10001</p>
-                    <div className="flex flex-wrap gap-x-4 gap-y-1">
-                      {["London", "Singapore", "Tokyo"].map((city) => (
-                        <span key={city} className="font-space-mono text-[11px] text-[#718096] uppercase">{city}</span>
-                      ))}
+                    <div className="flex flex-col gap-3 mt-4 pt-4 border-t border-[rgba(139,63,255,0.15)]">
+                      <div className="flex flex-col">
+                        <span className="font-space-mono text-[11px] text-[#00D9FF] uppercase tracking-widest font-bold">London</span>
+                        <span className="font-inter text-[13px] text-[#718096]">Level 39, One Canada Square, Canary Wharf (GMT)</span>
+                        <span className="font-inter text-[13px] text-[#718096]">+44 20 7946 0958</span>
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="font-space-mono text-[11px] text-[#00D9FF] uppercase tracking-widest font-bold">Singapore</span>
+                        <span className="font-inter text-[13px] text-[#718096]">8 Marina View, Asia Square Tower 1 (SGT)</span>
+                        <span className="font-inter text-[13px] text-[#718096]">+65 6701 5900</span>
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="font-space-mono text-[11px] text-[#00D9FF] uppercase tracking-widest font-bold">Tokyo</span>
+                        <span className="font-inter text-[13px] text-[#718096]">Roppongi Hills Mori Tower, Minato City (JST)</span>
+                        <span className="font-inter text-[13px] text-[#718096]">+81 3-5159-0000</span>
+                      </div>
                     </div>
                   </div>
                 </div>

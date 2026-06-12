@@ -280,7 +280,7 @@ export default function Navbar() {
 
           {/* Right Side */}
           <div className="hidden md:flex items-center gap-4">
-            <Link href="#" className="btn-ghost !px-5 !py-2.5 !text-[14px] mr-2">Sign In</Link>
+            <Link href="/signin" className="btn-ghost !px-5 !py-2.5 !text-[14px] mr-2">Sign In</Link>
             <Link href="/get-started" className="btn-primary !px-5 !py-2.5 !text-[14px]">Get Started →</Link>
           </div>
 
@@ -385,7 +385,7 @@ export default function Navbar() {
               <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#F5C842] py-1 transition-colors">Contact Us</Link>
             </nav>
             <div className="mt-auto flex flex-col gap-4">
-              <Link href="#" onClick={() => setMobileMenuOpen(false)} className="btn-ghost w-full justify-center !text-[#0D0D1F] border-[#0D0D1F]/20 hover:border-[#F5C842]">Sign In</Link>
+              <Link href="/signin" onClick={() => setMobileMenuOpen(false)} className="btn-ghost w-full justify-center !text-[#0D0D1F] border-[#0D0D1F]/20 hover:border-[#F5C842]">Sign In</Link>
               <Link href="/get-started" onClick={() => setMobileMenuOpen(false)} className="btn-primary w-full justify-center">Get Started →</Link>
             </div>
           </motion.div>
