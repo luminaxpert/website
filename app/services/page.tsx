@@ -180,7 +180,7 @@ export default function ServicesPage() {
             <div className="glass-brand w-full max-w-[1280px] mx-auto rounded-[24px] p-16 text-center hover:bg-[rgba(139,63,255,0.1)] hover:shadow-[0_0_50px_rgba(139,63,255,0.2)] hover:scale-[1.01] transition-all duration-500">
               <h3 className="font-plus-jakarta-sans font-bold text-[28px] md:text-[36px] text-[#0D0D1F] mb-8">Not sure which service fits your challenge?</h3>
               <div className="flex flex-col sm:flex-row justify-center gap-4 mb-6">
-                <Link href="/contact" className="btn-primary">Talk to an Expert</Link>
+                <Link href="/booking" className="btn-primary">Talk to an Expert</Link>
                 <Link href="/contact" className="btn-ghost">Download Services Guide (PDF)</Link>
               </div>
               <p className="font-inter text-[15px] text-[#4A5568]">Free consultation · No commitment · Proposal within 48h</p>

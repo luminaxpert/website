@@ -149,7 +149,7 @@ export default function Home() {
             <ScrollReveal delay={0.6}>
               <div className="flex flex-col sm:flex-row gap-6 mb-12 relative z-10">
                 <Link href="/get-started" className="btn-primary inline-flex justify-center items-center px-10 h-[60px]">Start Your Journey →</Link>
-                <Link href="/contact" className="btn-ghost inline-flex justify-center items-center gap-2 px-10 h-[60px]">
+                <Link href="/booking" className="btn-ghost inline-flex justify-center items-center gap-2 px-10 h-[60px]">
                   <PlayCircle size={18} /> Book a Consultation
                 </Link>
               </div>
@@ -719,7 +719,7 @@ export default function Home() {
           
           <ScrollReveal delay={0.1}>
             <div className="flex flex-col sm:flex-row gap-4 mb-6 relative z-10">
-              <Link href="/contact" className="btn-primary">Book a Free Consultation</Link>
+              <Link href="/booking" className="btn-primary">Book a Free Consultation</Link>
               <Link href="/services" className="btn-ghost">Explore Our Services</Link>
             </div>
           </ScrollReveal>

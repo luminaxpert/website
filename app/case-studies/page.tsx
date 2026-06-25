@@ -216,7 +216,7 @@ export default function CaseStudiesPage() {
               </p>
               
               <div className="flex flex-col sm:flex-row justify-center gap-4 relative z-10">
-                <Link href="/contact" className="btn-primary px-8 py-4 text-[15px] uppercase tracking-wider font-bold">
+                <Link href="/booking" className="btn-primary px-8 py-4 text-[15px] uppercase tracking-wider font-bold">
                   Book a Free Discovery Call
                 </Link>
                 <Link href="/services" className="btn-ghost !text-[#0D0D1F] px-8 py-4 text-[15px] font-semibold">

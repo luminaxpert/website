@@ -331,7 +331,7 @@ Assessment Details:
                   </p>
                   
                   <div className="flex gap-4">
-                    <Link href="/contact" className="btn-primary">Book Consultation</Link>
+                    <Link href="/booking" className="btn-primary">Book Consultation</Link>
                     <button onClick={resetQuiz} className="btn-ghost !text-[#0D0D1F]">Restart Quiz</button>
                   </div>
                 </div>
