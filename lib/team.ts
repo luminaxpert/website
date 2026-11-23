@@ -1,4 +1,4 @@
-import { FOUNDER_LINKS, SITE } from "./site";
+import { COFOUNDER_LINKS, FOUNDER_LINKS, SITE } from "./site";
 
 export interface TeamMember {
   name: string;
@@ -14,7 +14,7 @@ export const FOUNDERS: TeamMember[] = [
     name: "Sibtain Syed",
     role: "CEO & Co-founder",
     bio: "Enterprise architect and AI strategist behind LuminaXpert's vision and global expansion. Sibtain specialises in AI strategy, research-driven delivery and human–machine alignment.",
-    image: "/images/team/sibtain.webp",
+    image: "/images/team/me_image.jpeg",
     tags: ["AI Strategy", "Enterprise Architecture", "Research"],
     links: {
       linkedin: FOUNDER_LINKS.linkedin,
@@ -29,7 +29,7 @@ export const FOUNDERS: TeamMember[] = [
     bio: "Deep-learning specialist and architect of our AI orchestration engine. Faizan leads engineering — from MLOps platforms to autonomous, agentic workflows in production.",
     image: "/images/team/faizan.webp",
     tags: ["MLOps", "Agentic Systems", "LLM Engineering"],
-    links: { email: SITE.email },
+    links: { linkedin: COFOUNDER_LINKS.linkedin, email: SITE.email },
   },
 ];
 

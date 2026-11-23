@@ -6,7 +6,7 @@ import { ArrowLeft, ArrowRight, Calendar, Clock, Tag } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 import { ReadingProgress, ShareButtons } from "@/components/blog/ArticleTools";
 import { POSTS, AUTHORS, getPost, getRelatedPosts, postDate } from "@/lib/posts";
-import { SITE, FOUNDER_LINKS } from "@/lib/site";
+import { SITE, FOUNDER_LINKS, COFOUNDER_LINKS } from "@/lib/site";
 
 // Every article is pre-rendered at build time; unknown slugs return a real 404.
 export const dynamicParams = false;
@@ -55,7 +55,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     author: {
       "@type": "Person",
       name: post.author,
-      ...(post.author === "Sibtain Syed" ? { url: FOUNDER_LINKS.portfolio, sameAs: [FOUNDER_LINKS.linkedin] } : {}),
+      ...(post.author === "Sibtain Syed"
+        ? { url: FOUNDER_LINKS.portfolio, sameAs: [FOUNDER_LINKS.linkedin] }
+        : { sameAs: [COFOUNDER_LINKS.linkedin] }),
     },
     publisher: { "@type": "Organization", name: SITE.name, logo: { "@type": "ImageObject", url: `${SITE.url}/images/logo.png` } },
     mainEntityOfPage: `${SITE.url}/blog/${post.slug}`,
@@ -126,12 +128,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 <h2 className="font-plus-jakarta-sans font-bold text-[20px] text-[#0D0D1F] mb-1">{post.author}</h2>
                 <div className="font-space-mono text-[12px] text-[#0891B2] mb-3 uppercase tracking-wider">{author.title}</div>
                 <p className="font-inter text-[#4A5568] text-[14px] leading-[1.7] mb-4">{author.bio}</p>
-                {post.author === "Sibtain Syed" && (
-                  <div className="flex justify-center sm:justify-start gap-4 font-space-mono text-[12px]">
-                    <a href={FOUNDER_LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#0A66C2] hover:underline">LinkedIn ↗</a>
+                <div className="flex justify-center sm:justify-start gap-4 font-space-mono text-[12px]">
+                  <a href={post.author === "Sibtain Syed" ? FOUNDER_LINKS.linkedin : COFOUNDER_LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#0A66C2] hover:underline">LinkedIn ↗</a>
+                  {post.author === "Sibtain Syed" && (
                     <a href={FOUNDER_LINKS.portfolio} target="_blank" rel="noopener noreferrer" className="text-[#6D28D9] hover:underline">Portfolio ↗</a>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
             </div>
           </ScrollReveal>

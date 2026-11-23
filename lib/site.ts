@@ -20,6 +20,10 @@ export const FOUNDER_LINKS = {
   scholar: "https://scholar.google.com/citations?user=H5y_i_sAAAAJ&hl=en",
 } as const;
 
+export const COFOUNDER_LINKS = {
+  linkedin: "https://www.linkedin.com/in/faizan-ahmed258",
+} as const;
+
 export const SOCIAL_LINKS = [
   { label: "LinkedIn", href: FOUNDER_LINKS.linkedin, kind: "linkedin" },
   { label: "Founder portfolio", href: FOUNDER_LINKS.portfolio, kind: "globe" },

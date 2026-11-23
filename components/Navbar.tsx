@@ -275,6 +275,7 @@ export default function Navbar() {
       {/* Mobile menu */}
       <div
         id="mobile-menu"
+        data-lenis-prevent
         className={`lg:hidden fixed inset-0 z-40 bg-white/98 backdrop-blur-xl flex flex-col pt-24 pb-8 px-6 text-[#0D0D1F] overflow-y-auto transition-all duration-300 ${
           mobileMenuOpen ? "opacity-100 translate-x-0 visible" : "opacity-0 translate-x-full invisible"
         }`}

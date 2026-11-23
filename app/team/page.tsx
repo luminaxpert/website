@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Globe, Users, Award, GraduationCap, Mail } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
+import WorldMap, { type Hub } from "@/components/WorldMap";
 import { LinkedInIcon } from "@/components/icons";
 import { FOUNDERS, PRACTICE_LEADS } from "@/lib/team";
 
@@ -12,20 +13,21 @@ export const metadata: Metadata = {
   alternates: { canonical: "/team" },
 };
 
-const networkHubs = [
-  { name: "Toronto", x: 240, y: 150 },
-  { name: "New York", x: 268, y: 178 },
-  { name: "London", x: 470, y: 128 },
-  { name: "Berlin", x: 515, y: 132 },
-  { name: "Dubai", x: 622, y: 220 },
-  { name: "Karachi", x: 668, y: 222 },
-  { name: "Singapore", x: 772, y: 308 },
-  { name: "Sydney", x: 880, y: 410 },
+const networkHubs: Hub[] = [
+  { name: "Toronto", lat: 43.65, lon: -79.38, label: "left" },
+  { name: "New York", lat: 40.71, lon: -74.0, label: "down" },
+  { name: "London", lat: 51.5, lon: -0.12, label: "left", primary: true },
+  { name: "Berlin", lat: 52.52, lon: 13.4, label: "up" },
+  { name: "Dubai", lat: 25.2, lon: 55.27, label: "down" },
+  { name: "Karachi", lat: 24.86, lon: 67.0, label: "up", primary: true },
+  { name: "Singapore", lat: 1.35, lon: 103.82, label: "down" },
+  { name: "Tokyo", lat: 35.68, lon: 139.69, label: "up" },
+  { name: "Sydney", lat: -33.87, lon: 151.21, label: "down" },
 ];
 
-const routes = [
-  [0, 2], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [1, 4], [2, 6], [4, 7],
-] as const;
+const routes: [number, number][] = [
+  [1, 2], [0, 2], [2, 3], [2, 4], [3, 5], [4, 5], [5, 6], [6, 7], [6, 8], [1, 4], [5, 7],
+];
 
 export default function TeamPage() {
   return (
@@ -143,43 +145,8 @@ export default function TeamPage() {
           </ScrollReveal>
 
           <ScrollReveal>
-            <div className="glass-card !bg-white/85 p-4 md:p-8 rounded-[32px] overflow-hidden shadow-[0_30px_80px_rgba(13,13,31,0.08)] relative">
-              <svg viewBox="0 0 1000 500" className="w-full h-auto select-none" role="img" aria-label="Map of LuminaXpert network hubs">
-                <defs>
-                  <pattern id="dot-grid" width="16" height="16" patternUnits="userSpaceOnUse">
-                    <circle cx="2" cy="2" r="1.4" fill="rgba(139, 63, 255, 0.14)" />
-                  </pattern>
-                  <linearGradient id="route" x1="0" x2="1">
-                    <stop offset="0%" stopColor="#050DEB" />
-                    <stop offset="100%" stopColor="#FB00DF" />
-                  </linearGradient>
-                </defs>
-                <rect width="1000" height="500" fill="url(#dot-grid)" />
-                {routes.map(([a, b], i) => {
-                  const A = networkHubs[a];
-                  const B = networkHubs[b];
-                  const mx = (A.x + B.x) / 2;
-                  const my = Math.min(A.y, B.y) - Math.abs(B.x - A.x) * 0.18;
-                  return (
-                    <path key={i} d={`M${A.x},${A.y} Q${mx},${my} ${B.x},${B.y}`} fill="none" stroke="url(#route)" strokeOpacity="0.45" strokeWidth="1.5" strokeDasharray="5 6">
-                      <animate attributeName="stroke-dashoffset" from="0" to="-110" dur={`${4 + (i % 3)}s`} repeatCount="indefinite" />
-                    </path>
-                  );
-                })}
-                {networkHubs.map((hub, i) => (
-                  <g key={hub.name}>
-                    <circle cx={hub.x} cy={hub.y} r="14" fill="rgba(139, 63, 255, 0.12)">
-                      <animate attributeName="r" values="6;18;6" dur="3s" begin={`${i * 0.35}s`} repeatCount="indefinite" />
-                      <animate attributeName="opacity" values="0.8;0;0.8" dur="3s" begin={`${i * 0.35}s`} repeatCount="indefinite" />
-                    </circle>
-                    <circle cx={hub.x} cy={hub.y} r="5.5" fill="#8B3FFF" />
-                    <circle cx={hub.x} cy={hub.y} r="2" fill="#FFFFFF" />
-                    <text x={hub.x} y={hub.y - 16} textAnchor="middle" fill="#0D0D1F" fontSize="11" fontFamily="var(--font-space-mono), monospace" fontWeight="700" letterSpacing="1">
-                      {hub.name.toUpperCase()}
-                    </text>
-                  </g>
-                ))}
-              </svg>
+            <div className="glass-card !bg-white/85 p-4 md:p-10 rounded-[32px] overflow-hidden shadow-[0_30px_80px_rgba(13,13,31,0.08)] relative">
+              <WorldMap hubs={networkHubs} routes={routes} id="team-map" />
             </div>
           </ScrollReveal>
         </div>

@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { MapPin, Mail, Clock, Globe, ChevronDown, CheckCircle2, Loader2, CalendarDays } from "lucide-react";
 import Link from "next/link";
 import ScrollReveal from "@/components/ScrollReveal";
+import WorldMap, { type Hub } from "@/components/WorldMap";
 import { LinkedInIcon } from "@/components/icons";
 import { sendEmail, emailErrorMessage } from "@/lib/email";
 import { EMAILJS, FOUNDER_LINKS, SERVICES, SITE } from "@/lib/site";
@@ -14,6 +15,14 @@ const TABS = [
   { id: "enterprise", label: "Enterprise", title: "Enterprise Engagement" },
 ] as const;
 type TabId = (typeof TABS)[number]["id"];
+
+const OFFICES: Hub[] = [
+  { name: "New York", lat: 40.71, lon: -74.0, label: "left", primary: true },
+  { name: "London", lat: 51.5, lon: -0.12, label: "up" },
+  { name: "Singapore", lat: 1.35, lon: 103.82, label: "down" },
+  { name: "Tokyo", lat: 35.68, lon: 139.69, label: "up" },
+];
+const OFFICE_ROUTES: [number, number][] = [[0, 1], [1, 2], [2, 3], [0, 3]];
 
 export default function ContactPage() {
   const [activeTab, setActiveTab] = useState<TabId>("general");
@@ -303,6 +312,22 @@ export default function ContactPage() {
         </div>
       </section>
 
+      {/* GLOBAL PRESENCE */}
+      <section className="pb-[60px] relative z-10">
+        <div className="mx-auto px-5 md:px-10 xl:px-20 max-w-[1280px]">
+          <ScrollReveal>
+            <div className="text-center mb-10">
+              <div className="font-space-mono text-[11px] text-[#0891B2] tracking-widest uppercase mb-3">Global presence</div>
+              <h2 className="font-plus-jakarta-sans font-bold text-[30px] md:text-[40px] text-[#0D0D1F]">Four hubs. Every time zone covered.</h2>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal>
+            <div className="glass-card !bg-white/85 p-4 md:p-10 rounded-[32px] shadow-[0_30px_80px_rgba(13,13,31,0.08)]">
+              <WorldMap hubs={OFFICES} routes={OFFICE_ROUTES} id="office-map" />
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
     </div>
   );
 }

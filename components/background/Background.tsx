@@ -49,7 +49,7 @@ export default function Background() {
       <div className="aurora" />
       {enabled && !hidden && (
         <div className={`absolute inset-0 transition-opacity duration-[1400ms] ease-out ${visible ? "opacity-100" : "opacity-0"}`}>
-          <BackgroundScene variant={variant} onReady={() => setVisible(true)} />
+          <BackgroundScene variant={variant} routeKey={pathname} onReady={() => setVisible(true)} />
         </div>
       )}
     </div>

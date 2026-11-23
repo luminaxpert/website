@@ -5,6 +5,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Background from "@/components/background/Background";
 import NavigationProgress from "@/components/NavigationProgress";
+import Preloader from "@/components/Preloader";
+import SmoothScroll from "@/components/SmoothScroll";
 import { SITE, FOUNDER_LINKS } from "@/lib/site";
 
 const inter = Inter({
@@ -102,6 +104,8 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
       </head>
       <body className={`${inter.variable} ${plusJakartaSans.variable} ${spaceMono.variable} antialiased`}>
+        <Preloader />
+        <SmoothScroll />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[200] focus:bg-white focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg"

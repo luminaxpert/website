@@ -45,8 +45,8 @@
 }
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(36px); filter: blur(10px); }
+  to { opacity: 1; transform: translateY(0); filter: none; }
 }
 
 @keyframes fadeIn {
@@ -55,19 +55,19 @@
 }
 
 @utility animate-slide-up-1 {
-  animation: slideUp 0.7s var(--ease-out-expo) forwards;
+  animation: slideUp 1s var(--ease-out-expo) forwards;
   opacity: 0;
 }
 @utility animate-slide-up-2 {
-  animation: slideUp 0.7s var(--ease-out-expo) 0.1s forwards;
+  animation: slideUp 1s var(--ease-out-expo) 0.12s forwards;
   opacity: 0;
 }
 @utility animate-slide-up-3 {
-  animation: slideUp 0.7s var(--ease-out-expo) 0.2s forwards;
+  animation: slideUp 1s var(--ease-out-expo) 0.24s forwards;
   opacity: 0;
 }
 @utility animate-slide-up-4 {
-  animation: slideUp 0.7s var(--ease-out-expo) 0.3s forwards;
+  animation: slideUp 1s var(--ease-out-expo) 0.36s forwards;
   opacity: 0;
 }
 @utility animate-fade-in {
@@ -262,7 +262,6 @@ body {
 
 /* ─── BASE ─────────────────────────────────────────── */
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: 96px; /* keeps #anchors clear of the fixed header */
   -webkit-text-size-adjust: 100%;
 }
@@ -292,19 +291,20 @@ img { max-width: 100%; }
 /* "backwards" fill: the element returns to its own styles afterwards, so hover
    transforms/transitions on revealed cards keep working instantly. */
 @keyframes reveal-up {
-  from { opacity: 0; transform: translate3d(0, 28px, 0); }
+  from { opacity: 0; transform: translate3d(0, 32px, 0) scale(0.985); filter: blur(8px); }
+  60% { filter: blur(0); }
 }
 html.js [data-reveal]:not(.is-visible) { opacity: 0; }
 html.js [data-reveal].is-visible {
-  animation: reveal-up 0.8s var(--ease-out-expo) var(--reveal-delay, 0s) backwards;
+  animation: reveal-up 1s var(--ease-out-expo) var(--reveal-delay, 0s) backwards;
 }
 
 /* ─── PAGE ENTER ───────────────────────────────────── */
 @keyframes page-enter {
-  from { opacity: 0; transform: translate3d(0, 10px, 0); }
-  to { opacity: 1; transform: none; }
+  from { opacity: 0; transform: translate3d(0, 14px, 0); filter: blur(6px); }
+  to { opacity: 1; transform: none; filter: none; }
 }
-.page-enter { animation: page-enter 0.45s var(--ease-out-expo) both; }
+.page-enter { animation: page-enter 0.6s var(--ease-out-expo) both; }
 
 /* Navigation progress bar */
 @keyframes nav-progress {
@@ -374,3 +374,53 @@ html.js [data-reveal].is-visible {
   html.js [data-reveal]:not(.is-visible) { opacity: 1; }
   .aurora { animation: none; }
 }
+
+/* ─── PRELOADER ────────────────────────────────────── */
+.lx-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background:
+    radial-gradient(40% 40% at 50% 50%, rgba(139, 63, 255, 0.08), transparent 70%),
+    #FFFFFF;
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.7s, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Safety net: hide even if JavaScript never runs */
+  animation: lx-auto-hide 0.6s ease 4.5s forwards;
+}
+.lx-preloader-done { opacity: 0; visibility: hidden; pointer-events: none; }
+.lx-preloader-done .lx-preloader-mark { transform: scale(1.35); filter: blur(6px); }
+.lx-preloader-mark {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s ease;
+  filter: drop-shadow(0 8px 24px rgba(139, 63, 255, 0.25));
+  animation: lx-breathe 2.4s ease-in-out infinite;
+}
+.lx-preloader-orbit { transform-origin: 50px 50px; animation: lx-spin 1.6s cubic-bezier(0.5, 0.15, 0.5, 0.85) infinite; }
+.lx-preloader-orbit-rev { transform-origin: 50px 50px; animation: lx-spin 2.4s linear infinite reverse; }
+.lx-preloader-word {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.5em;
+  padding-left: 0.5em;
+  color: #4A5568;
+  animation: lx-word 1.8s ease-in-out infinite;
+}
+@keyframes lx-spin { to { transform: rotate(360deg); } }
+@keyframes lx-breathe { 0%, 100% { scale: 1; } 50% { scale: 1.04; } }
+@keyframes lx-word { 0%, 100% { opacity: 0.35; } 50% { opacity: 0.9; } }
+@keyframes lx-auto-hide { to { opacity: 0; visibility: hidden; pointer-events: none; } }
+
+/* Hold the first-page entrance until the preloader leaves, then play it. */
+html.lx-loading .page-enter,
+html.lx-loading [class*="animate-slide-up"],
+html.lx-loading .animate-fade-in-delayed { animation-play-state: paused; }
+
+/* ─── LENIS SMOOTH SCROLL ──────────────────────────── */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }

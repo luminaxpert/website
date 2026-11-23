@@ -20,7 +20,7 @@ export interface Post {
 
 export const AUTHORS: Record<Author, { image: string; bio: string; title: string }> = {
   "Sibtain Syed": {
-    image: "/images/team/sibtain.webp",
+    image: "/images/team/me_image.jpeg",
     title: "Co-Founder & CEO, LuminaXpert",
     bio: "Sibtain leads the strategic vision at LuminaXpert, helping global organizations integrate AI into their core operating models with measurable, governed outcomes.",
   },
