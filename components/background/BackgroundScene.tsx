@@ -10,6 +10,7 @@
  * scene simply eases into a different composition ("variant") per route.
  *
  * Layers:
+ *   0. Silk light field  — full-screen domain-warped colour that flows like silk
  *   1. Infinity ribbon   — particles flowing along a lemniscate (brand symbol),
  *                          parting around the cursor like a force field
  *   2. Comet streams     — a faster, brighter layer racing along the same ∞
@@ -84,6 +85,111 @@ const SOFT_POINT_FRAG = /* glsl */ `
     gl_FragColor = vec4(vColor, (core + halo) * vAlpha * uOpacity);
   }
 `;
+
+// ─── 0. Liquid silk light field ─────────────────────────────────────────────
+// Full-screen, domain-warped noise in brand colours. Drawn behind everything,
+// calmer in the reading area so text always stays crisp.
+const SILK_VERT = /* glsl */ `
+  varying vec2 vUv;
+  void main() {
+    vUv = uv;
+    gl_Position = vec4(position.xy, 0.0, 1.0);
+  }
+`;
+
+const SILK_FRAG = /* glsl */ `
+  precision highp float;
+  uniform float uTime;
+  uniform vec2 uRes;
+  uniform vec2 uMouse;
+  uniform float uScroll;
+  uniform float uOpacity;
+  uniform float uPulse;
+  uniform vec3 uC1; uniform vec3 uC2; uniform vec3 uC3; uniform vec3 uC4;
+  varying vec2 vUv;
+
+  float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+  float noise(vec2 p) {
+    vec2 i = floor(p), f = fract(p);
+    vec2 u = f * f * (3.0 - 2.0 * f);
+    return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), u.x),
+               mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x), u.y);
+  }
+  float fbm(vec2 p) {
+    float v = 0.0, a = 0.5;
+    mat2 r = mat2(0.8, -0.6, 0.6, 0.8);
+    for (int i = 0; i < 4; i++) { v += a * noise(p); p = r * p * 2.02; a *= 0.5; }
+    return v;
+  }
+
+  void main() {
+    vec2 uv = vUv;
+    vec2 p = (uv - 0.5) * vec2(uRes.x / uRes.y, 1.0) * 1.35;
+    p += uMouse * 0.06 + vec2(0.0, uScroll * 0.35);
+    float t = uTime * 0.045;
+
+    vec2 q = vec2(fbm(p + vec2(0.0, t)), fbm(p + vec2(5.2, 1.3) - t));
+    vec2 r = vec2(fbm(p + 2.6 * q + vec2(1.7, 9.2) + t * 1.4), fbm(p + 2.6 * q + vec2(8.3, 2.8) - t * 1.1));
+    float f = fbm(p + 2.4 * r);
+
+    vec3 col = mix(uC1, uC2, smoothstep(0.2, 0.8, f));
+    col = mix(col, uC3, smoothstep(0.35, 1.0, length(q) * 0.85));
+    col = mix(col, uC4, smoothstep(0.55, 1.0, r.x) * 0.55);
+
+    // Silky sheen: thin luminous folds that slide along the flow
+    float folds = 0.5 + 0.5 * sin((f * 7.0 + r.y * 5.0) * 3.14159 + uTime * 0.35);
+    float a = smoothstep(0.28, 0.92, f) * (0.55 + 0.45 * folds);
+
+    // Keep the central reading area calmer; let colour bloom at the edges
+    float edge = smoothstep(0.05, 0.75, length((uv - vec2(0.5, 0.52)) * vec2(1.15, 1.55)));
+    a *= mix(0.38, 1.0, edge);
+
+    gl_FragColor = vec4(col, a * uOpacity * (1.0 + uPulse * 0.35));
+  }
+`;
+
+function Silk({ variantRef }: { variantRef: React.RefObject<SceneVariant> }) {
+  const { size } = useThree();
+  const material = useMemo(
+    () =>
+      new THREE.ShaderMaterial({
+        vertexShader: SILK_VERT,
+        fragmentShader: SILK_FRAG,
+        transparent: true,
+        depthWrite: false,
+        depthTest: false,
+        uniforms: {
+          uTime: { value: 0 },
+          uRes: { value: new THREE.Vector2(1, 1) },
+          uMouse: { value: new THREE.Vector2() },
+          uScroll: { value: 0 },
+          uOpacity: { value: 0 },
+          uPulse: { value: 0 },
+          uC1: { value: BRAND.blue },
+          uC2: { value: BRAND.violet },
+          uC3: { value: BRAND.magenta },
+          uC4: { value: BRAND.cyan },
+        },
+      }),
+    []
+  );
+  const geometry = useMemo(() => new THREE.PlaneGeometry(2, 2), []);
+  useEffect(() => () => { geometry.dispose(); material.dispose(); }, [geometry, material]);
+
+  useFrame((state, delta) => {
+    const u = material.uniforms;
+    const dt = Math.min(delta, 0.05);
+    u.uTime.value = state.clock.elapsedTime;
+    u.uRes.value.set(size.width, size.height);
+    u.uMouse.value.set(smooth.x, smooth.y);
+    u.uScroll.value = smooth.scroll;
+    u.uPulse.value = smooth.pulse;
+    const target = (variantRef.current === "hero" ? 0.3 : 0.22) * (1 - Math.min(smooth.scroll, 1.2) * 0.25);
+    u.uOpacity.value = damp(u.uOpacity.value, target, 1.5, dt);
+  });
+
+  return <mesh geometry={geometry} material={material} renderOrder={-10} frustumCulled={false} />;
+}
 
 // ─── 1 & 2. Infinity ribbon + comet streams ─────────────────────────────────
 const RIBBON_VERT = /* glsl */ `
@@ -417,9 +523,24 @@ function Dust({ count }: { count: number }) {
 function Rig({ routeKey }: { routeKey: string }) {
   const lastRoute = useRef(routeKey);
   const lastScroll = useRef(0);
+  // Adaptive quality: if frames run slow for ~2s, step resolution down.
+  const perf = useRef({ acc: 0, frames: 0, dpr: 0 });
 
   useFrame((state, delta) => {
     const dt = Math.min(delta, 0.05);
+    const pf = perf.current;
+    if (!pf.dpr) pf.dpr = state.viewport.dpr;
+    pf.acc += delta;
+    pf.frames++;
+    if (pf.acc > 2) {
+      const avg = pf.acc / pf.frames;
+      if (avg > 1 / 45 && pf.dpr > 0.75) {
+        pf.dpr = Math.max(0.75, pf.dpr - 0.25);
+        state.setDpr(pf.dpr);
+      }
+      pf.acc = 0;
+      pf.frames = 0;
+    }
     if (lastRoute.current !== routeKey) {
       lastRoute.current = routeKey;
       smooth.pulse = 1; // route change → soft "breath"
@@ -448,11 +569,13 @@ export default function BackgroundScene({ variant, routeKey, onReady }: { varian
   }, [variant]);
 
   const quality = useMemo(() => {
-    if (typeof window === "undefined") return { ribbon: 4000, comets: 300, dust: 500, nodes: 50 };
+    if (typeof window === "undefined") return { ribbon: 4000, comets: 300, dust: 500, nodes: 50, silk: false };
     const small = window.innerWidth < 768;
     const cores = navigator.hardwareConcurrency || 4;
     const low = small || cores <= 4;
-    return low ? { ribbon: 4000, comets: 260, dust: 350, nodes: 38 } : { ribbon: 9000, comets: 520, dust: 900, nodes: 72 };
+    return low
+      ? { ribbon: 4000, comets: 260, dust: 350, nodes: 38, silk: !small }
+      : { ribbon: 9000, comets: 520, dust: 900, nodes: 72, silk: true };
   }, []);
 
   useEffect(() => {
@@ -477,11 +600,13 @@ export default function BackgroundScene({ variant, routeKey, onReady }: { varian
     <Canvas
       camera={{ position: [0, 0, 16], fov: 50, near: 0.1, far: 100 }}
       dpr={[1, 1.5]}
+      performance={{ min: 0.5 }}
       gl={{ alpha: true, antialias: true, powerPreference: "high-performance", stencil: false, depth: false }}
       onCreated={() => onReady?.()}
       style={{ pointerEvents: "none" }}
     >
       <Rig routeKey={routeKey} />
+      {quality.silk && <Silk variantRef={variantRef} />}
       <Dust count={quality.dust} />
       <NeuralLattice nodes={quality.nodes} variantRef={variantRef} />
       <Ribbon count={quality.ribbon} seed={1337} size={3.1} flow={0.16} spread={1} opacityMul={1} variantRef={variantRef} />
