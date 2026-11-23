@@ -104,7 +104,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-7 h-full" aria-label="Main">
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-7 h-full" aria-label="Main">
             <Link href="/" className={`${LINK} ${isActive("/") ? ACTIVE : "text-[#0D0D1F]"}`}>Home</Link>
             <Link href="/about" className={`${LINK} ${isActive("/about") ? ACTIVE : "text-[#0D0D1F]"}`}>About</Link>
 
@@ -252,6 +252,14 @@ export default function Navbar() {
 
             <Link href="/pricing" className={`${LINK} ${isActive("/pricing") ? ACTIVE : "text-[#0D0D1F]"}`}>Pricing</Link>
             <Link href="/blog" className={`${LINK} ${isActive("/blog") ? ACTIVE : "text-[#0D0D1F]"}`}>Insights</Link>
+            <Link href="/careers" className={`${LINK} relative inline-flex items-center gap-1.5 ${isActive("/careers") ? ACTIVE : "text-[#0D0D1F]"}`}>
+              Careers
+              <span className="relative flex h-1.5 w-1.5" title="We're hiring">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-[#FB00DF] opacity-60 animate-ping" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#FB00DF]" />
+              </span>
+              <span className="sr-only">(we&apos;re hiring)</span>
+            </Link>
             <Link href="/contact" className={`${LINK} ${isActive("/contact") ? ACTIVE : "text-[#0D0D1F]"}`}>Contact</Link>
           </nav>
 
@@ -338,6 +346,10 @@ export default function Navbar() {
           <Link href="/pricing" className="hover:text-[#6D28D9] py-1 transition-colors">Pricing</Link>
           <Link href="/blog" className="hover:text-[#6D28D9] py-1 transition-colors">Insights</Link>
           <Link href="/team" className="hover:text-[#6D28D9] py-1 transition-colors">Team</Link>
+          <Link href="/careers" className="hover:text-[#6D28D9] py-1 transition-colors flex items-center gap-2">
+            Careers
+            <span className="px-2 py-0.5 rounded-full bg-[#FB00DF]/10 text-[#A21CAF] font-space-mono text-[10px] font-bold uppercase tracking-wider">Hiring</span>
+          </Link>
           <Link href="/contact" className="hover:text-[#6D28D9] py-1 transition-colors">Contact</Link>
         </nav>
         <div className="mt-auto pt-8 flex flex-col gap-3">
