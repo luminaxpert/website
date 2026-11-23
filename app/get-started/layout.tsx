@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Get Started | LuminaXpert',
+  title: 'Get Started',
   description: 'Join the elite network of AI-driven enterprises. Let us build your profile to match you with the right AI specialists.',
 };
 

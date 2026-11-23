@@ -2,14 +2,14 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { CheckCircle2, ChevronRight, Activity, Landmark, ShoppingBag, Truck, Building2, Factory } from "lucide-react";
-import LuminaBackground from "@/components/LuminaBackground";
+import { ChevronRight, Activity, Landmark, ShoppingBag, Truck, Building2, Factory } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 
 const caseStudies = [
   {
     category: "Finance",
     tag: "AI Consulting & Risk Strategy",
+    service: "AI Consulting",
     client: "Fortune 500 Bank",
     title: "Real-Time Fraud Prevention System",
     challenge: "Faced rising fraud losses and high false positive rates in payment processing.",
@@ -21,6 +21,7 @@ const caseStudies = [
   {
     category: "Healthcare",
     tag: "Data Engineering & AI Development",
+    service: "Data & Analytics",
     client: "Global Hospital Network",
     title: "Predictive Diagnostics Integration",
     challenge: "Siloed patient data delayed diagnosis of critical heart conditions.",
@@ -32,6 +33,7 @@ const caseStudies = [
   {
     category: "Retail",
     tag: "AI Development & Personalization",
+    service: "AI Development",
     client: "E-commerce Platform",
     title: "Hyper-Personalization Engine",
     challenge: "High cart abandonment rates and declining customer lifetime value.",
@@ -43,6 +45,7 @@ const caseStudies = [
   {
     category: "Logistics",
     tag: "Digital Transformation & Operations",
+    service: "Digital Transformation",
     client: "Global Logistics Leader",
     title: "Autonomous Fleet Route Optimization",
     challenge: "Rising fuel costs and driver inefficiency during last-mile deliveries.",
@@ -54,6 +57,7 @@ const caseStudies = [
   {
     category: "Enterprise",
     tag: "AI Strategy & Roadmap",
+    service: "Strategy & Roadmap",
     client: "Series B AI Startup",
     title: "Product Scaling & Long-Term Roadmap",
     challenge: "Struggled to articulate proprietary AI defensibility to growth investors.",
@@ -65,6 +69,7 @@ const caseStudies = [
   {
     category: "Manufacturing",
     tag: "AI Agents & Automation",
+    service: "AI Agents & Automation",
     client: "Titan Manufacturing",
     title: "Predictive Maintenance AI Agents",
     challenge: "Unplanned machinery downtime cost millions in halted production lines.",
@@ -86,33 +91,31 @@ export default function CaseStudiesPage() {
 
   return (
     <div className="flex flex-col min-h-screen relative overflow-x-hidden">
-      {/* Background Geometries */}
-      <LuminaBackground />
 
       {/* HERO */}
       <section className="relative min-h-[50vh] pt-[160px] pb-[80px] flex items-center bg-transparent overflow-hidden">
         <div className="absolute inset-0 ambient-left z-0 opacity-40"></div>
         <div className="container mx-auto px-5 md:px-20 max-w-[1280px] relative z-10 text-center flex flex-col items-center">
-          <ScrollReveal>
-            <div className="font-space-mono text-[11px] text-[#F5C842] tracking-widest uppercase mb-4">
+          <div className="animate-slide-up-1">
+            <div className="font-space-mono text-[11px] text-[#B7791F] tracking-widest uppercase mb-4">
               PROVEN RESULTS
             </div>
-          </ScrollReveal>
+          </div>
           
-          <ScrollReveal delay={0.1}>
+          <div className="animate-slide-up-2">
             <h1 className="font-plus-jakarta-sans font-bold text-[48px] md:text-[72px] leading-[1.1] text-[#0D0D1F] tracking-tight mb-8">
               Proof Over <span className="text-gradient">Promises.</span>
             </h1>
-          </ScrollReveal>
+          </div>
           
-          <ScrollReveal delay={0.2}>
+          <div className="animate-slide-up-3">
             <p className="font-inter text-[19px] text-[#4A5568] max-w-[640px] mb-12">
               Real clients. Measurable outcomes. Verified results. Explore how we design and deploy production-grade AI systems across global enterprises.
             </p>
-          </ScrollReveal>
+          </div>
 
           {/* FILTER BAR */}
-          <ScrollReveal delay={0.3}>
+          <div className="animate-slide-up-4">
             <div className="flex flex-wrap justify-center gap-3 bg-[#F0F4F8] border border-[rgba(139,63,255,0.15)] rounded-2xl p-2 backdrop-blur-xl">
               {filters.map((filter) => (
                 <button
@@ -120,15 +123,15 @@ export default function CaseStudiesPage() {
                   onClick={() => setActiveFilter(filter)}
                   className={`px-6 py-2.5 rounded-xl font-plus-jakarta-sans text-[14px] font-semibold transition-all cursor-pointer ${
                     activeFilter === filter
-                      ? "bg-gradient-to-r from-[#3B6FFF] to-[#E040FB] text-[#0D0D1F] shadow-[0_0_15px_rgba(139,63,255,0.3)]"
-                      : "text-[#718096] hover:text-[#0D0D1F] hover:bg-[#F0F4F8]"
+                      ? "bg-gradient-to-r from-[#3B6FFF] to-[#E040FB] text-white shadow-[0_0_15px_rgba(139,63,255,0.3)]"
+                      : "text-[#4A5568] hover:text-[#0D0D1F] hover:bg-white"
                   }`}
                 >
                   {filter}
                 </button>
               ))}
             </div>
-          </ScrollReveal>
+          </div>
         </div>
       </section>
 
@@ -148,13 +151,13 @@ export default function CaseStudiesPage() {
                       <span className="font-space-mono text-[10px] uppercase tracking-widest px-3 py-1 rounded-full bg-[#F0F4F8] border border-[rgba(139,63,255,0.15)] text-[#4A5568]">
                         {cs.tag}
                       </span>
-                      <div className="w-10 h-10 rounded-xl bg-[#F0F4F8] border border-[rgba(139,63,255,0.15)] flex items-center justify-center text-[#F5C842]">
+                      <div className="w-10 h-10 rounded-xl bg-[#F0F4F8] border border-[rgba(139,63,255,0.15)] flex items-center justify-center text-[#B7791F]">
                         {cs.icon}
                       </div>
                     </div>
 
                     <span className="font-space-mono text-[12px] text-[#718096] block mb-2">{cs.client}</span>
-                    <h3 className="font-plus-jakarta-sans font-bold text-[22px] text-[#0D0D1F] group-hover:text-[#F5C842] transition-colors mb-4">
+                    <h3 className="font-plus-jakarta-sans font-bold text-[22px] text-[#0D0D1F] group-hover:text-[#B7791F] transition-colors mb-4">
                       {cs.title}
                     </h3>
                     
@@ -177,14 +180,14 @@ export default function CaseStudiesPage() {
                       <div className="flex flex-col gap-2">
                         {cs.metrics.map((metric, idx) => (
                           <div key={idx} className="flex items-center gap-2">
-                            <span className="text-[#F5C842] font-semibold text-[13px]">✓</span>
-                            <span className="font-plus-jakarta-sans font-bold text-[#F5C842] text-[15px]">{metric}</span>
+                            <span className="text-[#B7791F] font-semibold text-[13px]">✓</span>
+                            <span className="font-plus-jakarta-sans font-bold text-[#B7791F] text-[15px]">{metric}</span>
                           </div>
                         ))}
                       </div>
                     </div>
 
-                    <Link href="/contact" className="btn-link text-[14px] !text-[#0D0D1F] flex items-center gap-1 group-hover:underline">
+                    <Link href={`/contact?service=${encodeURIComponent(cs.service)}`} className="btn-link text-[14px] !text-[#0D0D1F] flex items-center gap-1 group-hover:underline">
                       Request Technical Blueprint <ChevronRight size={14} className="mt-0.5 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </div>
@@ -220,7 +223,7 @@ export default function CaseStudiesPage() {
                   Book a Free Discovery Call
                 </Link>
                 <Link href="/services" className="btn-ghost !text-[#0D0D1F] px-8 py-4 text-[15px] font-semibold">
-                  Explore Services Guide
+                  Explore Our Services
                 </Link>
               </div>
             </div>

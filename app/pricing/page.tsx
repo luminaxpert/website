@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Check, ChevronDown, HelpCircle, Info, Sparkles, HelpCircle as HelpIcon } from "lucide-react";
-import LuminaBackground from "@/components/LuminaBackground";
+import { Check, ChevronDown, Sparkles, HelpCircle as HelpIcon } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 
 const pricingTiers = [
@@ -91,30 +90,28 @@ export default function PricingPage() {
 
   return (
     <div className="flex flex-col min-h-screen relative overflow-x-hidden">
-      {/* Background Geometries */}
-      <LuminaBackground />
 
       {/* HERO */}
       <section className="relative min-h-[50vh] pt-[160px] pb-[80px] flex items-center bg-transparent overflow-hidden">
         <div className="absolute inset-0 ambient-right z-0 opacity-40"></div>
         <div className="container mx-auto px-5 md:px-20 max-w-[1280px] relative z-10 text-center flex flex-col items-center">
-          <ScrollReveal>
-            <div className="font-space-mono text-[11px] text-[#F5C842] tracking-widest uppercase mb-4">
+          <div className="animate-slide-up-1">
+            <div className="font-space-mono text-[11px] text-[#B7791F] tracking-widest uppercase mb-4">
               ENGAGEMENT MODELS
             </div>
-          </ScrollReveal>
+          </div>
           
-          <ScrollReveal delay={0.1}>
+          <div className="animate-slide-up-2">
             <h1 className="font-plus-jakarta-sans font-bold text-[48px] md:text-[72px] leading-[1.1] text-[#0D0D1F] tracking-tight mb-8">
               Flexible Engagements. <span className="text-gradient">Transparent Value.</span>
             </h1>
-          </ScrollReveal>
+          </div>
           
-          <ScrollReveal delay={0.2}>
+          <div className="animate-slide-up-3">
             <p className="font-inter text-[19px] text-[#4A5568] max-w-[680px] mb-12">
               We don't believe in surprise invoices. Every engagement starts with a clear scope, defined deliverables, and measurable success criteria.
             </p>
-          </ScrollReveal>
+          </div>
         </div>
       </section>
 
@@ -154,7 +151,7 @@ export default function PricingPage() {
                     <ul className="space-y-4 mb-8">
                       {tier.features.map((feature, idx) => (
                         <li key={idx} className="flex items-start gap-3">
-                          <div className="w-5 h-5 rounded-full bg-[#F0F4F8] border border-[rgba(139,63,255,0.15)] flex items-center justify-center text-[#F5C842] shrink-0 mt-0.5">
+                          <div className="w-5 h-5 rounded-full bg-[#F0F4F8] border border-[rgba(139,63,255,0.15)] flex items-center justify-center text-[#B7791F] shrink-0 mt-0.5">
                             <Check size={12} />
                           </div>
                           <span className="font-inter text-[14px] text-[#4A5568] leading-relaxed">
@@ -197,7 +194,7 @@ export default function PricingPage() {
         <div className="container mx-auto px-5 md:px-20 max-w-[850px]">
           <ScrollReveal>
             <div className="text-center mb-16">
-              <div className="font-space-mono text-[11px] text-[#00D9FF] tracking-widest uppercase mb-4 flex items-center justify-center gap-3">
+              <div className="font-space-mono text-[11px] text-[#0891B2] tracking-widest uppercase mb-4 flex items-center justify-center gap-3">
                 <HelpIcon size={16} /> FAQ
               </div>
               <h2 className="font-plus-jakarta-sans font-bold text-[36px] text-[#0D0D1F]">
@@ -212,14 +209,14 @@ export default function PricingPage() {
                 <div className="glass-card !bg-[#FFFFFF] !border-[rgba(139,63,255,0.15)] rounded-2xl overflow-hidden transition-all duration-300">
                   <button
                     onClick={() => toggleFaq(idx)}
-                    className="w-full p-6 text-left flex justify-between items-center text-[#0D0D1F] hover:text-[#F5C842] transition-colors cursor-pointer"
+                    className="w-full p-6 text-left flex justify-between items-center text-[#0D0D1F] hover:text-[#B7791F] transition-colors cursor-pointer"
                   >
                     <span className="font-plus-jakarta-sans font-bold text-[16px] md:text-[18px]">
                       {faq.q}
                     </span>
                     <ChevronDown 
                       size={18} 
-                      className={`text-[#F5C842] transition-transform duration-300 shrink-0 ${
+                      className={`text-[#B7791F] transition-transform duration-300 shrink-0 ${
                         openFaq === idx ? "rotate-180" : ""
                       }`}
                     />

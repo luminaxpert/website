@@ -1,10 +1,16 @@
-import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Terms of Service",
+  description: "The terms governing your use of the LuminaXpert website and services.",
+  alternates: { canonical: "/legal/terms" },
+};
 
 export default function TermsOfServicePage() {
   return (
     <div className="flex flex-col min-h-screen bg-[#FFFFFF]">
       
-      <section className="pt-[140px] pb-[60px] relative border-b border-[rgba(139, 63, 255, 0.15)]">
+      <section className="pt-[140px] pb-[60px] relative border-b border139,63,255,0.15">
         <div className="absolute inset-0 ambient-center z-0 opacity-30"></div>
         <div className="container mx-auto px-5 max-w-[800px] relative z-10 text-center">
           <h1 className="font-plus-jakarta-sans font-black text-[40px] md:text-[56px] text-[#0D0D1F] mb-4">

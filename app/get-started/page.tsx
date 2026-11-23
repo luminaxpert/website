@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ChevronRight, Shield, Zap, Sparkles, Loader2, CheckCircle2 } from "lucide-react";
+import { ChevronRight, Shield, Zap, Loader2, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
-import emailjs from "@emailjs/browser";
+import { sendEmail, emailErrorMessage } from "@/lib/email";
+import { EMAILJS } from "@/lib/site";
 
 export default function GetStartedPage() {
   const [step, setStep] = useState(1);
@@ -29,10 +30,7 @@ export default function GetStartedPage() {
   const handleSubmit = async () => {
     setIsSending(true);
     setError("");
-
-    const SERVICE_ID = "service_lodv4s8";
-    const TEMPLATE_ID = "template_g1u77q4";
-    const PUBLIC_KEY = "rJmiQU1kmvt_kTBgf";
+    const TEMPLATE_ID = EMAILJS.onboardingTemplate;
 
     try {
       const templateParams = {
@@ -43,13 +41,11 @@ export default function GetStartedPage() {
         time: new Date().toLocaleString()
       };
 
-      await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
+      await sendEmail(TEMPLATE_ID, templateParams as Record<string, string>);
       setStep(3);
-    } catch (err: any) {
+    } catch (err) {
       console.error("EmailJS Error:", err);
-      // More descriptive error for the user
-      const errorMsg = err?.text || err?.message || "Connection error. Please check your EmailJS dashboard.";
-      setError(`Transmission Error: ${errorMsg}`);
+      setError(emailErrorMessage(err, "We couldn't submit your details. Please try again or email hello@luminaxpert.com."));
     } finally {
       setIsSending(false);
     }
@@ -59,9 +55,9 @@ export default function GetStartedPage() {
     <div className="flex flex-col min-h-screen bg-[#FFFFFF]">
       
       {/* COMPACT WIZARD HEADER */}
-      <div className="w-full h-[80px] border-b border-[rgba(139, 63, 255, 0.15)] flex items-center justify-between px-5 md:px-10 bg-[#FFFFFF] relative z-[60]">
+      <div className="w-full h-[80px] border-b border139,63,255,0.15 flex items-center justify-between px-5 md:px-10 bg-[#FFFFFF] relative z-[60]">
         <Link href="/" className="inline-flex items-center gap-2.5">
-          <Image src="/images/logo-bg.png" alt="LuminaXpert Logo" width={200} height={40} className="h-9 w-auto object-contain" />
+          <Image src="/images/FLogo.png" alt="LuminaXpert" width={160} height={99} priority className="h-9 w-auto object-contain" />
         </Link>
         <Link href="/" className="font-inter text-[14px] text-[#4A5568] hover:text-[#0D0D1F] transition-colors flex items-center gap-2">
           <span>Return to Home</span>
@@ -78,12 +74,12 @@ export default function GetStartedPage() {
           <div className="w-full max-w-[500px] relative z-10">
             {/* Progress */}
             <div className="flex items-center justify-between mb-12 relative">
-              <div className="absolute left-0 top-1/2 -translate-y-1/2 w-full h-[2px] bg-white/5 z-0"></div>
+              <div className="absolute left-0 top-1/2 -translate-y-1/2 w-full h-[2px] bg-[#E2E8F0] z-0"></div>
               <div className="absolute left-0 top-1/2 -translate-y-1/2 h-[2px] bg-gradient-to-r from-[#3B6FFF] to-[#E040FB] z-0 transition-all duration-500" style={{ width: step === 1 ? '0%' : step === 2 ? '50%' : '100%' }}></div>
               
               {[1, 2, 3].map((s) => (
                 <div key={s} className={`w-10 h-10 rounded-full flex items-center justify-center font-plus-jakarta-sans text-[14px] font-bold relative z-10 transition-colors duration-300 ${
-                  step >= s ? 'bg-[#F0F4F8] border-2 border-[#E040FB] text-[#0D0D1F] shadow-[0_0_15px_rgba(224,64,251,0.3)]' : 'bg-[#FFFFFF] border-2 border-white/10 text-[#718096]'
+                  step >= s ? 'bg-[#F0F4F8] border-2 border-[#E040FB] text-[#0D0D1F] shadow-[0_0_15px_rgba(224,64,251,0.3)]' : 'bg-[#FFFFFF] border-2 border-[#E2E8F0] text-[#718096]'
                 }`}>
                   {s}
                 </div>
@@ -144,7 +140,7 @@ export default function GetStartedPage() {
                 <div className="mb-8 p-5 rounded-2xl bg-[#FFFFFF] border border-[#8b3fff]/20 shadow-sm flex flex-col gap-1">
                   <div className="flex justify-between items-center mb-1">
                     <span className="font-space-mono text-[11px] text-[#718096] uppercase tracking-widest font-bold">Profile Summary</span>
-                    <button onClick={() => setStep(1)} className="text-[12px] text-[#00D9FF] font-bold hover:underline">Edit</button>
+                    <button onClick={() => setStep(1)} className="text-[12px] text-[#0891B2] font-bold hover:underline">Edit</button>
                   </div>
                   <div className="font-plus-jakarta-sans text-[15px] text-[#0D0D1F] font-bold">{formData.user_name || "Name not provided"}</div>
                   <div className="font-inter text-[14px] text-[#4A5568]">{formData.user_email || "Email not provided"}</div>
@@ -200,35 +196,35 @@ export default function GetStartedPage() {
               <div className="animate-fade-in text-center py-10">
                 <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-[#3B6FFF] to-[#E040FB] p-[2px] mx-auto mb-6">
                   <div className="w-full h-full rounded-full bg-[#FFFFFF] flex items-center justify-center">
-                    <CheckCircle2 className="text-[#00F5A0]" size={32} />
+                    <CheckCircle2 className="text-[#059669]" size={32} />
                   </div>
                 </div>
-                <h2 className="font-plus-jakarta-sans font-bold text-[36px] text-[#0D0D1F] mb-4">Transmission Successful</h2>
+                <h2 className="font-plus-jakarta-sans font-bold text-[36px] text-[#0D0D1F] mb-4">You're all set</h2>
                 <p className="font-inter text-[#4A5568] mb-8 max-w-[400px] mx-auto">
-                  Welcome to the ecosystem, <strong>{formData.user_name.split(' ')[0]}</strong>. 
-                  A confirmation has been sent to {formData.user_email}. Our lead strategist will reach out shortly.
+                  Thanks, <strong>{formData.user_name.split(' ')[0]}</strong>. 
+                  Our lead strategist will reach out to {formData.user_email} within one business day.
                 </p>
                 
-                <Link href="/" className="btn-primary px-12 justify-center h-[56px] text-[16px]">Return to Terminal</Link>
+                <Link href="/" className="btn-primary px-12 justify-center h-[56px] text-[16px]">Return to Home</Link>
               </div>
             )}
           </div>
         </div>
 
         {/* RIGHT SIDE: SOCIAL PROOF / PERKS */}
-        <div className="w-full md:w-[40%] bg-[#F8F9FA] border-l border-[rgba(139, 63, 255, 0.15)] p-5 md:p-20 flex flex-col justify-center">
+        <div className="w-full md:w-[40%] bg-[#F8F9FA] border-l border139,63,255,0.15 p-5 md:p-20 flex flex-col justify-center">
           <div className="font-plus-jakarta-sans font-bold text-[28px] text-[#0D0D1F] mb-8">Join the elite network of AI-driven enterprises.</div>
           
           <div className="flex flex-col gap-6 mb-12">
             <div className="flex gap-4">
-              <div className="w-10 h-10 rounded-full glass-brand flex items-center justify-center flex-shrink-0 text-[#00F5A0]"><Shield size={18} /></div>
+              <div className="w-10 h-10 rounded-full glass-brand flex items-center justify-center flex-shrink-0 text-[#059669]"><Shield size={18} /></div>
               <div>
                 <h4 className="font-plus-jakarta-sans font-bold text-[16px] text-[#0D0D1F] mb-1">Strict Confidentiality</h4>
                 <p className="font-inter text-[#4A5568] text-[14px]">NDAs standard on all initial consultations.</p>
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="w-10 h-10 rounded-full glass-brand flex items-center justify-center flex-shrink-0 text-[#FFD166]"><Zap size={18} /></div>
+              <div className="w-10 h-10 rounded-full glass-brand flex items-center justify-center flex-shrink-0 text-[#D97706]"><Zap size={18} /></div>
               <div>
                 <h4 className="font-plus-jakarta-sans font-bold text-[16px] text-[#0D0D1F] mb-1">Rapid Matching</h4>
                 <p className="font-inter text-[#4A5568] text-[14px]">Talk to the right expert in 48 hours.</p>

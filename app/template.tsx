@@ -1,16 +1,5 @@
-"use client";
-
-import { motion } from "framer-motion";
-
+// Re-mounted on every navigation, so the CSS animation replays per page.
+// Pure CSS — no JS animation runtime on the critical path.
 export default function Template({ children }: { children: React.ReactNode }) {
-  return (
-    <motion.div
-      initial={{ x: -20, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      exit={{ x: 20, opacity: 0 }}
-      transition={{ type: "spring", stiffness: 260, damping: 20, duration: 0.5 }}
-    >
-      {children}
-    </motion.div>
-  );
+  return <div className="page-enter">{children}</div>;
 }

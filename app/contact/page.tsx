@@ -1,14 +1,34 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { MapPin, Mail, Phone, Clock, Globe, MessageSquare, Share2, ChevronDown, CheckCircle2, Loader2 } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { MapPin, Mail, Clock, Globe, ChevronDown, CheckCircle2, Loader2, CalendarDays } from "lucide-react";
 import Link from "next/link";
-import emailjs from "@emailjs/browser";
-import NeuralNetwork from "@/components/NeuralNetwork";
 import ScrollReveal from "@/components/ScrollReveal";
+import { LinkedInIcon } from "@/components/icons";
+import { sendEmail, emailErrorMessage } from "@/lib/email";
+import { EMAILJS, FOUNDER_LINKS, SERVICES, SITE } from "@/lib/site";
+
+const TABS = [
+  { id: "general", label: "General Inquiry", title: "General Inquiry" },
+  { id: "book", label: "Consultation", title: "Consultation Request" },
+  { id: "enterprise", label: "Enterprise", title: "Enterprise Engagement" },
+] as const;
+type TabId = (typeof TABS)[number]["id"];
 
 export default function ContactPage() {
-  const [activeTab, setActiveTab] = useState("general");
+  const [activeTab, setActiveTab] = useState<TabId>("general");
+  const [service, setService] = useState("");
+
+  // Pre-fill from links such as /contact?service=AI%20Consulting or /contact?type=enterprise
+  useEffect(() => {
+    const sp = new URLSearchParams(window.location.search);
+    const svc = sp.get("service");
+    const type = sp.get("type");
+    /* eslint-disable react-hooks/set-state-in-effect -- one-time sync from the URL on mount */
+    if (svc && SERVICES.some((x) => x.title === svc)) setService(svc);
+    if (type && TABS.some((t) => t.id === type)) setActiveTab(type as TabId);
+    /* eslint-enable react-hooks/set-state-in-effect */
+  }, []);
   const [submitted, setSubmitted] = useState(false);
   const [isSending, setIsSending] = useState(false);
   const [error, setError] = useState("");
@@ -21,30 +41,31 @@ export default function ContactPage() {
     setIsSending(true);
     setError("");
 
-    // EmailJS Configuration
-    const SERVICE_ID = "service_lodv4s8";
-    const TEMPLATE_ID = "template_om6eji6"; // Replace with your Template ID from EmailJS dashboard
-    const PUBLIC_KEY = "rJmiQU1kmvt_kTBgf";
-
     try {
-      // Map form fields to template variables
-      // Template variables expected: {{name}}, {{title}}, {{email}}, {{message}}, {{time}}
       const formData = new FormData(formRef.current);
-      const templateParams = {
-        name: formData.get("user_name"),
-        email: formData.get("user_email"),
-        title: formData.get("interest") || "General Inquiry",
-        message: `Company: ${formData.get("company")}\nRole: ${formData.get("role")}\n\nMessage: ${formData.get("message")}`,
+      const tab = TABS.find((t) => t.id === activeTab)!;
+      await sendEmail(EMAILJS.contactTemplate, {
+        name: formData.get("user_name") as string,
+        email: formData.get("user_email") as string,
+        title: `${tab.title} — ${formData.get("interest") || "General"}`,
+        message: [
+          `Inquiry type: ${tab.title}`,
+          `Company: ${formData.get("company") || "—"}`,
+          `Role: ${formData.get("role") || "—"}`,
+          activeTab === "enterprise" ? `Company size: ${formData.get("size") || "—"}` : null,
+          activeTab === "book" ? `Preferred timing: ${formData.get("timing") || "—"}` : null,
+          "",
+          `Message: ${formData.get("message")}`,
+        ].filter((l) => l !== null).join("\n"),
         time: new Date().toLocaleString(),
-      };
-
-      await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
+      });
 
       setSubmitted(true);
-      formRef.current.reset();
-    } catch (err: any) {
+      formRef.current?.reset();
+      setService("");
+    } catch (err) {
       console.error("EmailJS Error:", err);
-      setError("Failed to send message. Please try again or email us directly.");
+      setError(emailErrorMessage(err, `Failed to send message. Please try again or email us at ${SITE.email}.`));
     } finally {
       setIsSending(false);
     }
@@ -53,25 +74,20 @@ export default function ContactPage() {
   return (
     <div className="flex flex-col min-h-screen relative">
 
-      {/* BACKGROUND EFFECTS */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <NeuralNetwork />
-      </div>
-
       {/* HERO SECTION */}
       <section className="relative min-h-[50vh] pt-[160px] pb-[80px] flex items-center bg-transparent">
         <div className="absolute inset-0 ambient-center z-0 opacity-40"></div>
         <div className="container mx-auto px-5 md:px-20 max-w-[1280px] relative z-10 text-center">
-          <ScrollReveal>
-            <div className="font-space-mono text-[11px] text-[#E040FB] tracking-widest uppercase mb-4">LET'S CONNECT</div>
+          <div className="animate-slide-up-1">
+            <div className="font-space-mono text-[11px] text-[#A21CAF] tracking-widest uppercase mb-4">LET&apos;S CONNECT</div>
             <h1 className="font-plus-jakarta-sans font-bold text-[40px] md:text-[72px] leading-[1.05] tracking-tight mb-6">
               <span className="text-[#0D0D1F] block">Your transformation</span>
               <span className="text-gradient block">starts with a conversation.</span>
             </h1>
             <p className="font-inter text-[19px] text-[#4A5568] max-w-[680px] mx-auto leading-[1.8]">
-              Tell us what you're working on. We'll connect you with the right expert within 24 hours to architect your AI future.
+              Tell us what you&apos;re working on. We&apos;ll connect you with the right expert within 24 hours to architect your AI future.
             </p>
-          </ScrollReveal>
+          </div>
         </div>
       </section>
 
@@ -87,26 +103,29 @@ export default function ContactPage() {
 
                   {submitted ? (
                     <div className="absolute inset-0 bg-[#FFFFFF]/95 backdrop-blur-xl z-20 flex flex-col items-center justify-center text-center p-8 animate-fade-in">
-                      <div className="text-[#00F5A0] mb-6 drop-shadow-[0_0_20px_rgba(0,245,160,0.4)]">
+                      <div className="text-[#059669] mb-6 drop-shadow-[0_0_20px_rgba(0,245,160,0.4)]">
                         <CheckCircle2 size={80} strokeWidth={1.5} />
                       </div>
-                      <h3 className="font-plus-jakarta-sans font-bold text-[28px] text-[#0D0D1F] mb-4 uppercase">Transmission Received</h3>
+                      <h3 className="font-plus-jakarta-sans font-bold text-[28px] text-[#0D0D1F] mb-4">Message received</h3>
                       <p className="font-inter text-[#4A5568] mb-8 max-w-[400px]">Our specialists have received your inquiry. We'll be in touch within 24 hours to begin your journey.</p>
                       <button onClick={() => setSubmitted(false)} className="btn-ghost px-10">Send Another Message</button>
                     </div>
                   ) : null}
 
                   <div className="flex bg-[#FFFFFF]/60 border border-[#8b3fff]/10 rounded-full p-1 mb-10 overflow-x-auto no-scrollbar relative z-10">
-                    {["general", "book", "enterprise"].map((tab) => (
+                    {TABS.map((tab) => (
                       <button
-                        key={tab}
-                        onClick={() => setActiveTab(tab)}
-                        className={`flex-1 min-w-max px-6 py-3 rounded-full font-plus-jakarta-sans text-[13px] font-bold uppercase tracking-wider transition-all duration-300 ${activeTab === tab
-                          ? 'bg-gradient-to-r from-[#3B6FFF] to-[#E040FB] text-[#0D0D1F] shadow-[0_0_20px_rgba(139,63,255,0.3)]'
-                          : 'text-[#718096] hover:text-[#4A5568]'
+                        key={tab.id}
+                        type="button"
+                        role="tab"
+                        aria-selected={activeTab === tab.id}
+                        onClick={() => setActiveTab(tab.id)}
+                        className={`flex-1 min-w-max px-5 py-3 rounded-full font-plus-jakarta-sans text-[13px] font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer ${activeTab === tab.id
+                          ? "bg-gradient-to-r from-[#050DEB] via-[#8B3FFF] to-[#E040FB] text-white shadow-[0_0_20px_rgba(139,63,255,0.3)]"
+                          : "text-[#4A5568] hover:text-[#0D0D1F]"
                           }`}
                       >
-                        {tab === 'general' ? 'General Inquiry' : tab === 'book' ? 'Consultation' : 'Enterprise'}
+                        {tab.label}
                       </button>
                     ))}
                   </div>
@@ -131,16 +150,35 @@ export default function ContactPage() {
                     </div>
 
                     <div className="relative">
-                      <select name="interest" className="glass-input w-full h-[56px] px-6 appearance-none text-[#4A5568] cursor-pointer" required defaultValue="">
+                      <label htmlFor="interest" className="sr-only">Service interest</label>
+                      <select id="interest" name="interest" value={service} onChange={(e) => setService(e.target.value)} className={`glass-input w-full h-[56px] px-6 appearance-none cursor-pointer ${service ? "text-[#0D0D1F]" : "text-[#718096]"}`} required>
                         <option value="" disabled>Service Interest *</option>
-                        <option value="AI Consulting">AI Consulting</option>
-                        <option value="Digital Transformation">Digital Transformation</option>
-                        <option value="Data & Analytics">Data & Analytics</option>
-                        <option value="AI Development">AI Development</option>
-                        <option value="Strategy & Roadmap">Strategy & Roadmap</option>
+                        {SERVICES.map((svc) => (
+                          <option key={svc.id} value={svc.title}>{svc.title}</option>
+                        ))}
+                        <option value="Not sure yet">Not sure yet — advise me</option>
                       </select>
                       <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 text-[#4A5568] pointer-events-none" size={18} />
                     </div>
+
+                    {activeTab === "enterprise" && (
+                      <div className="relative">
+                        <label htmlFor="size" className="sr-only">Company size</label>
+                        <select id="size" name="size" defaultValue="" className="glass-input w-full h-[56px] px-6 appearance-none cursor-pointer text-[#0D0D1F]">
+                          <option value="" disabled>Company size</option>
+                          <option>200–1,000 employees</option>
+                          <option>1,000–10,000 employees</option>
+                          <option>10,000+ employees</option>
+                        </select>
+                        <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 text-[#4A5568] pointer-events-none" size={18} />
+                      </div>
+                    )}
+                    {activeTab === "book" && (
+                      <div className="flex flex-col sm:flex-row gap-4 items-stretch">
+                        <input type="text" name="timing" placeholder="Preferred days / times (with time zone)" className="glass-input flex-1 h-[56px] px-6" />
+                        <Link href="/booking" className="btn-ghost !h-[56px] whitespace-nowrap gap-2"><CalendarDays size={16} /> Pick a slot instantly</Link>
+                      </div>
+                    )}
 
                     <textarea name="message" placeholder="How can we help you? *" required className="glass-input w-full min-h-[160px] resize-none py-5 px-6"></textarea>
 
@@ -158,7 +196,7 @@ export default function ContactPage() {
                       {isSending ? (
                         <span className="flex items-center gap-2">
                           <Loader2 className="animate-spin" size={20} />
-                          Encrypting & Sending...
+                          Sending…
                         </span>
                       ) : (
                         <span className="flex items-center gap-2 group-hover:translate-x-1 transition-transform">
@@ -169,7 +207,7 @@ export default function ContactPage() {
 
                     <div className="text-center">
                       <p className="font-space-mono text-[10px] text-[#718096] uppercase tracking-widest">
-                        🔒 Encrypted Transmission · Private & Secure · 24h Response
+                        🔒 Private &amp; secure · We reply within 24 hours · <Link href="/legal/privacy" className="underline">Privacy policy</Link>
                       </p>
                     </div>
                   </form>
@@ -180,7 +218,7 @@ export default function ContactPage() {
             {/* RIGHT: INFO */}
             <div className="w-full lg:w-[42%] flex flex-col gap-6">
               <ScrollReveal delay={0.3}>
-                <div className="glass-card p-8 flex items-start gap-6 hover:bg-[#1a1a3a]/40 transition-all group">
+                <div className="glass-card p-8 flex items-start gap-6 hover:bg-white transition-all group">
                   <div className="w-12 h-12 rounded-full bg-[#E040FB]/10 flex items-center justify-center text-[#E040FB] group-hover:scale-110 transition-transform">
                     <MapPin size={24} />
                   </div>
@@ -189,17 +227,17 @@ export default function ContactPage() {
                     <p className="font-inter text-[#4A5568] text-[16px] leading-relaxed mb-3">123 Innovation Drive, Suite 500<br />Tech District, NY 10001</p>
                     <div className="flex flex-col gap-3 mt-4 pt-4 border-t border-[rgba(139,63,255,0.15)]">
                       <div className="flex flex-col">
-                        <span className="font-space-mono text-[11px] text-[#00D9FF] uppercase tracking-widest font-bold">London</span>
+                        <span className="font-space-mono text-[11px] text-[#0891B2] uppercase tracking-widest font-bold">London</span>
                         <span className="font-inter text-[13px] text-[#718096]">Level 39, One Canada Square, Canary Wharf (GMT)</span>
                         <span className="font-inter text-[13px] text-[#718096]">+44 20 7946 0958</span>
                       </div>
                       <div className="flex flex-col">
-                        <span className="font-space-mono text-[11px] text-[#00D9FF] uppercase tracking-widest font-bold">Singapore</span>
+                        <span className="font-space-mono text-[11px] text-[#0891B2] uppercase tracking-widest font-bold">Singapore</span>
                         <span className="font-inter text-[13px] text-[#718096]">8 Marina View, Asia Square Tower 1 (SGT)</span>
                         <span className="font-inter text-[13px] text-[#718096]">+65 6701 5900</span>
                       </div>
                       <div className="flex flex-col">
-                        <span className="font-space-mono text-[11px] text-[#00D9FF] uppercase tracking-widest font-bold">Tokyo</span>
+                        <span className="font-space-mono text-[11px] text-[#0891B2] uppercase tracking-widest font-bold">Tokyo</span>
                         <span className="font-inter text-[13px] text-[#718096]">Roppongi Hills Mori Tower, Minato City (JST)</span>
                         <span className="font-inter text-[13px] text-[#718096]">+81 3-5159-0000</span>
                       </div>
@@ -209,17 +247,17 @@ export default function ContactPage() {
               </ScrollReveal>
 
               <ScrollReveal delay={0.4}>
-                <div className="glass-card p-8 flex items-start gap-6 hover:bg-[#1a1a3a]/40 transition-all group">
-                  <div className="w-12 h-12 rounded-full bg-[#00D9FF]/10 flex items-center justify-center text-[#00D9FF] group-hover:scale-110 transition-transform">
+                <div className="glass-card p-8 flex items-start gap-6 hover:bg-white transition-all group">
+                  <div className="w-12 h-12 rounded-full bg-[#00D9FF]/10 flex items-center justify-center text-[#0891B2] group-hover:scale-110 transition-transform">
                     <Mail size={24} />
                   </div>
                   <div>
                     <h4 className="font-plus-jakarta-sans font-bold text-[18px] text-[#0D0D1F] mb-3 uppercase tracking-tight">Get in Touch</h4>
-                    <a href="mailto:hello@luminaxpert.com" className="block font-inter text-[20px] text-[#0D0D1F] hover:text-[#00D9FF] transition-colors mb-2">hello@luminaxpert.com</a>
-                    <p className="font-inter text-[#4A5568] text-[17px] mb-4">+1 (555) 123-4567</p>
+                    <a href={`mailto:${SITE.email}`} className="block font-inter text-[20px] text-[#0D0D1F] hover:text-[#0891B2] transition-colors mb-2 break-all">{SITE.email}</a>
+                    <p className="font-inter text-[#4A5568] text-[17px] mb-4">{SITE.phone}</p>
                     <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#00D9FF]/5 border border-[#00D9FF]/10 w-fit">
-                      <Clock size={12} className="text-[#00D9FF]" />
-                      <span className="font-space-mono text-[11px] text-[#00D9FF] uppercase tracking-wider">Mon–Fri · 9am–6pm EST</span>
+                      <Clock size={12} className="text-[#0891B2]" />
+                      <span className="font-space-mono text-[11px] text-[#0891B2] uppercase tracking-wider">Mon–Fri · 9am–6pm EST</span>
                     </div>
                   </div>
                 </div>
@@ -238,22 +276,23 @@ export default function ContactPage() {
 
               <ScrollReveal delay={0.6}>
                 <div className="mt-4 p-4">
-                  <p className="font-space-mono text-[11px] text-[#718096] mb-6 uppercase tracking-widest">Global Network Connect:</p>
-                  <div className="flex gap-5">
+                  <p className="font-space-mono text-[11px] text-[#718096] mb-6 uppercase tracking-widest">Connect with us</p>
+                  <div className="flex gap-4">
                     {[
-                      { icon: <Globe size={22} />, color: "#E040FB" },
-                      { icon: <MessageSquare size={22} />, color: "#00D9FF" },
-                      { icon: <Share2 size={22} />, color: "#FFD166" }
-                    ].map((social, i) => (
-                      <Link
-                        key={i}
-                        href="#"
-                        className="w-14 h-14 rounded-full glass-card flex items-center justify-center text-[#4A5568] hover:scale-110 transition-all border-[#ffffff08] hover:border-[var(--color-brand-magenta)]/30 group"
+                      { href: FOUNDER_LINKS.linkedin, label: "LinkedIn", icon: <LinkedInIcon size={20} />, color: "#0A66C2", external: true },
+                      { href: FOUNDER_LINKS.portfolio, label: "Founder portfolio", icon: <Globe size={22} />, color: "#8B3FFF", external: true },
+                      { href: `mailto:${SITE.email}`, label: "Email", icon: <Mail size={22} />, color: "#E040FB", external: false },
+                    ].map((social) => (
+                      <a
+                        key={social.label}
+                        href={social.href}
+                        aria-label={social.label}
+                        {...(social.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                        className="w-14 h-14 rounded-full glass-card flex items-center justify-center hover:scale-110 hover:shadow-lg transition-all"
+                        style={{ color: social.color }}
                       >
-                        <div className="group-hover:text-[#0D0D1F] transition-colors" style={{ color: social.color }}>
-                          {social.icon}
-                        </div>
-                      </Link>
+                        {social.icon}
+                      </a>
                     ))}
                   </div>
                 </div>

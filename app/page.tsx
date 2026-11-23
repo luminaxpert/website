@@ -1,450 +1,292 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { 
-  PlayCircle, Shield, Zap, Globe, Lock, CheckCircle2, ChevronDown, Brain, Cpu, 
-  BarChart, Code, Map, GraduationCap, Compass, Layers, Rocket, Infinity,
-  Landmark, Activity, ShoppingCart, Truck, Factory, Radio, Star, ChevronLeft, 
-  ChevronRight, Quote 
+import Image from "next/image";
+import {
+  PlayCircle, Shield, Zap, Globe, Lock, Brain, Cpu, BarChart, Code, Compass, Layers,
+  Rocket, Infinity as InfinityIcon, Landmark, Activity, ShoppingCart, Truck, Factory, Radio, ArrowRight, Eye,
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import LuminaBackground from "@/components/LuminaBackground";
 import ScrollReveal from "@/components/ScrollReveal";
 import RoiCalculator from "@/components/RoiCalculator";
+import CountUp from "@/components/CountUp";
+import Testimonials from "@/components/home/Testimonials";
+import { SORTED_POSTS } from "@/lib/posts";
 
 const clientLogos = [
-  { name: "Apex Finance", icon: <Landmark size={20} /> },
-  { name: "Helix Health", icon: <Activity size={20} /> },
-  { name: "Vortex Retail", icon: <ShoppingCart size={20} /> },
-  { name: "Atlas Logistics", icon: <Truck size={20} /> },
-  { name: "Quantum Mfg", icon: <Factory size={20} /> },
-  { name: "Nova Telecom", icon: <Radio size={20} /> },
-  { name: "Global Insure", icon: <Shield size={20} /> },
-  { name: "Horizon Travel", icon: <Globe size={20} /> },
-  { name: "Titan Energy", icon: <Zap size={20} /> },
-  { name: "Cyber Safe", icon: <Lock size={20} /> },
-  { name: "Orion Research", icon: <Brain size={20} /> },
-  { name: "Prime Systems", icon: <Cpu size={20} /> },
+  { name: "Apex Finance", icon: Landmark },
+  { name: "Helix Health", icon: Activity },
+  { name: "Vortex Retail", icon: ShoppingCart },
+  { name: "Atlas Logistics", icon: Truck },
+  { name: "Quantum Mfg", icon: Factory },
+  { name: "Nova Telecom", icon: Radio },
+  { name: "Global Insure", icon: Shield },
+  { name: "Horizon Travel", icon: Globe },
+  { name: "Titan Energy", icon: Zap },
+  { name: "Cyber Safe", icon: Lock },
+  { name: "Orion Research", icon: Brain },
+  { name: "Prime Systems", icon: Cpu },
 ];
 
-const testimonials = [
-  {
-    quote: "LuminaXpert transformed how we approach data. What used to take our team two weeks now takes two hours. The ROI was visible within 60 days.",
-    name: "James Whitmore",
-    role: "CTO",
-    company: "Global Fintech Company",
-    stars: 5,
-    metric: "60-day ROI"
-  },
-  {
-    quote: "We went from zero AI capability to a full production deployment in under 3 months. Their team felt like an extension of ours.",
-    name: "Priya Nair",
-    role: "VP Operations",
-    company: "Fortune 500 Healthcare Provider",
-    stars: 5,
-    metric: "3-month deployment"
-  },
-  {
-    quote: "The strategy roadmap they delivered became the foundation for our Series C pitch. We closed $45M shortly after.",
-    name: "Alex Torres",
-    role: "CEO",
-    company: "Series B AI Startup",
-    stars: 5,
-    metric: "$45M raised"
-  },
-  {
-    quote: "Their training program upskilled 400 of our employees in 6 weeks. The culture shift was remarkable.",
-    name: "Sophie Brennan",
-    role: "CHRO",
-    company: "European Logistics Leader",
-    stars: 5,
-    metric: "400 employees trained"
-  },
-  {
-    quote: "Best-in-class security standards and zero compliance incidents since deployment. Exactly what we needed in a regulated environment.",
-    name: "Daniel Osei",
-    role: "Chief Compliance Officer",
-    company: "Tier-1 Investment Bank",
-    stars: 5,
-    metric: "Zero compliance incidents"
-  },
-  {
-    quote: "Their predictive models helped us anticipate supply chain disruptions three weeks before they occurred, saving us millions.",
-    name: "Elena Rostova",
-    role: "Head of Global Operations",
-    company: "Leading Electronics Manufacturer",
-    stars: 5,
-    metric: "$12M costs avoided"
-  },
-  {
-    quote: "LuminaXpert's custom LLM deployment gave our customer support agents superpowers. Resolution times dropped by 45% in the first month.",
-    name: "Michael Chen",
-    role: "VP Customer Experience",
-    company: "SaaS Unicorn",
-    stars: 5,
-    metric: "45% faster resolution"
-  },
-  {
-    quote: "The strategic roadmap was clear, actionable, and instantly got our board's approval. They are true partners in AI transformation.",
-    name: "Sarah Jenkins",
-    role: "Chief Digital Officer",
-    company: "Fortune 100 Retailer",
-    stars: 5,
-    metric: "Board approved strategy"
-  }
+const services = [
+  { icon: Brain, title: "AI Consulting", desc: "Strategic advisory for AI adoption and organizational readiness.", link: "/services#service-1" },
+  { icon: Cpu, title: "Digital Transformation", desc: "End-to-end modernization with AI at the core of your operations.", link: "/services#service-2" },
+  { icon: BarChart, title: "Data & Analytics", desc: "Extract actionable intelligence and insights from your raw data.", link: "/services#service-3" },
+  { icon: Code, title: "AI Development", desc: "Custom models and solutions built specifically for your needs.", link: "/services#service-4" },
+  { icon: Zap, title: "AI Agents & Automation", desc: "Autonomous, governed agents that execute multi-step workflows.", link: "/services#service-7" },
+  { icon: Eye, title: "Responsible & Ethical AI", desc: "EU AI Act, NIST RMF and ISO 42001 alignment you can defend.", link: "/services#service-9" },
 ];
+
+const steps = [
+  { num: "01", title: "Discover", icon: Compass, desc: "We audit your current landscape and pinpoint where AI creates the most impact." },
+  { num: "02", title: "Design", icon: Layers, desc: "Our specialists architect a precision strategy tailored to your team and industry." },
+  { num: "03", title: "Deploy", icon: Rocket, desc: "We implement AI solutions alongside your team, ensuring smooth integration." },
+  { num: "04", title: "Scale", icon: InfinityIcon, desc: "Continuous optimization and scaling — because transformation never stops." },
+];
+
+const stats = [
+  { value: 500, suffix: "+", label: "Expert Specialists" },
+  { value: 98.6, decimals: 1, suffix: "%", label: "Client Satisfaction" },
+  { value: 120, suffix: "+", label: "Countries Served" },
+  { value: 1.8, decimals: 1, prefix: "$", suffix: "B+", label: "Value Delivered" },
+];
+
+function Marquee({ reverse = false }: { reverse?: boolean }) {
+  const items = [...clientLogos, ...clientLogos];
+  return (
+    <div className="flex overflow-hidden relative w-full [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+      <div className={`${reverse ? "animate-marquee-rtl" : "animate-marquee-ltr"} flex gap-12 whitespace-nowrap`}>
+        {items.map((logo, idx) => (
+          <div key={idx} className="flex items-center gap-3 text-[#4A5568] opacity-60 hover:opacity-100 transition-opacity duration-300" aria-hidden={idx >= clientLogos.length}>
+            <logo.icon size={20} className={reverse ? "text-[#0891B2]" : "text-[#A21CAF]"} />
+            <span className="font-space-mono text-[13px] tracking-wider uppercase">{logo.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function Home() {
-  const [activeTestimonial, setActiveTestimonial] = useState(0);
-  const [isHovering, setIsHovering] = useState(false);
+  const latest = SORTED_POSTS.slice(0, 3);
 
-  useEffect(() => {
-    if (isHovering) return;
-    const interval = setInterval(() => {
-      setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [isHovering]);
-  
   return (
     <div className="flex flex-col min-h-screen relative overflow-x-hidden">
-      
-      {/* 4-LAYERED ADVANCED 3D BACKGROUND */}
-      <LuminaBackground />
-      
-      {/* ─── SECTION 1: HERO ─────────────────────────────────── */}
-      <section className="relative min-h-screen pt-[72px] flex items-center overflow-hidden">
-        {/* Background Ambients */}
-        <div className="absolute inset-0 ambient-left z-0"></div>
-        <div className="absolute inset-0 ambient-right z-0"></div>
-        
-        <div className="container mx-auto px-5 md:px-20 max-w-[1280px] relative z-10 flex flex-col items-center text-center">
-          
-          {/* Main Content Container - Stacked & Centered */}
-          <div className="w-full max-w-[900px] flex flex-col items-center relative">
-            
-            <ScrollReveal>
-              <div className="inline-flex items-center gap-3 mb-8">
-                <div className="w-8 h-[1px] bg-[var(--gradient-brand)]"></div>
-                <span className="font-space-mono text-[11px] text-[#E040FB] tracking-[0.3em] uppercase">AI-Powered Expertise</span>
-                <div className="w-8 h-[1px] bg-[var(--gradient-brand)]"></div>
-              </div>
-            </ScrollReveal>
-            
-            <h1 className="font-plus-jakarta-sans font-bold text-[48px] md:text-[84px] leading-[1.1] tracking-tight mb-8">
-              <ScrollReveal delay={0.1}><div className="text-gradient drop-shadow-[0_0_40px_rgba(139,63,255,0.4)]">Build AI</div></ScrollReveal>
-              <ScrollReveal delay={0.2}><div className="text-[#0D0D1F]">That Actually Works.</div></ScrollReveal>
-              <ScrollReveal delay={0.3}><div className="text-gradient drop-shadow-[0_0_40px_rgba(139,63,255,0.4)]">Expertise</div></ScrollReveal>
-              <ScrollReveal delay={0.4}><div className="text-[#0D0D1F]">Redefined.</div></ScrollReveal>
-            </h1>
-            
-            <ScrollReveal delay={0.5}>
-              <p className="font-plus-jakarta-sans text-[18px] text-[#4A5568] leading-[1.8] max-w-[640px] mx-auto mb-12">
-                LuminaXpert connects you with world-class AI experts and 
-                precision tools to transform your business — infinitely.
-              </p>
-            </ScrollReveal>
-            
-            <ScrollReveal delay={0.6}>
-              <div className="flex flex-col sm:flex-row gap-6 mb-12 relative z-10">
-                <Link href="/get-started" className="btn-primary inline-flex justify-center items-center px-10 h-[60px]">Start Your Journey →</Link>
-                <Link href="/booking" className="btn-ghost inline-flex justify-center items-center gap-2 px-10 h-[60px]">
-                  <PlayCircle size={18} /> Book a Consultation
-                </Link>
-              </div>
-            </ScrollReveal>
-            
-            <ScrollReveal delay={0.7}>
-              <div className="flex flex-col items-center gap-4 mt-4">
-                <div className="flex -space-x-3">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <div key={i} className="w-12 h-12 rounded-full bg-[#FFFFFF] border-2 border-[#E040FB]/40 relative z-[1] overflow-hidden flex items-center justify-center bg-gradient-to-br from-[#3B6FFF]/10 to-[#E040FB]/10">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#E040FB]/60"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                    </div>
-                  ))}
-                </div>
-                <span className="font-space-mono text-[12px] text-[#718096] uppercase tracking-widest">Trusted by 3,200+ global enterprises</span>
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
-        
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 group cursor-pointer" onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}>
-          <div className="w-[30px] h-[50px] rounded-full border-2 border-[#8b3fff]/30 flex justify-center p-1 group-hover:border-[#E040FB]/60 transition-colors duration-300 shadow-[0_0_15px_rgba(139,63,255,0.1)]">
-            <div className="w-1.5 h-3 bg-gradient-to-b from-[#3B6FFF] to-[#E040FB] rounded-full animate-bounce mt-1"></div>
-          </div>
-          <span className="font-space-mono text-[10px] text-[#718096] uppercase tracking-[0.3em] group-hover:text-[#0D0D1F] transition-colors duration-300">SCROLL</span>
-        </div>
-      </section>
-
-      {/* ─── SECTION 2: STATS BAR ────────────────────────────── */}
-      <section className="relative w-full py-[140px] border-y border-[#8b3fff]/20 bg-[#F0F4F8]/65 backdrop-blur-[30px] z-10">
-        <div className="container mx-auto px-5 md:px-20 max-w-[1280px]">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-10 md:gap-0">
-            <ScrollReveal delay={0.1} className="flex-1">
-              <div className="flex flex-col items-center text-center w-full">
-                <div className="font-plus-jakarta-sans font-black text-[56px] text-gradient">500+</div>
-                <div className="font-space-mono text-[12px] uppercase tracking-[0.15em] text-[#4A5568]">Expert Specialists</div>
-              </div>
-            </ScrollReveal>
-            <div className="hidden md:block w-[1px] h-16 bg-gradient-to-b from-transparent via-[#8b3fff]/30 to-transparent"></div>
-            
-            <ScrollReveal delay={0.2} className="flex-1">
-              <div className="flex flex-col items-center text-center w-full">
-                <div className="font-plus-jakarta-sans font-black text-[56px] text-gradient">98.6%</div>
-                <div className="font-space-mono text-[12px] uppercase tracking-[0.15em] text-[#4A5568]">
-                  Client Satisfaction
-                </div>
-                <span className="text-[10px] font-space-mono text-gray-500 mt-1 uppercase tracking-wider block">
-                  * Independent Audit Verified
-                </span>
-              </div>
-            </ScrollReveal>
-            <div className="hidden md:block w-[1px] h-16 bg-gradient-to-b from-transparent via-[#8b3fff]/30 to-transparent"></div>
-            
-            <ScrollReveal delay={0.3} className="flex-1">
-              <div className="flex flex-col items-center text-center w-full">
-                <div className="font-plus-jakarta-sans font-black text-[56px] text-gradient">120+</div>
-                <div className="font-space-mono text-[12px] uppercase tracking-[0.15em] text-[#4A5568]">Countries Served</div>
-              </div>
-            </ScrollReveal>
-            <div className="hidden md:block w-[1px] h-16 bg-gradient-to-b from-transparent via-[#8b3fff]/30 to-transparent"></div>
-            
-            <ScrollReveal delay={0.4} className="flex-1">
-              <div className="flex flex-col items-center text-center w-full">
-                <div className="font-plus-jakarta-sans font-black text-[56px] text-gradient">$1.8B+</div>
-                <div className="font-space-mono text-[12px] uppercase tracking-[0.15em] text-[#4A5568]">Value Delivered</div>
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── SECTION 2.5: CLIENT LOGOS MARQUEE ───────────────── */}
-      <section className="relative w-full py-12 bg-[#F8F9FA] overflow-hidden border-b border-[rgba(139,63,255,0.15)] marquee-container z-10">
-        {/* Replace with real client logos */}
-        <div className="text-center mb-6">
-          <span className="font-space-mono text-[10px] text-gray-500 tracking-[0.3em] uppercase">
-            Trusted by Industry Leaders
-          </span>
-        </div>
-        
-        {/* Row 1: Left to Right */}
-        <div className="flex overflow-hidden relative w-full mb-4">
-          <div className="animate-marquee-ltr flex gap-12 whitespace-nowrap">
-            {clientLogos.map((logo, idx) => (
-              <div key={idx} className="flex items-center gap-3 text-[#718096] opacity-40 hover:opacity-80 transition-opacity duration-300 cursor-pointer">
-                <span className="text-[#E040FB]">{logo.icon}</span>
-                <span className="font-space-mono text-[13px] tracking-wider uppercase">{logo.name}</span>
-              </div>
-            ))}
-            {/* Duplicate for infinite effect */}
-            {clientLogos.map((logo, idx) => (
-              <div key={`dup1-${idx}`} className="flex items-center gap-3 text-[#718096] opacity-40 hover:opacity-80 transition-opacity duration-300 cursor-pointer">
-                <span className="text-[#E040FB]">{logo.icon}</span>
-                <span className="font-space-mono text-[13px] tracking-wider uppercase">{logo.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Row 2: Right to Left (Desktop Only) */}
-        <div className="hidden md:flex overflow-hidden relative w-full">
-          <div className="animate-marquee-rtl flex gap-12 whitespace-nowrap">
-            {clientLogos.map((logo, idx) => (
-              <div key={idx} className="flex items-center gap-3 text-[#718096] opacity-40 hover:opacity-80 transition-opacity duration-300 cursor-pointer">
-                <span className="text-[#00D9FF]">{logo.icon}</span>
-                <span className="font-space-mono text-[13px] tracking-wider uppercase">{logo.name}</span>
-              </div>
-            ))}
-            {/* Duplicate for infinite effect */}
-            {clientLogos.map((logo, idx) => (
-              <div key={`dup2-${idx}`} className="flex items-center gap-3 text-[#718096] opacity-40 hover:opacity-80 transition-opacity duration-300 cursor-pointer">
-                <span className="text-[#00D9FF]">{logo.icon}</span>
-                <span className="font-space-mono text-[13px] tracking-wider uppercase">{logo.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── SECTION 3: SERVICES OVERVIEW ────────────────────── */}
-      <section className="relative py-[120px] bg-[#FFFFFF]">
-        <div className="absolute inset-0 ambient-left z-0 opacity-50"></div>
-        <div className="container mx-auto px-5 md:px-20 max-w-[1280px] relative z-10">
-          
-          <ScrollReveal>
-            <div className="flex flex-col items-center text-center mb-20">
-              <div className="font-space-mono text-[11px] text-[#00D9FF] tracking-widest uppercase mb-4 flex items-center gap-3">
-                <span className="w-8 h-[1px] bg-[#00D9FF]/50"></span>
-                OUR SERVICES
-                <span className="w-8 h-[1px] bg-[#00D9FF]/50"></span>
-              </div>
-              <h2 className="font-plus-jakarta-sans font-extrabold text-[40px] md:text-[56px] leading-[1.1] mb-6">
-                <span className="text-[#0D0D1F] block">Everything you need to</span>
-                <span className="text-gradient block">lead with AI.</span>
-              </h2>
-              <p className="font-inter text-[19px] text-[#4A5568] max-w-[560px]">
-                From strategy to implementation — nine service lines, one integrated vision.
-              </p>
+      {/* ─── HERO ─────────────────────────────────────────── */}
+      <section className="relative min-h-[100svh] pt-[110px] pb-24 flex items-center overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(45%_38%_at_50%_48%,rgba(255,255,255,0.7),rgba(255,255,255,0.2)_65%,transparent)] pointer-events-none" />
+        <div className="mx-auto px-5 md:px-10 xl:px-20 max-w-[1280px] relative z-10 flex flex-col items-center text-center w-full">
+          <div className="w-full max-w-[960px] flex flex-col items-center">
+            <div className="inline-flex items-center gap-2.5 mb-8 px-4 py-2 rounded-full bg-white/80 backdrop-blur-md border border-[rgba(139,63,255,0.2)] shadow-[0_8px_30px_rgba(139,63,255,0.08)] animate-slide-up-1">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-[#FB00DF] opacity-60 animate-ping" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FB00DF]" />
+              </span>
+              <span className="font-space-mono text-[10px] sm:text-[11px] text-[#4A5568] tracking-[0.2em] uppercase">Enterprise AI<span className="hidden sm:inline"> · Strategy to Production</span></span>
             </div>
-          </ScrollReveal>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { icon: <Brain size={32} />, title: "AI Consulting", desc: "Strategic advisory for AI adoption and organizational readiness.", link: "/services#service-1" },
-              { icon: <Cpu size={32} />, title: "Digital Transformation", desc: "End-to-end modernization with AI at the core of your operations.", link: "/services#service-2" },
-              { icon: <BarChart size={32} />, title: "Data & Analytics", desc: "Extract actionable intelligence and insights from your raw data.", link: "/services#service-3" },
-              { icon: <Code size={32} />, title: "AI Development", desc: "Custom models and solutions built specifically for your needs.", link: "/services#service-4" },
-              { icon: <Map size={32} />, title: "Strategy & Roadmap", desc: "Actionable 12-month AI plans aligned with your business goals.", link: "/services#service-5" },
-              { icon: <GraduationCap size={32} />, title: "Training & Enablement", desc: "Upskill your entire team to thrive in an AI-native environment.", link: "/services#service-6" }
-            ].map((service, i) => (
-              <ScrollReveal key={i} delay={i * 0.1}>
-                <div className="glass-card p-8 group hover:-translate-y-2 hover:border-[#E040FB]/40 transition-all duration-300">
-                  <div className="w-16 h-16 rounded-2xl bg-[#8b3fff]/10 border border-[#8b3fff]/20 flex items-center justify-center text-[#E040FB] mb-5 drop-shadow-[0_0_8px_rgba(224,64,251,0.5)]">
-                    {service.icon}
+
+            <h1 className="font-plus-jakarta-sans font-extrabold text-[44px] sm:text-[60px] md:text-[84px] leading-[1.02] tracking-[-0.035em] mb-8 text-[#0D0D1F]">
+              <span className="block animate-slide-up-2">Build AI that</span>
+              <span className="block text-gradient animate-slide-up-3 pb-2">actually works.</span>
+            </h1>
+
+            <p className="font-inter text-[18px] md:text-[20px] text-[#4A5568] leading-[1.7] max-w-[680px] mx-auto mb-12 animate-slide-up-3">
+              LuminaXpert pairs world-class AI specialists with proven delivery frameworks to take you from strategy to governed, production-grade AI — and measurable ROI.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 mb-14 animate-slide-up-4">
+              <Link href="/get-started" className="btn-primary px-10 h-[58px]">Start Your Journey →</Link>
+              <Link href="/booking" className="btn-ghost gap-2 px-10 h-[58px] bg-white/70">
+                <PlayCircle size={18} /> Book a Consultation
+              </Link>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center gap-4 animate-fade-in-delayed">
+              <div className="flex -space-x-3">
+                {["#050DEB", "#8B3FFF", "#E040FB", "#0891B2", "#FB00DF"].map((c, i) => (
+                  <div key={i} className="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center shadow-sm" style={{ background: `linear-gradient(135deg, ${c}22, ${c}55)` }}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
                   </div>
-                  <h3 className="font-plus-jakarta-sans font-bold text-[22px] text-[#0D0D1F] mb-3">{service.title}</h3>
-                  <p className="font-inter text-[15px] leading-[1.7] text-[#4A5568] mb-5">{service.desc}</p>
-                  <Link href={service.link} className="btn-link">Learn more →</Link>
+                ))}
+              </div>
+              <span className="font-space-mono text-[12px] text-[#4A5568] uppercase tracking-widest">Trusted by 3,200+ organizations worldwide</span>
+            </div>
+          </div>
+        </div>
+
+        <a href="#stats" className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 group" aria-label="Scroll to content">
+          <div className="w-[28px] h-[46px] rounded-full border-2 border-[#8b3fff]/30 flex justify-center p-1 group-hover:border-[#E040FB]/60 transition-colors duration-300">
+            <div className="w-1.5 h-3 bg-gradient-to-b from-[#3B6FFF] to-[#E040FB] rounded-full animate-bounce mt-1" />
+          </div>
+          <span className="font-space-mono text-[10px] text-[#718096] uppercase tracking-[0.3em]">Scroll</span>
+        </a>
+      </section>
+
+      {/* ─── STATS ────────────────────────────────────────── */}
+      <section id="stats" className="relative w-full py-[90px] border-y border-[#8b3fff]/15 bg-white/70 backdrop-blur-xl z-10">
+        <div className="mx-auto px-5 md:px-10 xl:px-20 max-w-[1280px]">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-12">
+            {stats.map((s, i) => (
+              <ScrollReveal key={s.label} delay={i * 0.08} className={`flex flex-col items-center text-center ${i > 0 ? "md:border-l md:border-[#8b3fff]/15" : ""}`}>
+                <div className="font-plus-jakarta-sans font-black text-[40px] md:text-[56px] text-gradient leading-tight">
+                  <CountUp value={s.value} decimals={s.decimals} prefix={s.prefix} suffix={s.suffix} />
                 </div>
+                <div className="font-space-mono text-[11px] md:text-[12px] uppercase tracking-[0.15em] text-[#4A5568] mt-1">{s.label}</div>
               </ScrollReveal>
             ))}
           </div>
-          
-          <ScrollReveal delay={0.4}>
+        </div>
+      </section>
+
+      {/* ─── LOGOS ────────────────────────────────────────── */}
+      <section className="relative w-full py-12 bg-[#F8F9FA] overflow-hidden border-b border-[rgba(139,63,255,0.12)] marquee-container z-10">
+        <div className="text-center mb-6">
+          <span className="font-space-mono text-[10px] text-[#718096] tracking-[0.3em] uppercase">Trusted by industry leaders</span>
+        </div>
+        <div className="mb-4"><Marquee /></div>
+        <div className="hidden md:block"><Marquee reverse /></div>
+      </section>
+
+      {/* ─── SERVICES ─────────────────────────────────────── */}
+      <section className="relative py-[120px] bg-white z-10">
+        <div className="absolute inset-0 ambient-left z-0 opacity-50" />
+        <div className="mx-auto px-5 md:px-10 xl:px-20 max-w-[1280px] relative z-10">
+          <ScrollReveal>
+            <div className="flex flex-col items-center text-center mb-16">
+              <div className="font-space-mono text-[11px] text-[#0891B2] tracking-widest uppercase mb-4 flex items-center gap-3">
+                <span className="w-8 h-[1px] bg-[#0891B2]/50" /> OUR SERVICES <span className="w-8 h-[1px] bg-[#0891B2]/50" />
+              </div>
+              <h2 className="font-plus-jakarta-sans font-extrabold text-[38px] md:text-[56px] leading-[1.08] tracking-tight mb-6">
+                <span className="text-[#0D0D1F] block">Everything you need to</span>
+                <span className="text-gradient block">lead with AI.</span>
+              </h2>
+              <p className="font-inter text-[18px] text-[#4A5568] max-w-[560px]">From strategy to implementation — nine service lines, one integrated vision.</p>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {services.map((service, i) => (
+              <ScrollReveal key={service.title} delay={(i % 3) * 0.08}>
+                <Link href={service.link} className="glass-card p-8 group h-full flex flex-col hover:-translate-y-1.5 hover:border-[#E040FB]/40 hover:shadow-[0_24px_60px_rgba(139,63,255,0.12)] transition-all duration-300">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#8b3fff]/12 to-[#FB00DF]/8 border border-[#8b3fff]/20 flex items-center justify-center text-[#A21CAF] mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <service.icon size={28} />
+                  </div>
+                  <h3 className="font-plus-jakarta-sans font-bold text-[21px] text-[#0D0D1F] mb-3">{service.title}</h3>
+                  <p className="font-inter text-[15px] leading-[1.7] text-[#4A5568] mb-6 flex-1">{service.desc}</p>
+                  <span className="btn-link">Learn more →</span>
+                </Link>
+              </ScrollReveal>
+            ))}
+          </div>
+
+          <ScrollReveal>
             <div className="flex justify-center mt-12">
-              <Link href="/services" className="btn-ghost">View All Services →</Link>
+              <Link href="/services" className="btn-ghost">View all 9 services →</Link>
             </div>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* ─── SECTION 4: HOW IT WORKS ─────────────────────────── */}
-      <section className="relative py-[120px] bg-[#F0F4F8] border-y border-[rgba(139, 63, 255, 0.15)]">
-        <div className="absolute inset-0 ambient-center z-0 opacity-40"></div>
-        <div className="container mx-auto px-5 md:px-20 max-w-[1280px] relative z-10">
-          
+      {/* ─── PROCESS ──────────────────────────────────────── */}
+      <section className="relative py-[120px] bg-[#F0F4F8] border-y border-[rgba(139,63,255,0.12)] z-10">
+        <div className="absolute inset-0 ambient-center z-0 opacity-40" />
+        <div className="mx-auto px-5 md:px-10 xl:px-20 max-w-[1280px] relative z-10">
           <ScrollReveal>
             <div className="flex flex-col items-center text-center mb-20">
-              <div className="font-space-mono text-[11px] text-[#E040FB] tracking-widest uppercase mb-4">THE PROCESS</div>
-              <h2 className="font-plus-jakarta-sans font-extrabold text-[40px] md:text-[52px] leading-[1.1]">
+              <div className="font-space-mono text-[11px] text-[#A21CAF] tracking-widest uppercase mb-4">THE PROCESS</div>
+              <h2 className="font-plus-jakarta-sans font-extrabold text-[38px] md:text-[52px] leading-[1.1] tracking-tight">
                 <span className="text-[#0D0D1F] block">From challenge to transformation</span>
                 <span className="text-gradient block">in four steps.</span>
               </h2>
             </div>
           </ScrollReveal>
-          
-          <div className="flex flex-col md:flex-row justify-between relative gap-10 md:gap-4">
-            {/* Dashed connecting line for desktop */}
-            <div className="hidden md:block absolute top-[40px] left-[10%] right-[10%] h-[2px] border-t-2 border-dashed border-[#8b3fff]/40 z-0"></div>
-            
-            {[
-              { num: "01", title: "Discover", icon: <Compass size={36} />, desc: "We audit your current landscape and pinpoint where AI creates the most impact." },
-              { num: "02", title: "Design", icon: <Layers size={36} />, desc: "Our specialists architect a precision strategy tailored to your team and industry." },
-              { num: "03", title: "Deploy", icon: <Rocket size={36} />, desc: "We implement AI solutions alongside your team, ensuring smooth integration." },
-              { num: "04", title: "Scale", icon: <Infinity size={36} />, desc: "Continuous optimization and scaling — because transformation never stops." }
-            ].map((step, i) => (
-              <ScrollReveal key={i} delay={i * 0.15} className="flex-1">
-                <div className="flex flex-col items-center text-center w-full md:w-[220px] mx-auto relative z-10 group">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 relative gap-10 md:gap-4">
+            <div className="hidden md:block absolute top-[68px] left-[12%] right-[12%] h-[2px] bg-gradient-to-r from-[#050DEB]/30 via-[#8B3FFF]/40 to-[#FB00DF]/30 z-0" />
+            {steps.map((step, i) => (
+              <ScrollReveal key={step.num} delay={i * 0.12}>
+                <div className="flex flex-col items-center text-center relative z-10 group">
                   <div className="font-space-mono font-bold text-[13px] text-[#718096] tracking-[0.2em] mb-3 group-hover:text-[#0D0D1F] transition-colors">{step.num}</div>
-                  <div className="w-[80px] h-[80px] rounded-full bg-[#FFFFFF]/80 border-[1.5px] border-[#8b3fff]/40 shadow-[0_0_20px_rgba(139,63,255,0.15)] flex items-center justify-center mb-6 group-hover:border-[#E040FB]/60 group-hover:shadow-[0_0_30px_rgba(224,64,251,0.25)] transition-all duration-300">
-                    <span className="text-[#00D9FF] group-hover:text-[#E040FB] transition-colors drop-shadow-[0_0_8px_rgba(0,217,255,0.5)]">
-                      {step.icon}
-                    </span>
+                  <div className="w-[80px] h-[80px] rounded-full bg-white border-[1.5px] border-[#8b3fff]/35 shadow-[0_0_24px_rgba(139,63,255,0.15)] flex items-center justify-center mb-6 group-hover:border-[#E040FB]/60 group-hover:shadow-[0_0_36px_rgba(224,64,251,0.3)] group-hover:-translate-y-1 transition-all duration-300">
+                    <step.icon size={34} className="text-[#0891B2] group-hover:text-[#A21CAF] transition-colors" />
                   </div>
-                  <h4 className="font-plus-jakarta-sans font-bold text-[20px] text-[#0D0D1F] mb-3">{step.title}</h4>
-                  <p className="font-inter text-[14px] leading-[1.7] text-[#4A5568] max-w-[200px]">{step.desc}</p>
+                  <h3 className="font-plus-jakarta-sans font-bold text-[20px] text-[#0D0D1F] mb-3">{step.title}</h3>
+                  <p className="font-inter text-[14px] leading-[1.7] text-[#4A5568] max-w-[220px]">{step.desc}</p>
                 </div>
               </ScrollReveal>
             ))}
           </div>
-          
-          <ScrollReveal delay={0.4}>
+
+          <ScrollReveal>
             <div className="mt-24 flex justify-center">
-              <div className="glass-brand py-10 px-10 md:px-16 rounded-[24px] max-w-[900px] text-center">
-                <h3 className="font-plus-jakarta-sans font-extrabold italic text-[28px] md:text-[44px] text-gradient">
-                  "Intelligence without limits. Expertise without boundaries."
-                </h3>
+              <div className="glass-brand py-10 px-8 md:px-16 rounded-[24px] max-w-[900px] text-center">
+                <p className="font-plus-jakarta-sans font-extrabold italic text-[26px] md:text-[42px] leading-tight text-gradient">
+                  &ldquo;Intelligence without limits. Expertise without boundaries.&rdquo;
+                </p>
               </div>
             </div>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* ─── SECTION 5: WHY LUMINAXPERT ──────────────────────── */}
-      <section className="relative py-[120px] bg-[#FFFFFF]">
-        <div className="absolute inset-0 ambient-right z-0 opacity-50"></div>
-        <div className="container mx-auto px-5 md:px-20 max-w-[1280px] relative z-10">
-          
+      {/* ─── WHY US ───────────────────────────────────────── */}
+      <section className="relative py-[120px] bg-white z-10">
+        <div className="absolute inset-0 ambient-right z-0 opacity-50" />
+        <div className="mx-auto px-5 md:px-10 xl:px-20 max-w-[1280px] relative z-10">
           <div className="flex flex-col md:flex-row gap-16 items-center">
-            {/* Left Visual */}
-            <div className="w-full md:w-[45%] perspective-[1200px]">
+            <div className="w-full md:w-[45%] [perspective:1200px]">
               <ScrollReveal>
-                <div className="glass-card w-full aspect-[4/3] transform rotate-x-[10deg] -rotate-y-[8deg] hover:rotate-x-[5deg] hover:-rotate-y-[4deg] transition-transform duration-700 p-6 flex flex-col bg-white">
+                <div className="glass-card !bg-white w-full aspect-[4/3] [transform:rotateX(8deg)_rotateY(-8deg)] hover:[transform:rotateX(3deg)_rotateY(-3deg)] transition-transform duration-700 p-6 flex flex-col shadow-[0_40px_100px_rgba(13,13,31,0.12)]">
                   <div className="flex items-center gap-2 border-b border-[#8b3fff]/15 pb-4 mb-4">
                     <div className="flex gap-1.5">
-                      <div className="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
-                      <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
-                      <div className="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+                      <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
                     </div>
                     <span className="font-space-mono text-[12px] text-[#4A5568] ml-2">LuminaXpert Console</span>
                   </div>
-                  
                   <div className="flex-1 flex gap-4">
-                    <div className="w-1/2 h-full rounded-xl bg-[#FFFFFF]/50 border border-[#8b3fff]/10 relative overflow-hidden p-4">
-                      {/* Placeholder for chart */}
+                    <div className="w-1/2 h-full rounded-xl bg-[#F8F9FA] border border-[#8b3fff]/10 relative overflow-hidden p-4">
                       <div className="absolute inset-0 flex items-end justify-between px-4 pb-4">
                         {[40, 70, 45, 90, 65, 100].map((h, i) => (
-                          <div key={i} className="w-4 bg-gradient-to-t from-[#3B6FFF]/50 to-[#00D9FF]/80 rounded-t-sm" style={{height: `${h}%`}}></div>
+                          <div key={i} className="w-4 bg-gradient-to-t from-[#050DEB]/60 to-[#8B3FFF]/80 rounded-t-sm" style={{ height: `${h}%` }} />
                         ))}
                       </div>
                     </div>
                     <div className="w-1/2 flex flex-col gap-3">
-                      <div className="glass-brand p-3 rounded-xl flex items-center justify-between">
-                        <span className="font-space-mono text-[11px] text-[#00F5A0]">ROI:</span>
-                        <span className="font-plus-jakarta-sans font-bold text-[#0D0D1F] text-[16px]">+340%</span>
-                      </div>
-                      <div className="glass-brand p-3 rounded-xl flex items-center justify-between">
-                        <span className="font-space-mono text-[11px] text-[#00D9FF]">Speed:</span>
-                        <span className="font-plus-jakarta-sans font-bold text-[#0D0D1F] text-[16px]">8× faster</span>
-                      </div>
-                      <div className="glass-brand p-3 rounded-xl flex items-center justify-between">
-                        <span className="font-space-mono text-[11px] text-[#FFD166]">Accuracy:</span>
-                        <span className="font-plus-jakarta-sans font-bold text-[#0D0D1F] text-[16px]">99.7%</span>
-                      </div>
+                      {[
+                        ["ROI", "+340%", "text-[#059669]"],
+                        ["Speed", "8× faster", "text-[#0891B2]"],
+                        ["Accuracy", "99.7%", "text-[#D97706]"],
+                      ].map(([k, v, c]) => (
+                        <div key={k} className="glass-brand !rounded-xl p-3 flex items-center justify-between">
+                          <span className={`font-space-mono text-[11px] ${c}`}>{k}:</span>
+                          <span className="font-plus-jakarta-sans font-bold text-[#0D0D1F] text-[16px]">{v}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
               </ScrollReveal>
             </div>
-            
-            {/* Right Text */}
+
             <div className="w-full md:w-[55%]">
               <ScrollReveal>
-                <div className="font-space-mono text-[11px] text-[#E040FB] tracking-widest uppercase mb-4">WHY US</div>
-                <h2 className="font-plus-jakarta-sans font-extrabold text-[40px] md:text-[52px] leading-[1.1] mb-8">
+                <div className="font-space-mono text-[11px] text-[#A21CAF] tracking-widest uppercase mb-4">WHY US</div>
+                <h2 className="font-plus-jakarta-sans font-extrabold text-[38px] md:text-[52px] leading-[1.1] tracking-tight mb-8">
                   <span className="text-[#0D0D1F] block">The LuminaXpert</span>
                   <span className="text-gradient block">difference.</span>
                 </h2>
               </ScrollReveal>
-              
               <div className="flex flex-col">
                 {[
                   { icon: Shield, title: "Verified Experts", desc: "Every specialist is rigorously vetted — credentials checked, track record confirmed." },
                   { icon: Zap, title: "Rapid Deployment", desc: "From brief to first delivery in days, not months." },
                   { icon: Globe, title: "Global Reach, Local Understanding", desc: "Experts across 40+ countries who understand your market." },
-                  { icon: Lock, title: "Enterprise-Grade Security", desc: "SOC 2 Type II, GDPR compliant, zero data compromise." }
+                  { icon: Lock, title: "Enterprise-Grade Security", desc: "Security-first delivery, GDPR-ready processes and zero data compromise." },
                 ].map((item, i) => (
-                  <ScrollReveal key={i} delay={i * 0.1}>
-                    <div className={`flex gap-5 py-5 ${i !== 3 ? 'border-b border-[rgba(139, 63, 255, 0.15)]' : ''}`}>
-                      <div className="mt-1 text-[#E040FB] drop-shadow-[0_0_8px_rgba(224,64,251,0.5)]">
-                        <item.icon size={24} />
-                      </div>
+                  <ScrollReveal key={item.title} delay={i * 0.08}>
+                    <div className={`flex gap-5 py-5 ${i !== 3 ? "border-b border-[rgba(139,63,255,0.12)]" : ""}`}>
+                      <div className="mt-1 text-[#A21CAF]"><item.icon size={24} /></div>
                       <div>
-                        <h4 className="font-plus-jakarta-sans font-bold text-[18px] text-[#0D0D1F] mb-2">{item.title}</h4>
+                        <h3 className="font-plus-jakarta-sans font-bold text-[18px] text-[#0D0D1F] mb-1.5">{item.title}</h3>
                         <p className="font-inter text-[15px] text-[#4A5568] leading-[1.6]">{item.desc}</p>
                       </div>
                     </div>
@@ -456,286 +298,138 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── SECTION 6: ROI CALCULATOR ────────────────────────── */}
-      <section className="relative py-[120px] bg-[#FFFFFF] overflow-hidden border-t border-[rgba(139,63,255,0.15)]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(139,63,255,0.08),transparent_70%)] pointer-events-none"></div>
-        <div className="container mx-auto px-5 md:px-20 max-w-[1280px] relative z-10">
+      {/* ─── ROI CALCULATOR ───────────────────────────────── */}
+      <section className="relative py-[120px] bg-white overflow-hidden border-t border-[rgba(139,63,255,0.12)] z-10">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(139,63,255,0.08),transparent_70%)] pointer-events-none" />
+        <div className="mx-auto px-5 md:px-10 xl:px-20 max-w-[1280px] relative z-10">
           <ScrollReveal>
             <div className="flex flex-col items-center text-center mb-16">
-              <div className="font-space-mono text-[11px] text-[#F5C842] tracking-widest uppercase mb-4 flex items-center gap-3">
-                <span className="w-8 h-[1px] bg-[#F5C842]/50"></span>
-                Interactive Tools
-                <span className="w-8 h-[1px] bg-[#F5C842]/50"></span>
+              <div className="font-space-mono text-[11px] text-[#B7791F] tracking-widest uppercase mb-4 flex items-center gap-3">
+                <span className="w-8 h-[1px] bg-[#B7791F]/50" /> Interactive Tools <span className="w-8 h-[1px] bg-[#B7791F]/50" />
               </div>
-              <h2 className="font-plus-jakarta-sans font-extrabold text-[40px] md:text-[52px] leading-[1.1] text-[#0D0D1F] mb-6">
-                Calculate your <span className="text-gradient">AI Return on Investment</span>
+              <h2 className="font-plus-jakarta-sans font-extrabold text-[38px] md:text-[52px] leading-[1.1] tracking-tight text-[#0D0D1F] mb-6">
+                Calculate your <span className="text-gradient">AI return on investment</span>
               </h2>
-              <p className="font-inter text-[17px] text-[#718096] max-w-[600px]">
+              <p className="font-inter text-[17px] text-[#4A5568] max-w-[600px]">
                 Input your process specifications to generate real-time estimates of efficiency gains, break-even timelines, and cost reductions.
               </p>
             </div>
           </ScrollReveal>
-          
-          <ScrollReveal delay={0.2}>
+          <ScrollReveal>
             <RoiCalculator />
           </ScrollReveal>
         </div>
       </section>
 
-      {/* ─── SECTION 7: TESTIMONIALS ─────────────────────────── */}
-      <section className="relative py-[120px] bg-[#F0F4F8] border-y border-[rgba(139,63,255,0.15)] overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#8b3fff]/5 to-transparent z-0"></div>
-        <div className="container mx-auto px-5 md:px-20 max-w-[1280px] relative z-10">
-          
+      {/* ─── TESTIMONIALS ─────────────────────────────────── */}
+      <section className="relative py-[120px] bg-[#F0F4F8] border-y border-[rgba(139,63,255,0.12)] overflow-hidden z-10">
+        <div className="mx-auto px-5 md:px-10 xl:px-20 max-w-[1280px] relative z-10">
           <ScrollReveal>
             <div className="flex flex-col items-center text-center mb-16">
-              <div className="font-space-mono text-[11px] text-[#E040FB] tracking-widest uppercase mb-4">
-                WHAT OUR CLIENTS SAY
-              </div>
-              <h2 className="font-plus-jakarta-sans font-extrabold text-[36px] md:text-[52px] leading-[1.1] text-[#0D0D1F]">
+              <div className="font-space-mono text-[11px] text-[#A21CAF] tracking-widest uppercase mb-4">WHAT OUR CLIENTS SAY</div>
+              <h2 className="font-plus-jakarta-sans font-extrabold text-[34px] md:text-[52px] leading-[1.1] tracking-tight text-[#0D0D1F] max-w-[900px]">
                 Results that speak louder than credentials.
               </h2>
             </div>
           </ScrollReveal>
-          
-          <div 
-            className="max-w-[850px] mx-auto relative animate-fade-in"
-            onMouseEnter={() => setIsHovering(true)}
-            onMouseLeave={() => setIsHovering(false)}
-          >
-            {/* Large Decorative Quote Icon */}
-            <div className="absolute -top-10 -left-6 text-[#0D0D1F]/[0.03] select-none pointer-events-none">
-              <Quote size={180} className="fill-white/[0.01]" />
-            </div>
-
-            {/* Carousel Content */}
-            <div className="relative min-h-[350px] md:min-h-[280px] flex items-center">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeTestimonial}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.4 }}
-                  className="w-full glass-card !bg-white/[0.02] !border-white/[0.08] p-8 md:p-12 backdrop-blur-xl flex flex-col md:flex-row items-center gap-8 md:gap-12"
-                >
-                  <div className="flex-1">
-                    {/* Star Rating */}
-                    <div className="flex gap-1 mb-4 text-[#F5C842]">
-                      {Array.from({ length: testimonials[activeTestimonial].stars }).map((_, i) => (
-                        <Star key={i} size={16} className="fill-[#F5C842]" />
-                      ))}
-                    </div>
-                    
-                    {/* Quote */}
-                    <blockquote className="font-inter text-[#4A5568] text-[16px] md:text-[18px] leading-[1.8] italic mb-6">
-                      "{testimonials[activeTestimonial].quote}"
-                    </blockquote>
-                    
-                    {/* Author */}
-                    <div>
-                      <cite className="font-plus-jakarta-sans font-bold text-[#0D0D1F] text-[16px] not-italic block">
-                        {testimonials[activeTestimonial].name}
-                      </cite>
-                      <span className="font-space-mono text-[#718096] text-[12px] uppercase tracking-wider block mt-1">
-                        {testimonials[activeTestimonial].role}, {testimonials[activeTestimonial].company}
-                      </span>
-                    </div>
-                  </div>
-                  
-                  {/* Outcome Metric Callout */}
-                  <div className="w-full md:w-[220px] bg-gradient-to-br from-[#8b3fff]/10 to-[#FB00DF]/5 border border-white/[0.05] rounded-2xl p-6 flex flex-col items-center justify-center text-center">
-                    <span className="font-space-mono text-[10px] text-[#718096] uppercase tracking-widest block mb-2">Verified Outcome</span>
-                    <div className="font-plus-jakarta-sans font-black text-[#F5C842] text-[28px] leading-tight">
-                      {testimonials[activeTestimonial].metric}
-                    </div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-            
-            {/* Navigation Controls */}
-            <div className="flex items-center justify-between mt-8 relative z-20">
-              {/* Prev Button */}
-              <button 
-                onClick={() => setActiveTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
-                className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-[#0D0D1F] hover:border-white/30 hover:bg-white/5 transition-all cursor-pointer"
-              >
-                <ChevronLeft size={20} />
-              </button>
-              
-              {/* Dots */}
-              <div className="flex gap-2">
-                {testimonials.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setActiveTestimonial(i)}
-                    className={`w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${
-                      activeTestimonial === i 
-                        ? "bg-[#F5C842] w-6" 
-                        : "bg-gray-300 hover:bg-white/40"
-                    }`}
-                  />
-                ))}
-              </div>
-              
-              {/* Next Button */}
-              <button 
-                onClick={() => setActiveTestimonial((prev) => (prev + 1) % testimonials.length)}
-                className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-[#0D0D1F] hover:border-white/30 hover:bg-white/5 transition-all cursor-pointer"
-              >
-                <ChevronRight size={20} />
-              </button>
-            </div>
-
-          </div>
-
+          <Testimonials />
         </div>
       </section>
 
-      {/* ─── SECTION 8: LATEST INSIGHTS ──────────────────────── */}
-      <section className="relative py-[120px] bg-[#FFFFFF]">
-        <div className="absolute inset-0 ambient-right z-0 opacity-50"></div>
-        <div className="container mx-auto px-5 md:px-20 max-w-[1280px] relative z-10">
-          <div>
-            <ScrollReveal>
-              <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-                <div>
-                  <div className="font-space-mono text-[11px] text-[#00D9FF] tracking-widest uppercase mb-4">LATEST INSIGHTS</div>
-                  <h2 className="font-plus-jakarta-sans font-extrabold text-[40px] text-[#0D0D1F]">Featured Intelligence</h2>
-                </div>
-                <Link href="/blog" className="btn-link">View All Insights →</Link>
+      {/* ─── LATEST INSIGHTS ──────────────────────────────── */}
+      <section className="relative py-[120px] bg-white z-10">
+        <div className="mx-auto px-5 md:px-10 xl:px-20 max-w-[1280px] relative z-10">
+          <ScrollReveal>
+            <div className="flex flex-col md:flex-row justify-between md:items-end mb-12 gap-6">
+              <div>
+                <div className="font-space-mono text-[11px] text-[#0891B2] tracking-widest uppercase mb-4">LATEST INSIGHTS</div>
+                <h2 className="font-plus-jakarta-sans font-extrabold text-[36px] md:text-[44px] tracking-tight text-[#0D0D1F]">Featured intelligence</h2>
               </div>
-            </ScrollReveal>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <ScrollReveal delay={0.1}>
-                <Link href="/blog/invisible-roi-of-ai" className="glass-card flex flex-col md:flex-row overflow-hidden group hover:border-[#E040FB]/40 transition-all duration-500">
-                  <div className="md:w-[40%] h-[240px] md:h-auto overflow-hidden">
-                    <img src="/images/blog/prompt3.png" alt="Generative AI" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                  </div>
-                  <div className="md:w-[60%] p-8 flex flex-col justify-center bg-[#FFFFFF]/60 backdrop-blur-md">
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className="px-3 py-1 rounded-full bg-[#E040FB]/10 text-[#E040FB] font-space-mono text-[10px] uppercase font-bold border border-[#E040FB]/20">Strategy</span>
-                      <span className="text-[#718096] font-space-mono text-[11px]">6 MIN READ</span>
-                    </div>
-                    <h3 className="font-plus-jakarta-sans font-bold text-[24px] text-[#0D0D1F] group-hover:text-[#E040FB] transition-colors mb-4">The Invisible ROI of AI: Measuring What Traditional Metrics Miss</h3>
-                    <p className="font-inter text-[#4A5568] text-[15px] line-clamp-2">Traditional ROI calculations fail to capture the exponential compounding value of AI integration. Discover a modern framework.</p>
-                  </div>
-                </Link>
-              </ScrollReveal>
-
-              <ScrollReveal delay={0.2}>
-                <Link href="/blog/llms-in-production" className="glass-card flex flex-col md:flex-row overflow-hidden group hover:border-[#00D9FF]/40 transition-all duration-500">
-                  <div className="md:w-[40%] h-[240px] md:h-auto overflow-hidden">
-                    <img src="/images/blog/prompt1.png" alt="AI Infrastructure" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                  </div>
-                  <div className="md:w-[60%] p-8 flex flex-col justify-center bg-[#FFFFFF]/60 backdrop-blur-md">
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className="px-3 py-1 rounded-full bg-[#00D9FF]/10 text-[#00D9FF] font-space-mono text-[10px] uppercase font-bold border border-[#00D9FF]/20">Engineering</span>
-                      <span className="text-[#718096] font-space-mono text-[11px]">9 MIN READ</span>
-                    </div>
-                    <h3 className="font-plus-jakarta-sans font-bold text-[24px] text-[#0D0D1F] group-hover:text-[#00D9FF] transition-colors mb-4">LLMs in Production: Transitioning from Playground to Enterprise</h3>
-                    <p className="font-inter text-[#4A5568] text-[15px] line-clamp-2">Moving large language models from prototype to secure, scalable, and compliant enterprise deployments.</p>
-                  </div>
-                </Link>
-              </ScrollReveal>
+              <Link href="/blog" className="btn-link">View all insights →</Link>
             </div>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {latest.map((post, i) => (
+              <ScrollReveal key={post.slug} delay={i * 0.08}>
+                <Link href={`/blog/${post.slug}`} className="glass-card !p-0 h-full flex flex-col overflow-hidden group hover:-translate-y-1.5 hover:border-[#E040FB]/40 hover:shadow-[0_24px_60px_rgba(139,63,255,0.12)] transition-all duration-500">
+                  <div className="relative h-[210px] overflow-hidden">
+                    <Image src={post.image} alt="" fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover group-hover:scale-105 transition-transform duration-700" />
+                  </div>
+                  <div className="p-7 flex flex-col flex-1">
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="px-3 py-1 rounded-full bg-[#E040FB]/10 text-[#A21CAF] font-space-mono text-[10px] uppercase font-bold border border-[#E040FB]/20">{post.category}</span>
+                      <span className="text-[#718096] font-space-mono text-[11px] uppercase">{post.readTime}</span>
+                    </div>
+                    <h3 className="font-plus-jakarta-sans font-bold text-[20px] leading-snug text-[#0D0D1F] group-hover:text-[#6D28D9] transition-colors mb-3">{post.title}</h3>
+                    <p className="font-inter text-[#4A5568] text-[15px] line-clamp-2 mb-6">{post.excerpt}</p>
+                    <span className="mt-auto flex items-center gap-2 font-plus-jakarta-sans font-semibold text-[14px] text-[#0D0D1F] group-hover:text-[#6D28D9] transition-colors">
+                      Read article <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </div>
+                </Link>
+              </ScrollReveal>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ─── SECTION 9: PARTNERS & CERTIFICATIONS ────────────── */}
-      <section className="relative py-[100px] bg-[#F8F9FA] border-t border-[rgba(139,63,255,0.15)] overflow-hidden z-10">
-        <div className="container mx-auto px-5 md:px-20 max-w-[1280px] relative z-10">
+      {/* ─── PLATFORMS ────────────────────────────────────── */}
+      <section className="relative py-[100px] bg-[#F8F9FA] border-t border-[rgba(139,63,255,0.12)] overflow-hidden z-10">
+        <div className="mx-auto px-5 md:px-10 xl:px-20 max-w-[1280px] relative z-10">
           <ScrollReveal>
             <div className="flex flex-col items-center text-center mb-16">
-              <div className="font-space-mono text-[11px] text-[#F5C842] tracking-widest uppercase mb-4">
-                BUILT ON THE WORLD'S BEST AI INFRASTRUCTURE
-              </div>
-              <h2 className="font-plus-jakarta-sans font-extrabold text-[32px] md:text-[44px] text-[#0D0D1F]">
-                Certified expertise across leading platforms.
-              </h2>
+              <div className="font-space-mono text-[11px] text-[#B7791F] tracking-widest uppercase mb-4">Built on the world&apos;s best AI infrastructure</div>
+              <h2 className="font-plus-jakarta-sans font-extrabold text-[30px] md:text-[44px] tracking-tight text-[#0D0D1F]">Expertise across leading platforms.</h2>
             </div>
           </ScrollReveal>
-          
-          <div className="max-w-[800px] mx-auto flex flex-col gap-6">
-            {/* Row 1: Cloud */}
-            <ScrollReveal delay={0.1}>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {["AWS Partner", "Microsoft Azure", "Google Cloud"].map((cloud) => (
-                  <div key={cloud} className="bg-[#FFFFFF]/80 border border-[rgba(139,63,255,0.15)] shadow-sm hover:border-[#F5C842]/40 rounded-xl py-5 px-6 flex items-center justify-center font-plus-jakarta-sans font-bold text-[#0D0D1F] text-[15px] hover:-translate-y-1 transition-all duration-300">
-                    {cloud}
-                  </div>
-                ))}
-              </div>
-            </ScrollReveal>
-            
-            {/* Row 2: AI/ML */}
-            <ScrollReveal delay={0.2}>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {["OpenAI", "Hugging Face", "Databricks", "Snowflake"].map((ai) => (
-                  <div key={ai} className="bg-[#FFFFFF]/80 border border-[rgba(139,63,255,0.15)] shadow-sm hover:border-[#E040FB]/40 rounded-xl py-5 px-6 flex items-center justify-center font-plus-jakarta-sans font-bold text-[#0D0D1F] text-[15px] hover:-translate-y-1 transition-all duration-300">
-                    {ai}
-                  </div>
-                ))}
-              </div>
-            </ScrollReveal>
-            
-            {/* Row 3: Compliance */}
-            <ScrollReveal delay={0.3}>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {["SOC 2 Type II", "GDPR Ready", "ISO 27001", "EU AI Act Aligned"].map((comp) => (
-                  <div key={comp} className="bg-[#FFFFFF]/80 border border-[rgba(139,63,255,0.15)] shadow-sm hover:border-[#00D9FF]/40 rounded-xl py-5 px-6 flex items-center justify-center font-plus-jakarta-sans font-bold text-[#0D0D1F] text-[15px] hover:-translate-y-1 transition-all duration-300">
-                    {comp}
-                  </div>
-                ))}
-              </div>
-            </ScrollReveal>
+          <div className="max-w-[860px] mx-auto flex flex-col gap-4">
+            {[
+              ["AWS", "Microsoft Azure", "Google Cloud"],
+              ["OpenAI", "Anthropic", "Hugging Face", "Databricks"],
+              ["Snowflake", "GDPR Ready", "ISO 27001 Practices", "EU AI Act Aligned"],
+            ].map((row, r) => (
+              <ScrollReveal key={r} delay={r * 0.08}>
+                <div className={`grid grid-cols-2 ${row.length === 3 ? "md:grid-cols-3" : "md:grid-cols-4"} gap-4`}>
+                  {row.map((item) => (
+                    <div key={item} className="bg-white/90 border border-[rgba(139,63,255,0.15)] shadow-sm hover:border-[#8B3FFF]/40 rounded-xl py-5 px-4 flex items-center justify-center text-center font-plus-jakarta-sans font-bold text-[#0D0D1F] text-[15px] hover:-translate-y-1 transition-all duration-300">
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </ScrollReveal>
+            ))}
           </div>
-          
-          <ScrollReveal delay={0.4}>
-            <p className="text-[11px] font-space-mono text-gray-500 text-center mt-10">
-              * LuminaXpert maintains independent expertise across all platforms. We are not limited to any single vendor.
-            </p>
-          </ScrollReveal>
+          <p className="text-[11px] font-space-mono text-[#718096] text-center mt-10">
+            * LuminaXpert maintains independent, vendor-neutral expertise across all platforms.
+          </p>
         </div>
       </section>
 
-      {/* ─── SECTION 10: CTA BAND ────────────────────────────── */}
-      <section className="relative py-[80px] bg-[#F8F9FA] border-y border-[var(--color-brand-magenta)]/30 overflow-hidden mt-20 z-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#3B6FFF]/10 via-[#8B3FFF]/15 to-[#E040FB]/10 z-0"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(139,63,255,0.15)_0%,transparent_70%)] rounded-full animate-pulse z-0"></div>
-        
-        <div className="container mx-auto px-5 relative z-10 flex flex-col items-center text-center">
+      {/* ─── CTA ──────────────────────────────────────────── */}
+      <section className="relative py-[100px] overflow-hidden z-10">
+        <div className="mx-auto px-5 md:px-10 xl:px-20 max-w-[1280px]">
           <ScrollReveal>
-            <h2 className="font-plus-jakarta-sans font-black text-[40px] md:text-[56px] text-[#0D0D1F] mb-4">
-              Ready to illuminate your potential?
-            </h2>
-            <p className="font-inter text-[20px] text-[#4A5568] mb-8">
-              Talk to a LuminaXpert specialist today. No commitment.
-            </p>
-          </ScrollReveal>
-          
-          <ScrollReveal delay={0.1}>
-            <div className="flex flex-col sm:flex-row gap-4 mb-6 relative z-10">
-              <Link href="/booking" className="btn-primary">Book a Free Consultation</Link>
-              <Link href="/services" className="btn-ghost">Explore Our Services</Link>
-            </div>
-          </ScrollReveal>
-          
-          <ScrollReveal delay={0.2}>
-            <div className="font-space-mono text-[11px] text-[#718096] flex flex-wrap justify-center gap-4">
-              <span>✓ No credit card</span>
-              <span className="hidden sm:inline">·</span>
-              <span>✓ 30-min discovery call</span>
-              <span className="hidden sm:inline">·</span>
-              <span>✓ Proposal within 48h</span>
+            <div className="relative rounded-[32px] overflow-hidden px-8 py-16 md:px-16 md:py-20 text-center bg-[#0D0D1F]">
+              <div className="absolute inset-0 bg-[radial-gradient(60%_80%_at_20%_0%,rgba(5,13,235,0.55),transparent),radial-gradient(60%_80%_at_80%_100%,rgba(251,0,223,0.45),transparent)]" />
+              <div className="absolute inset-0 opacity-[0.15] bg-[linear-gradient(rgba(255,255,255,0.4)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.4)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
+              <div className="relative">
+                <h2 className="font-plus-jakarta-sans font-black text-[36px] md:text-[56px] leading-[1.05] tracking-tight text-white mb-5">Ready to illuminate your potential?</h2>
+                <p className="font-inter text-[18px] md:text-[20px] text-white/75 mb-10 max-w-[620px] mx-auto">Talk to a LuminaXpert specialist today. No commitment — just clarity on what AI can do for you.</p>
+                <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
+                  <Link href="/booking" className="btn-primary">Book a Free Consultation</Link>
+                  <Link href="/services" className="btn-ghost !text-white !border-white/30 hover:!bg-white/10">Explore Our Services</Link>
+                </div>
+                <div className="font-space-mono text-[11px] text-white/60 flex flex-wrap justify-center gap-4">
+                  <span>✓ No credit card</span><span className="hidden sm:inline">·</span>
+                  <span>✓ 30-min discovery call</span><span className="hidden sm:inline">·</span>
+                  <span>✓ Proposal within 48h</span>
+                </div>
+              </div>
             </div>
           </ScrollReveal>
         </div>
       </section>
-
     </div>
   );
 }

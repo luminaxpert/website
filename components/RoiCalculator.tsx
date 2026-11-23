@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { Calculator, X, Sparkles, TrendingUp, Clock, Zap, CheckCircle2, ShieldAlert } from "lucide-react";
-import emailjs from "@emailjs/browser";
+import { sendEmail } from "@/lib/email";
+import { EMAILJS } from "@/lib/site";
 import { AnimatePresence, motion } from "framer-motion";
 
 interface AnimatedValueProps {
@@ -116,11 +117,13 @@ export default function RoiCalculator() {
     const breakEvenMonths = Math.min(24, Math.max(1, implementationCost / (savings / 12)));
     const prodMultiplier = 1 + (useCaseFactor * maturityFactor * 1.3);
 
+    /* eslint-disable react-hooks/set-state-in-effect -- derived outputs feed the animated counters */
     setAnnualSavings(savings);
     setRoiYear1(y1Roi);
     setRoiYear3(y3Roi);
     setBreakEven(breakEvenMonths);
     setProductivityMultiplier(prodMultiplier);
+    /* eslint-enable react-hooks/set-state-in-effect */
 
   }, [companySize, monthlySpend, useCase, maturityLevel]);
 
@@ -130,11 +133,7 @@ export default function RoiCalculator() {
 
     setIsSending(true);
     setModalError("");
-
-    // EmailJS keys
-    const SERVICE_ID = "service_lodv4s8";
-    const TEMPLATE_ID = "template_om6eji6";
-    const PUBLIC_KEY = "rJmiQU1kmvt_kTBgf";
+    const TEMPLATE_ID = EMAILJS.contactTemplate;
 
     try {
       const formData = new FormData(formRef.current);
@@ -159,9 +158,9 @@ Calculated ROI Report Metrics:
         time: new Date().toLocaleString()
       };
 
-      await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
+      await sendEmail(TEMPLATE_ID, templateParams as Record<string, string>);
       setFormSubmitted(true);
-    } catch (err: any) {
+    } catch (err) {
       console.error(err);
       setModalError("Unable to submit report request. Please try again.");
     } finally {
@@ -193,7 +192,7 @@ Calculated ROI Report Metrics:
         {/* INPUTS PANEL */}
         <div className="w-full lg:w-1/2 p-8 md:p-10 border-b lg:border-b-0 lg:border-r border-[#ffffff10]">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-lg bg-[#F5C842]/10 border border-[#F5C842]/30 flex items-center justify-center text-[#F5C842]">
+            <div className="w-10 h-10 rounded-lg bg-[#F5C842]/10 border border-[#F5C842]/30 flex items-center justify-center text-[#B7791F]">
               <Calculator size={20} />
             </div>
             <div>
@@ -227,7 +226,7 @@ Calculated ROI Report Metrics:
             <div>
               <div className="flex justify-between items-center mb-3">
                 <label className="text-[13px] font-space-mono text-gray-300 uppercase tracking-wider">Monthly Process Spend</label>
-                <span className="font-space-mono text-[#F5C842] font-bold text-[14px]">{formatCurrency(monthlySpend)}</span>
+                <span className="font-space-mono text-[#B7791F] font-bold text-[14px]">{formatCurrency(monthlySpend)}</span>
               </div>
               <input
                 type="range"
@@ -291,9 +290,9 @@ Calculated ROI Report Metrics:
           <div>
             <div className="flex items-center justify-between mb-8">
               <h3 className="font-plus-jakarta-sans font-bold text-white text-[20px] flex items-center gap-2">
-                <Sparkles className="text-[#F5C842]" size={18} /> Projected Outcomes
+                <Sparkles className="text-[#B7791F]" size={18} /> Projected Outcomes
               </h3>
-              <span className="px-2.5 py-1 rounded-full bg-[#F5C842]/10 border border-[#F5C842]/20 text-[#F5C842] font-space-mono text-[9px] uppercase tracking-widest font-bold">Live Estimate</span>
+              <span className="px-2.5 py-1 rounded-full bg-[#F5C842]/10 border border-[#F5C842]/20 text-[#B7791F] font-space-mono text-[9px] uppercase tracking-widest font-bold">Live Estimate</span>
             </div>
 
             <div className="grid grid-cols-2 gap-6">
@@ -308,10 +307,10 @@ Calculated ROI Report Metrics:
               {/* Year 1 ROI */}
               <div className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-4 flex flex-col justify-between hover:border-[#00D9FF]/30 transition-all">
                 <div>
-                  <TrendingUp className="text-[#00D9FF] mb-3" size={18} />
+                  <TrendingUp className="text-[#0891B2] mb-3" size={18} />
                   <span className="text-[11px] font-space-mono text-gray-400 uppercase tracking-wider block">Year 1 ROI</span>
                 </div>
-                <div className="text-[24px] font-plus-jakarta-sans font-black text-[#00D9FF] mt-2">
+                <div className="text-[24px] font-plus-jakarta-sans font-black text-[#0891B2] mt-2">
                   <AnimatedValue value={roiYear1} formatter={formatPercentage} />
                 </div>
               </div>
@@ -330,10 +329,10 @@ Calculated ROI Report Metrics:
               {/* Break Even */}
               <div className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-4 flex flex-col justify-between hover:border-[#F5C842]/30 transition-all">
                 <div>
-                  <Clock className="text-[#F5C842] mb-3" size={18} />
+                  <Clock className="text-[#B7791F] mb-3" size={18} />
                   <span className="text-[11px] font-space-mono text-gray-400 uppercase tracking-wider block">Break-Even Time</span>
                 </div>
-                <div className="text-[24px] font-plus-jakarta-sans font-black text-[#F5C842] mt-2">
+                <div className="text-[24px] font-plus-jakarta-sans font-black text-[#B7791F] mt-2">
                   <AnimatedValue value={breakEven} formatter={formatMonths} />
                 </div>
               </div>
@@ -417,7 +416,7 @@ Calculated ROI Report Metrics:
               ) : (
                 <div>
                   <h4 className="font-plus-jakarta-sans font-bold text-white text-[22px] mb-2 flex items-center gap-2">
-                    <Sparkles className="text-[#F5C842]" size={20} /> Personalized Audit
+                    <Sparkles className="text-[#B7791F]" size={20} /> Personalized Audit
                   </h4>
                   <p className="font-inter text-gray-400 text-[13px] leading-relaxed mb-6">
                     Enter your coordinates below. We will send a full, customized feasibility model and resource plan directly to your inbox.

@@ -1,28 +1,49 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ReactNode } from "react";
+import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
 
 interface ScrollRevealProps {
   children: ReactNode;
   delay?: number;
   className?: string;
+  id?: string;
 }
 
-export default function ScrollReveal({ children, delay = 0, className = "" }: ScrollRevealProps) {
+// One IntersectionObserver shared by every reveal element on the page — far
+// cheaper than a framer-motion instance per element.
+let observer: IntersectionObserver | null = null;
+function getObserver() {
+  if (observer || typeof window === "undefined") return observer;
+  observer = new IntersectionObserver(
+    (entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) {
+          e.target.classList.add("is-visible");
+          observer?.unobserve(e.target);
+        }
+      }
+    },
+    { rootMargin: "0px 0px -8% 0px", threshold: 0.01 }
+  );
+  return observer;
+}
+
+export default function ScrollReveal({ children, delay = 0, className = "", id }: ScrollRevealProps) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    const obs = getObserver();
+    if (!el || !obs) return;
+    obs.observe(el);
+    return () => obs.unobserve(el);
+  }, []);
+
+  const style = { "--reveal-delay": `${Math.min(delay, 0.45)}s` } as CSSProperties;
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ 
-        duration: 0.65, 
-        ease: [0.16, 1, 0.3, 1], // ease-out-expo from spec
-        delay: delay 
-      }}
-      className={className}
-    >
+    <div ref={ref} id={id} data-reveal="" className={className} style={style}>
       {children}
-    </motion.div>
+    </div>
   );
 }

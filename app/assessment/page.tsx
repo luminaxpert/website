@@ -7,14 +7,13 @@ import {
   ArrowRight, Lock, Sparkles, Brain, Database, Users, Cpu, FileCheck 
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import LuminaBackground from "@/components/LuminaBackground";
-import ScrollReveal from "@/components/ScrollReveal";
-import emailjs from "@emailjs/browser";
+import { sendEmail, emailErrorMessage } from "@/lib/email";
+import { EMAILJS } from "@/lib/site";
 
 const questions = [
   {
     category: "Strategy",
-    icon: <Brain className="text-[#00D9FF]" size={24} />,
+    icon: <Brain className="text-[#0891B2]" size={24} />,
     question: "Does your organization have a documented AI strategy?",
     options: [
       { text: "No strategy or formal roadmap at all.", value: 1 },
@@ -25,7 +24,7 @@ const questions = [
   },
   {
     category: "Data",
-    icon: <Database className="text-[#00F5A0]" size={24} />,
+    icon: <Database className="text-[#059669]" size={24} />,
     question: "How would you describe your data infrastructure?",
     options: [
       { text: "Fragmented, siloed databases, and poor data quality.", value: 1 },
@@ -36,7 +35,7 @@ const questions = [
   },
   {
     category: "Talent",
-    icon: <Users className="text-[#FFD166]" size={24} />,
+    icon: <Users className="text-[#D97706]" size={24} />,
     question: "What is your current internal AI capability?",
     options: [
       { text: "No dedicated AI engineers or data scientists.", value: 1 },
@@ -143,7 +142,7 @@ export default function AssessmentPage() {
     ];
   } else {
     badgeTitle = "AI Leader";
-    badgeColor = "text-[#F5C842] border-[#F5C842]/20 bg-[#F5C842]/5";
+    badgeColor = "text-[#B7791F] border-[#F5C842]/20 bg-[#F5C842]/5";
     badgeText = "You're ahead of the curve. Our team can help you build advanced custom LLM networks, secure compliance, and maintain competitive advantage.";
     recommendations = [
       "Align models with EU AI Act and ISO 42001.",
@@ -158,11 +157,7 @@ export default function AssessmentPage() {
 
     setIsSending(true);
     setErrorMsg("");
-
-    // EmailJS keys
-    const SERVICE_ID = "service_lodv4s8";
-    const TEMPLATE_ID = "template_om6eji6";
-    const PUBLIC_KEY = "rJmiQU1kmvt_kTBgf";
+    const TEMPLATE_ID = EMAILJS.contactTemplate;
 
     try {
       const formData = new FormData(formRef.current);
@@ -186,11 +181,11 @@ Assessment Details:
         time: new Date().toLocaleString()
       };
 
-      await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
+      await sendEmail(TEMPLATE_ID, templateParams as Record<string, string>);
       setFormSubmitted(true);
-    } catch (err: any) {
+    } catch (err) {
       console.error(err);
-      setErrorMsg("Failed to queue your report. Please try again.");
+      setErrorMsg(emailErrorMessage(err, "Failed to queue your report. Please try again."));
     } finally {
       setIsSending(false);
     }
@@ -201,30 +196,28 @@ Assessment Details:
 
   return (
     <div className="flex flex-col min-h-screen relative overflow-x-hidden">
-      {/* Background Geometries */}
-      <LuminaBackground />
 
       {/* HEADER */}
       <section className="relative min-h-[40vh] pt-[160px] pb-[40px] flex items-center bg-transparent overflow-hidden">
         <div className="absolute inset-0 ambient-right z-0 opacity-40"></div>
         <div className="container mx-auto px-5 md:px-20 max-w-[1280px] relative z-10 text-center flex flex-col items-center">
-          <ScrollReveal>
-            <div className="font-space-mono text-[11px] text-[#F5C842] tracking-widest uppercase mb-4 flex items-center gap-3">
+          <div className="animate-slide-up-1">
+            <div className="font-space-mono text-[11px] text-[#B7791F] tracking-widest uppercase mb-4 flex items-center gap-3">
               <Award size={16} /> Lead Magnet Tools
             </div>
-          </ScrollReveal>
+          </div>
           
-          <ScrollReveal delay={0.1}>
+          <div className="animate-slide-up-2">
             <h1 className="font-plus-jakarta-sans font-bold text-[48px] md:text-[64px] leading-[1.1] text-[#0D0D1F] tracking-tight mb-6">
               AI Maturity <span className="text-gradient">Assessment.</span>
             </h1>
-          </ScrollReveal>
+          </div>
           
-          <ScrollReveal delay={0.2}>
+          <div className="animate-slide-up-3">
             <p className="font-inter text-[18px] text-[#4A5568] max-w-[600px] mb-8">
               Evaluate your strategy, data, talent, deployment capability, and governance policies in 2 minutes. Receive personalized scaling recommendations immediately.
             </p>
-          </ScrollReveal>
+          </div>
         </div>
       </section>
 
@@ -242,7 +235,7 @@ Assessment Details:
                   <span className="font-space-mono text-[10px] text-[#718096] uppercase tracking-widest">
                     Evaluation Progress
                   </span>
-                  <span className="font-space-mono text-[#F5C842] font-bold text-[12px]">
+                  <span className="font-space-mono text-[#B7791F] font-bold text-[12px]">
                     Step {currentStep + 1} of {questions.length}
                   </span>
                 </div>
@@ -276,7 +269,7 @@ Assessment Details:
                 >
                   <div className="flex items-center gap-3 mb-4">
                     {questions[currentStep].icon}
-                    <span className="font-space-mono text-[11px] text-[#F5C842] tracking-widest uppercase font-bold">
+                    <span className="font-space-mono text-[11px] text-[#B7791F] tracking-widest uppercase font-bold">
                       {questions[currentStep].category}
                     </span>
                   </div>
@@ -345,7 +338,7 @@ Assessment Details:
                       {/* Radial Ring SVG */}
                       <div className="relative w-36 h-36 flex items-center justify-center mb-6">
                         <svg className="w-full h-full transform -rotate-90">
-                          <circle cx="72" cy="72" r="40" stroke="rgba(255,255,255,0.03)" strokeWidth="8" fill="transparent" />
+                          <circle cx="72" cy="72" r="40" stroke="#E2E8F0" strokeWidth="8" fill="transparent" />
                           <motion.circle 
                             cx="72" cy="72" r="40" 
                             stroke="#F5C842" strokeWidth="8" fill="transparent" 
@@ -368,7 +361,7 @@ Assessment Details:
 
                     <button
                       onClick={resetQuiz}
-                      className="mt-6 md:mt-0 font-space-mono text-[11px] text-[#F5C842] uppercase tracking-wider hover:underline cursor-pointer"
+                      className="mt-6 md:mt-0 font-space-mono text-[11px] text-[#B7791F] uppercase tracking-wider hover:underline cursor-pointer"
                     >
                       ← Take Quiz Again
                     </button>
@@ -387,7 +380,7 @@ Assessment Details:
                         <ul className="space-y-2">
                           {recommendations.map((rec, idx) => (
                             <li key={idx} className="flex items-start gap-2.5 text-[13px] font-inter text-[#4A5568]">
-                              <span className="text-[#00D9FF] font-bold mt-0.5">✓</span>
+                              <span className="text-[#0891B2] font-bold mt-0.5">✓</span>
                               <span>{rec}</span>
                             </li>
                           ))}
@@ -398,7 +391,7 @@ Assessment Details:
                     {/* Email Capture CTA */}
                     <div className="bg-[#F8F9FA] border border-[rgba(139,63,255,0.15)] rounded-2xl p-6">
                       <span className="font-plus-jakarta-sans font-bold text-[#0D0D1F] text-[15px] mb-1.5 flex items-center gap-1.5">
-                        <Sparkles size={14} className="text-[#F5C842]" /> Get Full PDF Report
+                        <Sparkles size={14} className="text-[#B7791F]" /> Get Full PDF Report
                       </span>
                       <p className="font-inter text-[#718096] text-[12px] mb-4">
                         Download your customized 12-page AI Strategy Guide containing detailed technical implementations.

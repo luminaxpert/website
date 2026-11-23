@@ -2,7 +2,8 @@ import Link from "next/link";
 import { ArrowLeft, Clock } from "lucide-react";
 
 export const metadata = {
-  title: "Sign In | LuminaXpert",
+  title: "Client Portal Sign In",
+  robots: { index: false },
   description: "LuminaXpert client portal login.",
 };
 
@@ -20,10 +21,13 @@ export default function SignInPage() {
           We are currently upgrading our client portal experience. Access for existing partners will be restored shortly.
         </p>
         
-        <Link href="/" className="btn-primary inline-flex items-center gap-2">
-          <ArrowLeft size={18} />
-          <span>Return Home</span>
-        </Link>
+        <div className="flex flex-col sm:flex-row justify-center gap-3">
+          <Link href="/" className="btn-ghost inline-flex items-center gap-2">
+            <ArrowLeft size={18} />
+            <span>Return Home</span>
+          </Link>
+          <Link href="/contact" className="btn-primary">Contact your team lead</Link>
+        </div>
       </div>
     </div>
   );

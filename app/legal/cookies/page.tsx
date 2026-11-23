@@ -1,16 +1,16 @@
-import Link from "next/link";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Cookie Policy | LuminaXpert",
-  description: "Cookie policy for LuminaXpert.",
+  title: "Cookie Policy",
+  description: "How LuminaXpert uses cookies and similar technologies.",
+  alternates: { canonical: "/legal/cookies" },
 };
 
 export default function CookiePolicyPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-[#FFFFFF]">
+    <div className="flex flex-col min-h-screen ">
       
-      <section className="pt-[140px] pb-[60px] relative border-b border-[rgba(139, 63, 255, 0.15)]">
+      <section className="pt-[140px] pb-[60px] relative border-b border139,63,255,0.15">
         <div className="absolute inset-0 ambient-center z-0 opacity-30"></div>
         <div className="container mx-auto px-5 max-w-[800px] relative z-10 text-center">
           <h1 className="font-plus-jakarta-sans font-black text-[40px] md:text-[56px] text-[#0D0D1F] mb-4">

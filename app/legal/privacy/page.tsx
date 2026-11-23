@@ -1,11 +1,17 @@
-import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: "How LuminaXpert collects, uses and protects your personal and enterprise data.",
+  alternates: { canonical: "/legal/privacy" },
+};
 
 export default function PrivacyPolicyPage() {
   return (
     <div className="flex flex-col min-h-screen bg-[#FFFFFF]">
       
       {/* HEADER */}
-      <section className="pt-[140px] pb-[60px] relative border-b border-[rgba(139, 63, 255, 0.15)]">
+      <section className="pt-[140px] pb-[60px] relative border-b border139,63,255,0.15">
         <div className="absolute inset-0 ambient-center z-0 opacity-30"></div>
         <div className="container mx-auto px-5 max-w-[800px] relative z-10 text-center">
           <h1 className="font-plus-jakarta-sans font-black text-[40px] md:text-[56px] text-[#0D0D1F] mb-4">
@@ -56,9 +62,7 @@ export default function PrivacyPolicyPage() {
             <p>
               If you have any questions about this Privacy Policy, please contact our Data Protection Officer at:
             </p>
-            <p className="font-space-mono text-[#E040FB]">
-              privacy@luminaxpert.com
-            </p>
+            <p className="font-space-mono text-[#A21CAF]"><a href="mailto:privacy@luminaxpert.com" className="hover:underline">privacy@luminaxpert.com</a></p>
             
           </div>
         </div>
